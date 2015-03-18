@@ -2,18 +2,18 @@
  * Copyright (c) 2005, 2014 springside.github.io
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- *******************************************************************************//*
+ *******************************************************************************/
 package com.infotop;
 
 import org.eclipse.jetty.server.Server;
 import org.springside.modules.test.jetty.JettyFactory;
 import org.springside.modules.test.spring.Profiles;
 
-*//**
+/**
  * 使用Jetty运行调试Web应用, 在Console输入回车快速重新加载应用.
  * 
  * @author calvin
- *//*
+ */
 public class QuickStartServer {
 
 	public static final int PORT = 8080;
@@ -47,4 +47,3 @@ public class QuickStartServer {
 		}
 	}
 }
-*/
