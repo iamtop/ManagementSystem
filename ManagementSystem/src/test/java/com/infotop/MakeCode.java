@@ -29,7 +29,7 @@ public class MakeCode {
 
 	public static void main(String[] args) {
 		//需要自动构建代码的实体路径，可多个
-		String str[] = { "com.infotop.app.entity.Test" };
+		String str[] = { "com.infotop.management.personal.entity.Personal" };
 		Generate obj = Generate.getInstance();
 		obj.javaPath = "src/main/java";//java源码目标路径
 		obj.webAppPath = "src/main/webapp";//jsp目标路径

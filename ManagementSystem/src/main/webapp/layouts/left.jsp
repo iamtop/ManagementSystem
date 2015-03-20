@@ -4,7 +4,7 @@
 	data-options="fit:true,iconCls:'icon-ok',border:false">
 	
 	
-	<div class="menuItem" title='3D Marker Icon' data-options="iconCls:''"
+	<%-- <div class="menuItem" title='3D Marker Icon' data-options="iconCls:''"
 		style="padding: 10px;">
 		
 		<ul>
@@ -72,7 +72,7 @@ selectFunction(rec.id);
 			
 			
 			
-		<%-- <c:forEach var="device" items="${devices}">
+		<c:forEach var="device" items="${devices}">
 		<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
 				onclick="indexTabsAddTab('href',{title:'${device.deviceName}',url:'${ctx}/device/devicelist/${device.id}',iconCls:'icon-user_gray'})">
@@ -85,9 +85,9 @@ selectFunction(rec.id);
 				class="user easyui-linkbutton"
 				onclick="indexTabsAddTab('href',{title:'${device.deviceName}',url:'${ctx}/device/FormDate',iconCls:'icon-user_gray'})">
 				  formEasy
-			</a></li> --%>
+			</a></li>
 		
-			<%-- <li><a data-options="plain:true" href="javascript:void(0)"
+			<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
 				onclick="indexTabsAddTab('href',{title:'XXX community heart pump set',url:'${ctx}/device/devicelist',iconCls:'icon-user_gray'})">
 				   XXX community heart pump set
@@ -101,9 +101,9 @@ selectFunction(rec.id);
 				class="user easyui-linkbutton"
 				onclick="indexTabsAddTab('href',{title:'XXX community heart pump set2',url:'${ctx}/device/devicelist',iconCls:'icon-user_gray'})">
 					XXX community heart pump set-2
-			</a></li> --%>
+			</a></li>
 		</ul>
-	</div>
+	</div> --%>
 	
 	<%-- <div class="menuItem" title='设备监控' data-options="iconCls:'icon-monitor'"
 		style="padding: 10px;">
@@ -180,5 +180,19 @@ selectFunction(rec.id);
 			</a></li>
 		</ul>
 	</div> --%>
+	
+	<div class="menuItem" title='Management' data-options="iconCls:''"
+		style="padding: 10px;">
+		
+		<ul>
+		
+		<li><a data-options="plain:true" href="javascript:void(0)"
+				class="user easyui-linkbutton"
+				onclick="indexTabsAddTab('href',{title:'Personal ',url:'${ctx}/personal',iconCls:'icon-user_gray'})">
+				  Personal Details
+			</a></li>
+			
+			</ul>
+	</div>
 </div>
 

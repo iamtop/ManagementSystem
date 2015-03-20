@@ -1,0 +1,48 @@
+2015-03-20 14:49:30,215 - Log4JLogChute initialized using file 'velocity.log'
+2015-03-20 14:49:30,215 - Initializing Velocity, Calling init()...
+2015-03-20 14:49:30,215 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2015-03-20 14:49:30,215 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2015-03-20 14:49:30,215 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2015-03-20 14:49:30,215 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2015-03-20 14:49:30,215 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2015-03-20 14:49:30,215 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2015-03-20 14:49:30,223 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2015-03-20 14:49:30,225 - Do unicode file recognition:  false
+2015-03-20 14:49:30,225 - FileResourceLoader : adding path 'template'
+2015-03-20 14:49:30,245 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2015-03-20 14:49:30,247 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2015-03-20 14:49:30,249 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2015-03-20 14:49:30,250 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2015-03-20 14:49:30,251 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2015-03-20 14:49:30,252 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2015-03-20 14:49:30,254 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2015-03-20 14:49:30,257 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2015-03-20 14:49:30,258 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2015-03-20 14:49:30,260 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2015-03-20 14:49:30,305 - Created '20' parsers.
+2015-03-20 14:49:30,316 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2015-03-20 14:49:30,316 - Velocimacro : Default library not found.
+2015-03-20 14:49:30,316 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2015-03-20 14:49:30,316 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2015-03-20 14:49:30,316 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2015-03-20 14:49:30,316 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2015-03-20 14:49:30,327 - ResourceManager : found DaoTemplate.tpl with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2015-03-20 14:49:30,391 - ResourceManager : found ControllerTemplate.tpl with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2015-03-20 14:49:30,393 - Null reference [template 'ControllerTemplate.tpl', line 37, column 4] : $Id cannot be resolved.
+2015-03-20 14:49:30,409 - ResourceManager : found ServiceTemplate.tpl with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2015-03-20 14:49:30,410 - Null reference [template 'ServiceTemplate.tpl', line 29, column 4] : $Id cannot be resolved.
+2015-03-20 14:49:30,433 - ResourceManager : found form.tpl with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2015-03-20 14:49:30,433 - Null reference [template 'form.tpl', line 44, column 94] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,433 - Null reference [template 'form.tpl', line 44, column 116] : ${action} cannot be resolved.
+2015-03-20 14:49:30,457 - ResourceManager : found view.tpl with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2015-03-20 14:49:30,480 - ResourceManager : found list.tpl with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2015-03-20 14:49:30,484 - Null reference [template 'list.tpl', line 44, column 50] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,484 - Null reference [template 'list.tpl', line 45, column 50] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,484 - Null reference [template 'list.tpl', line 46, column 50] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,484 - Null reference [template 'list.tpl', line 47, column 48] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,484 - Null reference [template 'list.tpl', line 48, column 56] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,484 - Null reference [template 'list.tpl', line 56, column 34] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,484 - Null reference [template 'list.tpl', line 59, column 78] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,484 - Null reference [template 'list.tpl', line 62, column 77] : ${ctx} cannot be resolved.
+2015-03-20 14:49:30,487 - ResourceManager : found properties_en.tpl with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2015-03-20 14:49:30,502 - ResourceManager : found properties_zh.tpl with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
