@@ -200,8 +200,13 @@ selectFunction(rec.id);
 			
 			<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
+
 				onclick="indexTabsAddTab('href',{title:'AsignRole ',url:'${ctx}/roleasign',iconCls:'icon-user_gray'})">
 				  Asign Role
+
+				onclick="indexTabsAddTab('href',{title:'Branch',url:'${ctx}/branch',iconCls:'icon-user_gray'})">
+				  Branch
+
 			</a></li>
 			
 			</ul>
