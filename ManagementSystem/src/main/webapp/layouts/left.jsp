@@ -209,6 +209,12 @@ selectFunction(rec.id);
 
 			</a></li>
 			
+			<li><a data-options="plain:true" href="javascript:void(0)"
+				class="user easyui-linkbutton"
+				onclick="indexTabsAddTab('href',{title:'Subject',url:'${ctx}/subject',iconCls:'icon-user_gray'})">
+				  Subject
+			</a></li>
+			
 			</ul>
 	</div>
 </div>
