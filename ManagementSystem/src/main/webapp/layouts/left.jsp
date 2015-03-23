@@ -192,6 +192,12 @@ selectFunction(rec.id);
 				  Personal Details
 			</a></li>
 			
+			<li><a data-options="plain:true" href="javascript:void(0)"
+				class="user easyui-linkbutton"
+				onclick="indexTabsAddTab('href',{title:'Student ',url:'${ctx}/student',iconCls:'icon-user_gray'})">
+				  Student
+			</a></li>
+			
 			</ul>
 	</div>
 </div>
