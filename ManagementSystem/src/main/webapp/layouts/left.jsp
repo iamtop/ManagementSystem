@@ -198,6 +198,12 @@ selectFunction(rec.id);
 				  Student
 			</a></li>
 			
+			<li><a data-options="plain:true" href="javascript:void(0)"
+				class="user easyui-linkbutton"
+				onclick="indexTabsAddTab('href',{title:'Branch',url:'${ctx}/branch',iconCls:'icon-user_gray'})">
+				  Branch
+			</a></li>
+			
 			</ul>
 	</div>
 </div>
