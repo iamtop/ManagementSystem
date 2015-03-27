@@ -227,6 +227,12 @@ selectFunction(rec.id);
 				onclick="indexTabsAddTab('href',{title:'Attendance',url:'${ctx}/attendance',iconCls:'icon-user_gray'})">
 				  Attendance
 			</a></li>
+
+			<li><a data-options="plain:true" href="javascript:void(0)"
+				class="user easyui-linkbutton"
+				onclick="indexTabsAddTab('href',{title:'Chart',url:'${ctx}/chart',iconCls:'icon-user_gray'})">
+				  Chart
+			</a></li>
 			
 			</ul>
 	</div>
