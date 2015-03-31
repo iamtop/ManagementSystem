@@ -193,7 +193,7 @@ selectFunction(rec.id);
 		
 		<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
-				onclick="indexTabsAddTab('href',{title:'Personal ',url:'${ctx}/personal',iconCls:'icon-user_gray'})">
+				onclick="indexTabsAddTab('href',{title:'Personal ',url:'${ctx}/personaldetails',iconCls:'icon-user_gray'})">
 				  Personal Details
 			</a></li>
 			
