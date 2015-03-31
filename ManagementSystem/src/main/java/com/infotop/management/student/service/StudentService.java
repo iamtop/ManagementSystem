@@ -26,7 +26,7 @@ import org.springside.modules.persistence.SearchFilter;
 
 /**
  * StudentManager
- * $Id: StudentManager.java,v 0.0.1 2015-03-23 07:50:38  $
+ * $Id: StudentManager.java,v 0.0.1 2015-03-31 08:34:11  $
  */
 @Component
 @Transactional(readOnly = true)

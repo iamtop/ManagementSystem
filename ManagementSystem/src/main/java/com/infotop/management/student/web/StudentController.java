@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /**
  * StudentAction
- * $Id: StudentAction.java,v 0.0.1 2015-03-23 07:50:38  $
+ * $Id: StudentAction.java,v 0.0.1 2015-03-31 08:34:11  $
  */
 @Controller
 @RequestMapping(value = "/student")

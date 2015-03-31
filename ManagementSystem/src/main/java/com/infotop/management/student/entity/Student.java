@@ -9,31 +9,28 @@ import com.infotop.common.IdEntity;
 @Table(name="ms_student")
 public class Student extends IdEntity {
 	private String studId;
-	private String brId;
-	private String subId;
+	private String semId;
+	private String deptId;
 	private String pId;
 	
-	/*private String createUser;
-	private String updateUser ;
-	private String createDate;
-	private String updateDate */
+	
 	public String getStudId() {
 		return studId;
 	}
 	public void setStudId(String studId) {
 		this.studId = studId;
 	}
-	public String getBrId() {
-		return brId;
+	public String getSemId() {
+		return semId;
 	}
-	public void setBrId(String brId) {
-		this.brId = brId;
+	public void setSemId(String semId) {
+		this.semId = semId;
 	}
-	public String getSubId() {
-		return subId;
+	public String getDeptId() {
+		return deptId;
 	}
-	public void setSubId(String subId) {
-		this.subId = subId;
+	public void setDeptId(String deptId) {
+		this.deptId = deptId;
 	}
 	public String getpId() {
 		return pId;
