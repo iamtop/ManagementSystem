@@ -9,7 +9,8 @@ import com.infotop.common.IdEntity;
 public class Subject extends IdEntity {
 	private String subId;
 	private String subName;
-	private String brId;
+	private String deptId;
+	private String semId;
 	
 	public String getSubId() {
 		return subId;
@@ -23,13 +24,18 @@ public class Subject extends IdEntity {
 	public void setSubName(String subName) {
 		this.subName = subName;
 	}
-	public String getBrId() {
-		return brId;
+	public String getDeptId() {
+		return deptId;
 	}
-	public void setBrId(String brId) {
-		this.brId = brId;
+	public void setDeptId(String deptId) {
+		this.deptId = deptId;
 	}
-	
+	public String getSemId() {
+		return semId;
+	}
+	public void setSemId(String semId) {
+		this.semId = semId;
+	}
 	
 	
 	
