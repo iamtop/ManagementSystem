@@ -6,19 +6,23 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.infotop.common.IdEntity;
+/**
+ * @author rubz
+ *
+ */
 @Entity
 @Table(name="ms_attendance")
 public class Attendance extends IdEntity{
 	
 	
-	private String empId;
+	private String pId;
 	private String studId;
 	private String deptId;
 	private String subId;
 	private String timeSlot;
 	private String attendanceDate;
 	private String attendance;
-	private boolean flag;;
+	private boolean flag;
 	
 	
 	
@@ -54,11 +58,13 @@ public class Attendance extends IdEntity{
 	public void setAttendanceDate(String attendanceDate) {
 		this.attendanceDate = attendanceDate;
 	}
-	public String getEmpId() {
-		return empId;
+
+
+	public String getpId() {
+		return pId;
 	}
-	public void setEmpId(String empId) {
-		this.empId = empId;
+	public void setpId(String pId) {
+		this.pId = pId;
 	}
 	public String getTimeSlot() {
 		return timeSlot;

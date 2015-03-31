@@ -46,8 +46,8 @@ $ .parser.onComplete = function() {
 	<input type="hidden" name="id" id="id" value="${ attendance.id}" />
 	<table class="content" style="width: 100%;">
 	 		<tr>
-			<td class="biao_bt3"><spring:message code="attendance_empId" /></td>
-			<td><input type="text" name="empId" id="empId" value="${ attendance.empId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_empId" />不能为空.',required:true"   />	</td>
+			<td class="biao_bt3"><spring:message code="attendance_pId" /></td>
+			<td><input type="text" name="pId" id="pId" value="${ attendance.pId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_pId" />不能为空.',required:true"   />	</td>
 		</tr>
 	  		<tr>
 			<td class="biao_bt3"><spring:message code="attendance_studId" /></td>

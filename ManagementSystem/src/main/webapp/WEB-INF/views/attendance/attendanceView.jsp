@@ -10,8 +10,8 @@
 			<table class="content" style="width: 99%;" >
 				 				<tr>
 					<td class="biao_bt3"><spring:message
-							code="attendance_empId" /></td>
-					<td>${ attendance.empId }</td>
+							code="attendance_pId" /></td>
+					<td>${ attendance.pId }</td>
 				</tr>
 				  				<tr>
 					<td class="biao_bt3"><spring:message

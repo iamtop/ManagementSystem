@@ -68,7 +68,7 @@
 	//DataGrid字段设置
 	var attendance_list_datagrid_columns = [ [
 	                    		{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
-	    	          					{field : 'empId',title : '<spring:message code="attendance_empId" />',width : 150,align:'center'},
+	    	          					{field : 'pId',title : '<spring:message code="attendance_pId" />',width : 150,align:'center'},
 			          					{field : 'studId',title : '<spring:message code="attendance_studId" />',width : 150,align:'center'},
 			          					{field : 'deptId',title : '<spring:message code="attendance_deptId" />',width : 150,align:'center'},
 			          					{field : 'subId',title : '<spring:message code="attendance_subId" />',width : 150,align:'center'},
