@@ -29,7 +29,13 @@
 			<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
                 onclick="indexTabsAddTab('href',{title:'AsignRole ',url:'${ctx}/roleasignment',iconCls:'icon-user_gray'})">
-				  Asign Role
+				  Assign Role
+                </a></li>
+                
+                <li><a data-options="plain:true" href="javascript:void(0)"
+				class="user easyui-linkbutton"
+                onclick="indexTabsAddTab('href',{title:'Department ',url:'department',iconCls:'icon-user_gray'})">
+				  Department
                 </a></li>
                 
             <li><a data-options="plain:true" href="javascript:void(0)"
