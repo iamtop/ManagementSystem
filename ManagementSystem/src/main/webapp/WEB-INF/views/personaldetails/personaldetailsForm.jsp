@@ -83,11 +83,11 @@ $ .parser.onComplete = function() {
 		</tr>
 	  		<tr>
 			<td class="biao_bt3"><spring:message code="personaldetails_dob" /></td>
-			<td><input type="text" name="dob" id="dob" value="${ personaldetails.dob }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_dob" />不能为空.',required:true"   />	</td>
+			<td><input type="date" name="dob" id="dob" value="${ personaldetails.dob }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_dob" />不能为空.',required:true"   />	</td>
 		</tr>
 	  		<tr>
 			<td class="biao_bt3"><spring:message code="personaldetails_doj" /></td>
-			<td><input type="text" name="doj" id="doj" value="${ personaldetails.doj }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_doj" />不能为空.',required:true"   />	</td>
+			<td><input type="date" name="doj" id="doj" value="${ personaldetails.doj }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_doj" />不能为空.',required:true"   />	</td>
 		</tr>
 	   	</table>
 </form:form>
