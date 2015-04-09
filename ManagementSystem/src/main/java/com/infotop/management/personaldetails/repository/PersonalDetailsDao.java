@@ -7,4 +7,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface PersonalDetailsDao extends PagingAndSortingRepository<PersonalDetails, Long>, JpaSpecificationExecutor<PersonalDetails>  {
 
+
 }

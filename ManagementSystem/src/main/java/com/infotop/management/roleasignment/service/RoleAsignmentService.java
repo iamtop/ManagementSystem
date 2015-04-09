@@ -171,4 +171,8 @@ public class RoleAsignmentService {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
+
+	public List<RoleAsignment> getRoles() {
+		return (List<RoleAsignment>) roleAsignmentDao.findAll();
+	}
 }

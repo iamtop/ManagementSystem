@@ -1,10 +1,11 @@
-package com.infotop.management.personaldetails.service;
+package com.infotop.management.authority.service;
 
 import java.util.List;
 import java.util.Map;
 
-import com.infotop.management.personaldetails.entity.PersonalDetails;
-import com.infotop.management.personaldetails.repository.PersonalDetailsDao;
+import com.infotop.management.authority.entity.Authority;
+import com.infotop.management.authority.repository.AuthorityDao;
+
 import com.google.common.collect.Maps;
 import com.infotop.common.log.BusinessLogger;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
@@ -24,70 +25,70 @@ import org.springside.modules.persistence.DynamicSpecifications;
 import org.springside.modules.persistence.SearchFilter;
 
 /**
- * PersonalDetailsManager
- * $Id: PersonalDetailsManager.java,v 0.0.1 2015-03-31 10:54:01  $
+ * AuthorityManager
+ * $Id: AuthorityManager.java,v 0.0.1 2015-04-08 09:24:25  $
  */
 @Component
 @Transactional(readOnly = true)
-public class PersonalDetailsService {
+public class AuthorityService {
 	
 	
 	@Autowired
-	private PersonalDetailsDao personalDetailsDao;
+	private AuthorityDao authorityDao;
 	
 	@Autowired
 	private BusinessLogger businessLogger;
 	/**
-	 * 保存一个PersonalDetails，如果保存成功返回该对象的id，否则返回null
+	 * 保存一个Authority，如果保存成功返回该对象的id，否则返回null
 	 * @param entity
 	 * @return 保存成功的对象的Id
 	 */
 	@Transactional(readOnly = false)
-	public void save(PersonalDetails entity){
-		personalDetailsDao.save(entity);
+	public void save(Authority entity){
+		authorityDao.save(entity);
 		Map logData = Maps.newHashMap();
 		logData.put("ID", entity.getId());
-		businessLogger.log("personalDetails", "SAVE", getCurrentUserName(), logData);
+		businessLogger.log("authority", "SAVE", getCurrentUserName(), logData);
 	}
 	
 	/**
-	 * 根据一个ID得到PersonalDetails
+	 * 根据一个ID得到Authority
 	 * 
 	 * @param id
 	 * @return
 	 */
-	public PersonalDetails get(Long id){
+	public Authority get(Long id){
 		Map logData = Maps.newHashMap();
 		logData.put("ID", id);
-		businessLogger.log("personalDetails", "GET", getCurrentUserName(), logData);
-		return personalDetailsDao.findOne(id);
+		businessLogger.log("authority", "GET", getCurrentUserName(), logData);
+		return authorityDao.findOne(id);
 	}
 	
 	/**
-	 * 删除一个PersonalDetails
+	 * 删除一个Authority
 	 * @param id
 	 * @return
 	 */
 	@Transactional(readOnly = false)
     public void delete(Long id) {
-        this.personalDetailsDao.delete(id);
+        this.authorityDao.delete(id);
 		Map logData = Maps.newHashMap();
 		logData.put("ID", id);
-		businessLogger.log("personalDetails", "DELETE", getCurrentUserName(), logData);
+		businessLogger.log("authority", "DELETE", getCurrentUserName(), logData);
     }
 	
 	/**
-	 * 批量删除PersonalDetails
+	 * 批量删除Authority
 	 * @param ids
 	 * @return
 	 */
 	@Transactional(readOnly = false)
 	public void delete(List<Long> ids){
-		List<PersonalDetails> test = (List<PersonalDetails>) this.personalDetailsDao.findAll(ids);
-		this.personalDetailsDao.delete(test);
+		List<Authority> test = (List<Authority>) this.authorityDao.findAll(ids);
+		this.authorityDao.delete(test);
 		Map logData = Maps.newHashMap();
 		logData.put("IDS", ids);
-		businessLogger.log("personalDetails", "DELETE", getCurrentUserName(), logData);
+		businessLogger.log("authority", "DELETE", getCurrentUserName(), logData);
 	}
 	
 
@@ -98,14 +99,14 @@ public class PersonalDetailsService {
 	 */
 	/*@Transactional(readOnly = false)
 	public void delete(List<Long> ids, boolean bool) {
-		List<PersonalDetails> temp = (List<PersonalDetails>) this.personalDetailsDao.findAll(ids);
+		List<Authority> temp = (List<Authority>) this.authorityDao.findAll(ids);
 		if (bool) {
-			this.personalDetailsDao.delete(temp);
+			this.authorityDao.delete(temp);
 		} else {
 			if (temp != null && temp.size() > 0) {
-				for (PersonalDetails obj : temp) {
+				for (Authority obj : temp) {
 					obj.setFlag(1);
-					this.personalDetailsDao.save(obj);
+					this.authorityDao.save(obj);
 				}
 			}
 		}
@@ -137,16 +138,16 @@ public class PersonalDetailsService {
     /**
      * 创建动态查询条件组合.
      */
-    private Specification<PersonalDetails> buildSpecification(Map<String, Object> filterParams) {
+    private Specification<Authority> buildSpecification(Map<String, Object> filterParams) {
         Map<String, SearchFilter> filters = SearchFilter.parse(filterParams);
-        Specification<PersonalDetails> spec = DynamicSpecifications.bySearchFilter(filters.values(), PersonalDetails.class);
+        Specification<Authority> spec = DynamicSpecifications.bySearchFilter(filters.values(), Authority.class);
         return spec;
     }
 	
     
     public DataGrid dataGrid(Map<String, Object> searchParams, int pageNumber,
 			int rows, String sortType, String order) {
-		Page<PersonalDetails> page = getAllPersonalDetails(searchParams,
+		Page<Authority> page = getAllAuthority(searchParams,
 				pageNumber, rows, sortType, order);
 		DataGrid dataGrid = new DataGrid();
 		dataGrid.setTotal(page.getTotalElements());
@@ -154,13 +155,13 @@ public class PersonalDetailsService {
 		return dataGrid;
 	}
     
-    public Page<PersonalDetails> getAllPersonalDetails(
+    public Page<Authority> getAllAuthority(
 			Map<String, Object> filterParams, int pageNumber, int pageSize,
 			String sortType, String order) {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize,
 				sortType, order);
-		Specification<PersonalDetails> spec = buildSpecification(filterParams);
-		return personalDetailsDao.findAll(spec, pageRequest);
+		Specification<Authority> spec = buildSpecification(filterParams);
+		return authorityDao.findAll(spec, pageRequest);
 	}
     
     /**
@@ -170,9 +171,4 @@ public class PersonalDetailsService {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
-
-//	public String findSpecificId(String pId) {
-//		String id = personalDetailsDao.findSpecificId(pId);
-//		return id;
-//	}
 }

@@ -171,4 +171,8 @@ public class DepartmentService {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
+
+	public List<Department> getAllDepts() {
+		return (List<Department>) departmentDao.findAll();
+	}
 }

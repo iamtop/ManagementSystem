@@ -1,42 +1,49 @@
 package com.infotop.management.authority.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import com.infotop.common.IdEntity;
+import com.infotop.management.department.entity.Department;
+import com.infotop.management.personaldetails.entity.PersonalDetails;
+import com.infotop.management.roleasignment.entity.RoleAsignment;
 
 
 @Entity
 @Table(name="ms_authority")
 public class Authority extends IdEntity{
 	
-	private String deptId;
-	private String subId;
-	private String roleCode;
-	private String pId;
-	public String getDeptId() {
-		return deptId;
+	private PersonalDetails personal;
+	private Department deptList;
+	private RoleAsignment roleList;
+	
+	
+	@javax.persistence.ManyToOne
+	@JoinColumn(name= "dept_id", referencedColumnName="id")
+	public Department getDeptList() {
+		return deptList;
 	}
-	public void setDeptId(String deptId) {
-		this.deptId = deptId;
+	public void setDeptList(Department deptList) {
+		this.deptList = deptList;
 	}
-	public String getSubId() {
-		return subId;
+	
+	@javax.persistence.ManyToOne
+	@JoinColumn(name= "role_code", referencedColumnName="id")
+	public RoleAsignment getRoleList() {
+		return roleList;
 	}
-	public void setSubId(String subId) {
-		this.subId = subId;
+	public void setRoleList(RoleAsignment roleList) {
+		this.roleList = roleList;
 	}
-	public String getRoleCode() {
-		return roleCode;
+	
+	@javax.persistence.OneToOne
+	@JoinColumn(name="p_id", referencedColumnName="id")
+	public PersonalDetails getPersonal() {
+		return personal;
 	}
-	public void setRoleCode(String roleCode) {
-		this.roleCode = roleCode;
-	}
-	public String getpId() {
-		return pId;
-	}
-	public void setpId(String pId) {
-		this.pId = pId;
+	public void setPersonal(PersonalDetails personal) {
+		this.personal = personal;
 	}
 
-}
+	}
