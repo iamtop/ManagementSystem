@@ -18,16 +18,6 @@
 							code="subject_subName" /></td>
 					<td>${ subject.subName }</td>
 				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="subject_deptId" /></td>
-					<td>${ subject.deptId }</td>
-				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="subject_semId" /></td>
-					<td>${ subject.semId }</td>
-				</tr>
 				   			</table>
 		</div>
 	</div>

@@ -53,14 +53,35 @@ $ .parser.onComplete = function() {
 			<td class="biao_bt3"><spring:message code="subject_subName" /></td>
 			<td><input type="text" name="subName" id="subName" value="${ subject.subName }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="subject_subName" />不能为空.',required:true"   />	</td>
 		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="subject_deptId" /></td>
-			<td><input type="text" name="deptId" id="deptId" value="${ subject.deptId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="subject_deptId" />不能为空.',required:true"   />	</td>
-		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="subject_semId" /></td>
-			<td><input type="text" name="semId" id="semId" value="${ subject.semId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="subject_semId" />不能为空.',required:true"   />	</td>
-		</tr>
+		
+		
+	<tr>
+	<td class="biao_bt3">Department</td>
+	<td>
+	<select name="deptName">
+	<c:forEach items="${depts}" var="dept">
+	<option value="${dept.id}"
+	<c:if test="${authority.deptList.id == dept.id}">selected="selected"</c:if>>${dept.deptName}</option>
+	</c:forEach>
+	</select>
+	</td>
+	</tr>
+	
+	
+	
+	<tr>
+	<td class="biao_bt3">Sem</td>
+	<td>
+	<select name="semName">
+	<c:forEach items="${sem}" var="sem">
+	<option value="${sem.id}"
+	<c:if test="${authority.batchList.id == sem.id}">selected="selected"</c:if>>${sem.semName}</option>
+	</c:forEach>
+	</select>
+	</td>
+	</tr>
+		
+		
 	   	</table>
 </form:form>
 	
