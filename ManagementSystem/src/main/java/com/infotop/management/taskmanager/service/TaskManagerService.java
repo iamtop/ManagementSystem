@@ -1,11 +1,11 @@
-package com.infotop.management.subject.service;
+package com.infotop.management.taskmanager.service;
 
 import java.util.List;
 import java.util.Map;
 
-import com.infotop.management.batch.entity.Batch;
-import com.infotop.management.subject.entity.Subject;
-import com.infotop.management.subject.repository.SubjectDao;
+import com.infotop.management.taskmanager.entity.TaskManager;
+import com.infotop.management.taskmanager.repository.TaskManagerDao;
+
 import com.google.common.collect.Maps;
 import com.infotop.common.log.BusinessLogger;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
@@ -25,70 +25,70 @@ import org.springside.modules.persistence.DynamicSpecifications;
 import org.springside.modules.persistence.SearchFilter;
 
 /**
- * SubjectManager
- * $Id: SubjectManager.java,v 0.0.1 2015-03-31 08:15:37  $
+ * TaskManagerManager
+ * $Id: TaskManagerManager.java,v 0.0.1 2015-04-09 14:44:22  $
  */
 @Component
 @Transactional(readOnly = true)
-public class SubjectService {
+public class TaskManagerService {
 	
 	
 	@Autowired
-	private SubjectDao subjectDao;
+	private TaskManagerDao taskManagerDao;
 	
 	@Autowired
 	private BusinessLogger businessLogger;
 	/**
-	 * 保存一个Subject，如果保存成功返回该对象的id，否则返回null
+	 * 保存一个TaskManager，如果保存成功返回该对象的id，否则返回null
 	 * @param entity
 	 * @return 保存成功的对象的Id
 	 */
 	@Transactional(readOnly = false)
-	public void save(Subject entity){
-		subjectDao.save(entity);
+	public void save(TaskManager entity){
+		taskManagerDao.save(entity);
 		Map logData = Maps.newHashMap();
 		logData.put("ID", entity.getId());
-		businessLogger.log("subject", "SAVE", getCurrentUserName(), logData);
+		businessLogger.log("taskManager", "SAVE", getCurrentUserName(), logData);
 	}
 	
 	/**
-	 * 根据一个ID得到Subject
+	 * 根据一个ID得到TaskManager
 	 * 
 	 * @param id
 	 * @return
 	 */
-	public Subject get(Long id){
+	public TaskManager get(Long id){
 		Map logData = Maps.newHashMap();
 		logData.put("ID", id);
-		businessLogger.log("subject", "GET", getCurrentUserName(), logData);
-		return subjectDao.findOne(id);
+		businessLogger.log("taskManager", "GET", getCurrentUserName(), logData);
+		return taskManagerDao.findOne(id);
 	}
 	
 	/**
-	 * 删除一个Subject
+	 * 删除一个TaskManager
 	 * @param id
 	 * @return
 	 */
 	@Transactional(readOnly = false)
     public void delete(Long id) {
-        this.subjectDao.delete(id);
+        this.taskManagerDao.delete(id);
 		Map logData = Maps.newHashMap();
 		logData.put("ID", id);
-		businessLogger.log("subject", "DELETE", getCurrentUserName(), logData);
+		businessLogger.log("taskManager", "DELETE", getCurrentUserName(), logData);
     }
 	
 	/**
-	 * 批量删除Subject
+	 * 批量删除TaskManager
 	 * @param ids
 	 * @return
 	 */
 	@Transactional(readOnly = false)
 	public void delete(List<Long> ids){
-		List<Subject> test = (List<Subject>) this.subjectDao.findAll(ids);
-		this.subjectDao.delete(test);
+		List<TaskManager> test = (List<TaskManager>) this.taskManagerDao.findAll(ids);
+		this.taskManagerDao.delete(test);
 		Map logData = Maps.newHashMap();
 		logData.put("IDS", ids);
-		businessLogger.log("subject", "DELETE", getCurrentUserName(), logData);
+		businessLogger.log("taskManager", "DELETE", getCurrentUserName(), logData);
 	}
 	
 
@@ -99,14 +99,14 @@ public class SubjectService {
 	 */
 	/*@Transactional(readOnly = false)
 	public void delete(List<Long> ids, boolean bool) {
-		List<Subject> temp = (List<Subject>) this.subjectDao.findAll(ids);
+		List<TaskManager> temp = (List<TaskManager>) this.taskManagerDao.findAll(ids);
 		if (bool) {
-			this.subjectDao.delete(temp);
+			this.taskManagerDao.delete(temp);
 		} else {
 			if (temp != null && temp.size() > 0) {
-				for (Subject obj : temp) {
+				for (TaskManager obj : temp) {
 					obj.setFlag(1);
-					this.subjectDao.save(obj);
+					this.taskManagerDao.save(obj);
 				}
 			}
 		}
@@ -138,16 +138,16 @@ public class SubjectService {
     /**
      * 创建动态查询条件组合.
      */
-    private Specification<Subject> buildSpecification(Map<String, Object> filterParams) {
+    private Specification<TaskManager> buildSpecification(Map<String, Object> filterParams) {
         Map<String, SearchFilter> filters = SearchFilter.parse(filterParams);
-        Specification<Subject> spec = DynamicSpecifications.bySearchFilter(filters.values(), Subject.class);
+        Specification<TaskManager> spec = DynamicSpecifications.bySearchFilter(filters.values(), TaskManager.class);
         return spec;
     }
 	
     
     public DataGrid dataGrid(Map<String, Object> searchParams, int pageNumber,
 			int rows, String sortType, String order) {
-		Page<Subject> page = getAllSubject(searchParams,
+		Page<TaskManager> page = getAllTaskManager(searchParams,
 				pageNumber, rows, sortType, order);
 		DataGrid dataGrid = new DataGrid();
 		dataGrid.setTotal(page.getTotalElements());
@@ -155,13 +155,13 @@ public class SubjectService {
 		return dataGrid;
 	}
     
-    public Page<Subject> getAllSubject(
+    public Page<TaskManager> getAllTaskManager(
 			Map<String, Object> filterParams, int pageNumber, int pageSize,
 			String sortType, String order) {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize,
 				sortType, order);
-		Specification<Subject> spec = buildSpecification(filterParams);
-		return subjectDao.findAll(spec, pageRequest);
+		Specification<TaskManager> spec = buildSpecification(filterParams);
+		return taskManagerDao.findAll(spec, pageRequest);
 	}
     
     /**
@@ -170,9 +170,5 @@ public class SubjectService {
 	public String getCurrentUserName() {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
-	}
-	
-	public List<Subject> getAllSubjects() {
-		return (List<Subject>) subjectDao.findAll();
 	}
 }

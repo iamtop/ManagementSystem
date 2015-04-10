@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.infotop.management.batch.entity.Batch;
 import com.infotop.management.batch.repository.BatchDao;
-
+import com.infotop.management.department.entity.Department;
 import com.google.common.collect.Maps;
 import com.infotop.common.log.BusinessLogger;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
@@ -170,5 +170,8 @@ public class BatchService {
 	public String getCurrentUserName() {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
+	}
+	public List<Batch> getAllBatches() {
+		return (List<Batch>) batchDao.findAll();
 	}
 }
