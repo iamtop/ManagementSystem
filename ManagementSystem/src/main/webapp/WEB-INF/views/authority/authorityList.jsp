@@ -71,13 +71,13 @@
 	                    			{field : 'deptList.dept_id', title : 'Department', width : 150, align:'center',
 		                    			formatter : function(value, row, index){
 		                    				if(row.deptList)
-		                    					return row.deptList.dept_code;
+		                    					return row.deptList.dept_name;
 		                    			}},
 		                    			
 		                    			{field : 'roleList.role_code', title : 'Role', width : 150, align:'center',
 			                    			formatter : function(value, row, index){
 			                    				if(row.personal)
-			                    					return row.roleList.role_code;
+			                    					return row.roleList.role_name;
 			                    			}},
 	    	          	        {field : 'action',title : '操作',width : 80,align : 'center',formatter : authority_list_actionFormatter} 
 	                    		] ];

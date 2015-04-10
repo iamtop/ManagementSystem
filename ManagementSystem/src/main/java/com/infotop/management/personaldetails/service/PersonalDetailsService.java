@@ -22,6 +22,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springside.modules.persistence.DynamicSpecifications;
 import org.springside.modules.persistence.SearchFilter;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  * PersonalDetailsManager
@@ -31,12 +34,12 @@ import org.springside.modules.persistence.SearchFilter;
 @Transactional(readOnly = true)
 public class PersonalDetailsService {
 	
-	
 	@Autowired
 	private PersonalDetailsDao personalDetailsDao;
 	
 	@Autowired
 	private BusinessLogger businessLogger;
+	
 	/**
 	 * 保存一个PersonalDetails，如果保存成功返回该对象的id，否则返回null
 	 * @param entity
@@ -170,9 +173,9 @@ public class PersonalDetailsService {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
-
-//	public String findSpecificId(String pId) {
-//		String id = personalDetailsDao.findSpecificId(pId);
-//		return id;
-//	}
+	
+	
+	public List<PersonalDetails> findSpecificId() {
+	return (List<PersonalDetails>) personalDetailsDao.findAll();
+	}
 }

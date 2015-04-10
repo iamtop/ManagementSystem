@@ -156,6 +156,8 @@ public class AuthorityController extends BasicController {
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
 				
+				Long iid = null;
+				
 				PersonalDetails personal = new PersonalDetails();
 				
 				String pId = request.getParameter("pId");
@@ -172,6 +174,7 @@ public class AuthorityController extends BasicController {
 				String dept = request.getParameter("deptName");
 				String role = request.getParameter("roleName");
 				
+				
 				personal.setpId(pId);
 				personal.setFname(fName);
 				personal.setLname(lName);
@@ -185,10 +188,17 @@ public class AuthorityController extends BasicController {
 				personal.setDoj(doj);
 				detailsService.save(personal);
 				
-//				personal = detailsService.findSpecificId(pId);
+				List<PersonalDetails> pd= detailsService.findSpecificId();
+				for (PersonalDetails i: pd){
+					if(pId.equals(i.getpId())){
+						iid = i.getId();	
+					}
+				}
+				personal = detailsService.get(iid);
 				Department dpt = deptService.get(Long.parseLong(dept));
 				RoleAsignment rol = roleAsignmentService.get(Long.parseLong(role));
 				
+				authority.setPersonal(personal);
 				authority.setDeptList(dpt);
 				authority.setRoleList(rol);
 		    	authorityService.save(authority);
