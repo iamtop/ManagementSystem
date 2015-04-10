@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <script type="text/javascript">
 var authority_form_inputform_id = 'authority_form_inputForm';
@@ -60,7 +60,7 @@ $ .parser.onComplete = function() {
 	<tr>
 	<td class="biao_bt3">Department</td>
 	<td>
-	<select name=deptName">
+	<select name="deptName">
 	<c:forEach items="${depts}" var="dept">
 	<option value="${dept.id}"
 	<c:if test="${authority.deptList.id == dept.id}">selected="selected"</c:if>>${dept.deptName}</option>
