@@ -111,11 +111,11 @@ $ .parser.onComplete = function() {
 	</tr>
 	<tr>
 	<td class="biao_bt3">Date of Birth</td>
-	<td><input type="text" name="dob" id="dob" value="${ personal.dob }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td><input type="date" name="dob" id="dob" value="${ personal.dob }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
 	</tr>
 	<tr>
 	<td class="biao_bt3">Date of Join</td>
-	<td><input type="text" name="doj" id="doj" value="${ personal.doj }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td><input type="date" name="doj" id="doj" value="${ personal.doj }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
 	</tr>
 	</table>
 </form:form>
