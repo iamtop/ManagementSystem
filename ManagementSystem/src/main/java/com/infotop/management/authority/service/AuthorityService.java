@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.infotop.management.authority.entity.Authority;
 import com.infotop.management.authority.repository.AuthorityDao;
-
+import com.infotop.management.personaldetails.entity.PersonalDetails;
 import com.google.common.collect.Maps;
 import com.infotop.common.log.BusinessLogger;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
@@ -171,4 +171,9 @@ public class AuthorityService {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
+	
+	public List<Authority> findSpecificId() {
+		return (List<Authority>) authorityDao.findAll();
+		}
+	
 }
