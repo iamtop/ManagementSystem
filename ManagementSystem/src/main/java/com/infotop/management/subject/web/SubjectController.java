@@ -131,8 +131,6 @@ public class SubjectController extends BasicController {
 				 model.addAttribute("depts", deptList);
 				 model.addAttribute("sem", batchList);
 
-
-				 
 			     model.addAttribute("subject", entity);
 			     model.addAttribute("action", "create");
 			} else {
@@ -159,10 +157,10 @@ public class SubjectController extends BasicController {
 				String sems = request.getParameter("semName");
 				System.out.println("-------------------------------------------"+sems);
 				Department dpt = deptService.get(Long.parseLong(depts));
-				Batch sem = batchService.get(Long.parseLong(sems));
+				Batch batch = batchService.get(Long.parseLong(sems));
 				
 				subject.setDeptList(dpt);
-				subject.setBatchList(sem);
+				subject.setBatchList(batch);
 		    	subjectService.save(subject);
 				msg.setSuccess(true);
 				msg.setMessage("信息添加成功");
@@ -193,9 +191,16 @@ public class SubjectController extends BasicController {
 	        ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
-				Subject entity = subjectService.get(id); 
-		        model.addAttribute("subject", entity);
-		        model.addAttribute("action", "update");
+				Subject entity = subjectService.get(id);
+				 List<Department> deptList = deptService.getAllDepts();
+				 List<Batch> batchList = batchService.getAllBatches();
+				 System.out.println("deptList========================="+deptList);
+				 System.out.println("deptList========================="+batchList);
+				 model.addAttribute("depts", deptList);
+				 model.addAttribute("sem", batchList);
+		        
+				 model.addAttribute("subject", entity);
+		         model.addAttribute("action", "update");
 			} else {
 				logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
 				return "redirect:/login";
@@ -212,12 +217,21 @@ public class SubjectController extends BasicController {
 	 @RequestMapping(value = "update", method = RequestMethod.POST)
 	 @ResponseBody
 	    public Message update(@Valid @ModelAttribute("preloadSubject") Subject subject,
-	            RedirectAttributes redirectAttributes) {
+	            RedirectAttributes redirectAttributes,HttpServletRequest request) {
 		 try {
 			 	ShiroUser su = super.getLoginUser();
 				User user = accountService.findUserByLoginName(su.getLoginName());
 				if (user != null) {
-			    	subjectService.save(subject);
+					String depts = request.getParameter("deptName");
+					System.out.println("++++++++++++++++"+depts);
+					String sems = request.getParameter("semName");
+					System.out.println("++++++++++++++++++++"+sems);
+					Department dpt = deptService.get(Long.parseLong(depts));
+					Batch sem = batchService.get(Long.parseLong(sems));
+					subject.setDeptList(dpt);
+					subject.setBatchList(sem);
+			    	
+					subjectService.save(subject);
 					msg.setSuccess(true);
 					msg.setMessage("信息更新成功");
 					msg.setData(subject);

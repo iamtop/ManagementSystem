@@ -61,7 +61,7 @@ $ .parser.onComplete = function() {
 	<select name="deptName">
 	<c:forEach items="${depts}" var="dept">
 	<option value="${dept.id}"
-	<c:if test="${authority.deptList.id == dept.id}">selected="selected"</c:if>>${dept.deptName}</option>
+	<c:if test="${subject.deptList.id == dept.id}">selected="selected"</c:if>>${dept.deptName}</option>
 	</c:forEach>
 	</select>
 	</td>
@@ -70,12 +70,12 @@ $ .parser.onComplete = function() {
 	
 	
 	<tr>
-	<td class="biao_bt3">Sem</td>
+	<td class="biao_bt3">Semester</td>
 	<td>
 	<select name="semName">
 	<c:forEach items="${sem}" var="sem">
 	<option value="${sem.id}"
-	<c:if test="${authority.batchList.id == sem.id}">selected="selected"</c:if>>${sem.semName}</option>
+	<c:if test="${subject.batchList.id == sem.id}">selected="selected"</c:if>>${sem.semName}</option>
 	</c:forEach>
 	</select>
 	</td>
