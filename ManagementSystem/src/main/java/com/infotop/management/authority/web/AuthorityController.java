@@ -161,31 +161,31 @@ public class AuthorityController extends BasicController {
 				PersonalDetails personal = new PersonalDetails();
 				
 				String pId = request.getParameter("pId");
-				String fName = request.getParameter("fname");
-				String lName = request.getParameter("lname");
-				String addr = request.getParameter("address");
-				String email = request.getParameter("email");
-				String phone = request.getParameter("phone");
-				String gender = request.getParameter("gender");
-				String father = request.getParameter("fathername");
-				String mother = request.getParameter("mothername");
-				String dob = request.getParameter("dob");
-				String doj = request.getParameter("doj");
+//				String fName = request.getParameter("fname");
+//				String lName = request.getParameter("lname");
+//				String addr = request.getParameter("address");
+//				String email = request.getParameter("email");
+//				String phone = request.getParameter("phone");
+//				String gender = request.getParameter("gender");
+//				String father = request.getParameter("fathername");
+//				String mother = request.getParameter("mothername");
+//				String dob = request.getParameter("dob");
+//				String doj = request.getParameter("doj");
 				String dept = request.getParameter("deptName");
 				String role = request.getParameter("roleName");
 				
 				
 				personal.setpId(pId);
-				personal.setFname(fName);
-				personal.setLname(lName);
-				personal.setAddress(addr);
-				personal.setEmail(email);
-				personal.setPhone(phone);
-				personal.setGender(gender);
-				personal.setFatherName(father);
-				personal.setMotherName(mother);
-				personal.setDob(dob);
-				personal.setDoj(doj);
+				personal.setFname(request.getParameter("fname"));
+				personal.setLname(request.getParameter("lname"));
+				personal.setAddress(request.getParameter("address"));
+				personal.setEmail(request.getParameter("email"));
+				personal.setPhone(request.getParameter("phone"));
+				personal.setGender(request.getParameter("gender"));
+				personal.setFatherName(request.getParameter("fathername"));
+				personal.setMotherName(request.getParameter("mothername"));
+				personal.setDob(request.getParameter("dob"));
+				personal.setDoj(request.getParameter("doj"));
 				detailsService.save(personal);
 				
 				List<PersonalDetails> pd= detailsService.findSpecificId();
@@ -231,7 +231,14 @@ public class AuthorityController extends BasicController {
 	        ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
+				
+				List<RoleAsignment> roleList = roleAsignmentService.getRoles();
+				List<Department> deptList = deptService.getAllDepts();
+				List<PersonalDetails> personal = detailsService.findSpecificId();
+				
 				Authority entity = authorityService.get(id); 
+				model.addAttribute("depts", deptList);
+				model.addAttribute("roles", roleList);
 		        model.addAttribute("authority", entity);
 		        model.addAttribute("action", "update");
 			} else {

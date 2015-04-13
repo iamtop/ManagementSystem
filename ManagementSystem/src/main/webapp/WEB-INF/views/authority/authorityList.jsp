@@ -65,20 +65,70 @@
 	                    		{field : 'personal.p_id', title : 'Personal Id', width : 150, align:'center',
 	                    			formatter : function(value, row, index){
 	                    				if(row.personal)
-	                    					return row.personal.p_id;
+	                    					return row.personal.pId;
+	                    				
 	                    			}},
-	                    			
 	                    			{field : 'deptList.dept_id', title : 'Department', width : 150, align:'center',
 		                    			formatter : function(value, row, index){
 		                    				if(row.deptList)
-		                    					return row.deptList.dept_name;
+		                    					return row.deptList.deptName;
 		                    			}},
 		                    			
 		                    			{field : 'roleList.role_code', title : 'Role', width : 150, align:'center',
 			                    			formatter : function(value, row, index){
-			                    				if(row.personal)
-			                    					return row.roleList.role_name;
+			                    				if(row.roleList)
+			                    					return row.roleList.roleName;
 			                    			}},
+			                    		{field : 'personal.fname', title : 'First Name', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.fname;
+				                    		}},
+			                    		{field : 'personal.lname', title : 'Last Name', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.lname;
+				                    		}},
+			                    		{field : 'personal.address', title : 'Address', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.address;
+				                    		}},
+			                    		{field : 'personal.email', title : 'Email', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.email;
+				                    		}},
+			                    		{field : 'personal.phone', title : 'Phone', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.phone;
+				                    		}},
+			                    		{field : 'personal.gender', title : 'Gender', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.gender;
+				                    		}},
+			                    		{field : 'personal.father_name', title : 'Father Name', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.fatherName;
+				                    		}},
+			                    		{field : 'personal.mother_name', title : 'Mother Name', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.motherName;
+				                    		}},
+			                    		{field : 'personal.dob', title : 'Date of Birth', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.dob;
+				                    		}},
+			                    		{field : 'personal.doj', title : 'Date of Join', width : 150, align:'center',
+				                    		formatter : function(value, row, index){
+				                    			if(row.personal)
+				                    				return row.personal.doj;
+				                    		}},
 	    	          	        {field : 'action',title : '操作',width : 80,align : 'center',formatter : authority_list_actionFormatter} 
 	                    		] ];
 	/** 初始化DataGrid,加载数据 **/		
