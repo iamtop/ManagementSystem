@@ -10,45 +10,52 @@
 		<ul>
 		<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
-				onclick="indexTabsAddTab('href',{title:'Authority ',url:'${ctx}/authority',iconCls:'icon-user_gray'})">
-				  Authority
-			</a></li>
-		
-		<li><a data-options="plain:true" href="javascript:void(0)"
-				class="user easyui-linkbutton"
-				onclick="indexTabsAddTab('href',{title:'Personal ',url:'${ctx}/personaldetails',iconCls:'icon-user_gray'})">
-				  Personal Details
+				onclick="indexTabsAddTab('href',{title:'Manage Employee ',url:'${ctx}/authority',iconCls:'icon-user_gray'})">
+				  Manage Employee
 			</a></li>
 			
 			<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
-				onclick="indexTabsAddTab('href',{title:'Student ',url:'${ctx}/student',iconCls:'icon-user_gray'})">
-				  Student
+				onclick="indexTabsAddTab('href',{title:'Manage Student ',url:'${ctx}/student',iconCls:'icon-user_gray'})">
+				  Manage Student
 			</a></li>
 			
 			<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
                 onclick="indexTabsAddTab('href',{title:'AsignRole ',url:'${ctx}/roleasignment',iconCls:'icon-user_gray'})">
-				  Assign Role
+				  Designation
                 </a></li>
                 
                 <li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
                 onclick="indexTabsAddTab('href',{title:'Department ',url:'department',iconCls:'icon-user_gray'})">
-				  Department
+				  Departments
                 </a></li>
                 
             <li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
                 onclick="indexTabsAddTab('href',{title:'Batch ',url:'${ctx}/batch',iconCls:'icon-user_gray'})">
-				  Batch
+				   Batch
                 </a></li>
               
 			
 			<li><a data-options="plain:true" href="javascript:void(0)"
 				class="user easyui-linkbutton"
 				onclick="indexTabsAddTab('href',{title:'Subject',url:'${ctx}/subject',iconCls:'icon-user_gray'})">
-				  Subject
+				  Subject gallery
+			</a></li>
+			
+			
+			</ul>
+	</div>
+			<div class="menuItem" title='Staff' data-options="iconCls:''"
+		style="padding: 10px;">
+		
+		<ul>
+		<li><a data-options="plain:true" href="javascript:void(0)"
+				class="user easyui-linkbutton"
+				onclick="indexTabsAddTab('href',{title:'Task Manager',url:'${ctx}/taskmanager',iconCls:'icon-user_gray'})">
+				  Task Manager
 			</a></li>
 			
 			<li><a data-options="plain:true" href="javascript:void(0)"
@@ -57,11 +64,7 @@
 				  Attendance
 			</a></li>
 
-			<li><a data-options="plain:true" href="javascript:void(0)"
-				class="user easyui-linkbutton"
-				onclick="indexTabsAddTab('href',{title:'Chart',url:'${ctx}/chart',iconCls:'icon-user_gray'})">
-				  Chart
-			</a></li>
+			
 			
 			</ul>
 	</div>
