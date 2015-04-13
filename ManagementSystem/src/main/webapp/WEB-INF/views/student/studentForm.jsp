@@ -49,18 +49,6 @@ $ .parser.onComplete = function() {
 			<td class="biao_bt3"><spring:message code="student_studId" /></td>
 			<td><input type="text" name="studId" id="studId" value="${ student.studId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="student_studId" />不能为空.',required:true"   />	</td>
 		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="student_semId" /></td>
-			<td><input type="text" name="semId" id="semId" value="${ student.semId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="student_semId" />不能为空.',required:true"   />	</td>
-		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="student_deptId" /></td>
-			<td><input type="text" name="deptId" id="deptId" value="${ student.deptId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="student_deptId" />不能为空.',required:true"   />	</td>
-		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="student_pId" /></td>
-			<td><input type="text" name="pId" id="pId" value="${ student.pId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="student_pId" />不能为空.',required:true"   />	</td>
-		</tr>
 	   	</table>
 </form:form>
 	

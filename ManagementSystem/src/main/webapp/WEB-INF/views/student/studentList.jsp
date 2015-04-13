@@ -9,13 +9,10 @@
 				style="width:100%;overflow:hidden;">
 				<table class="search_table" style="width: 100%;">
 					<tr>
-						    						<th><spring:message code="student_semId" /></th>
-						<td><input type="text" name="search_EQ_semId"
-							value="${ param.search_EQ_semId}"
-							id="search_EQ_semId" /></td>   						<th><spring:message code="student_deptId" /></th>
-						<td><input type="text" name="search_EQ_deptId"
-							value="${ param.search_EQ_deptId}"
-							id="search_EQ_deptId" /></td>      						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
+						    						<th><spring:message code="student_id" /></th>
+						<td><input type="text" name="search_EQ_id"
+							value="${ param.search_EQ_id}"
+							id="search_EQ_id" /></td>  						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="student_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="student_list_clearBtn">清空</a></th>
 					</tr>
@@ -69,9 +66,6 @@
 	var student_list_datagrid_columns = [ [
 	                    		{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
 	    	          					{field : 'studId',title : '<spring:message code="student_studId" />',width : 150,align:'center'},
-			          					{field : 'semId',title : '<spring:message code="student_semId" />',width : 150,align:'center'},
-			          					{field : 'deptId',title : '<spring:message code="student_deptId" />',width : 150,align:'center'},
-			          					{field : 'pId',title : '<spring:message code="student_pId" />',width : 150,align:'center'},
 			          	                    	{field : 'action',title : '操作',width : 80,align : 'center',formatter : student_list_actionFormatter} 
 	                    		] ];
 	/** 初始化DataGrid,加载数据 **/		

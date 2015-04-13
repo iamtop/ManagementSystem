@@ -13,21 +13,6 @@
 							code="student_studId" /></td>
 					<td>${ student.studId }</td>
 				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="student_semId" /></td>
-					<td>${ student.semId }</td>
-				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="student_deptId" /></td>
-					<td>${ student.deptId }</td>
-				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="student_pId" /></td>
-					<td>${ student.pId }</td>
-				</tr>
 				   			</table>
 		</div>
 	</div>
