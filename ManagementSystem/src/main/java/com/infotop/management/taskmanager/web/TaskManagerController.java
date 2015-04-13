@@ -1,10 +1,14 @@
 package com.infotop.management.taskmanager.web;
 
 
+import com.infotop.management.authority.entity.Authority;
+import com.infotop.management.authority.service.AuthorityService;
 import com.infotop.management.batch.entity.Batch;
 import com.infotop.management.batch.service.BatchService;
 import com.infotop.management.department.entity.Department;
 import com.infotop.management.department.service.DepartmentService;
+import com.infotop.management.personaldetails.entity.PersonalDetails;
+import com.infotop.management.personaldetails.service.PersonalDetailsService;
 import com.infotop.management.subject.entity.Subject;
 import com.infotop.management.subject.service.SubjectService;
 import com.infotop.management.taskmanager.service.TaskManagerService;
@@ -26,10 +30,17 @@ import org.springside.modules.web.Servlets;
 
 
 
+
+
+
+
+
+
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +73,12 @@ public class TaskManagerController extends BasicController {
     
     @Autowired
     private SubjectService subService;
+    
+    @Autowired
+    private PersonalDetailsService personalService;
+    
+    @Autowired
+    private AuthorityService authService;
 	
 	/**
 	 * 跳转列表页面
@@ -129,13 +146,28 @@ public class TaskManagerController extends BasicController {
 	     ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
+				String staffs=null;
 				 TaskManager entity = new TaskManager(); 
 				 List<Department> deptList = deptService.getAllDepts();
 				 List<Batch> batchList=batchService.getAllBatches();
 				 List<Subject> subList=subService.getAllSubjects();
+				 List<Authority> pIdList=authService.findSpecificId();
+				 List<PersonalDetails> idList=personalService.findSpecificId();
+				 
+				 for(Authority a:pIdList){
+					 for(PersonalDetails p:idList)
+						 if(p.getId().equals(a.getPersonal().getpId())){
+							  staffs=p.getFname()+p.getLname();
+						 }
+				 }
+			    System.out.println("staffs:=="+staffs);
+				 
+				 
 				 model.addAttribute("depts", deptList);
 				 model.addAttribute("sems",batchList);
 				 model.addAttribute("subs" , subList);
+				 model.addAttribute("allStaff", staffs);
+				 
 			     model.addAttribute("taskmanager", entity);
 			     model.addAttribute("action", "create");
 			} else {
@@ -151,11 +183,24 @@ public class TaskManagerController extends BasicController {
 	 */
 	 @RequestMapping(value = "create", method = RequestMethod.POST)
 	 @ResponseBody
-	 public Message create(@Valid TaskManager taskmanager, RedirectAttributes redirectAttributes) {
+	 public Message create(@Valid TaskManager taskmanager, RedirectAttributes redirectAttributes , HttpServletRequest request) {
 		try {
 			ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
+				
+				
+				Department dpt = deptService.get(Long.parseLong(request.getParameter("deptName")));
+				Batch batch=batchService.get(Long.parseLong(request.getParameter("semName")));
+				Subject subj=subService.get(Long.parseLong(request.getParameter("subName")));
+				
+				taskmanager.setTaskDate(request.getParameter("taskDate"));
+				taskmanager.setSlotStartTime(request.getParameter("slotStartTime"));
+				taskmanager.setSlotEndTime(request.getParameter("slotEndTime"));
+				taskmanager.setDeptList(dpt);
+				taskmanager.setAllSemester(batch);
+				taskmanager.setSubList(subj);
+				
 		    	taskmanagerService.save(taskmanager);
 				msg.setSuccess(true);
 				msg.setMessage("信息添加成功");

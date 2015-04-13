@@ -94,6 +94,18 @@ $ .parser.onComplete = function() {
 	</td>
 	</tr>
 	
+	<tr>
+	<td class="biao_bt3">Assign To</td>
+	<td>
+	<select name="staffName">
+	<c:forEach items="${allStaff}" var="auth">
+	<option value="${auth.id}"
+	<c:if test="${taskmanager.authorityList.id == auth.id}">selected="selected"</c:if>>${auth.staffName}</option>
+	</c:forEach>
+	</select>
+	</td>
+	</tr>
+	
 	   	</table>
 </form:form>
 	
