@@ -18,6 +18,16 @@
 							code="subject_subName" /></td>
 					<td>${ subject.subName }</td>
 				</tr>
+				
+				<tr>
+					<td class="biao_bt3">Department</td>
+					<td>${ subject.deptList.deptName }</td>
+				</tr>
+				
+				<tr>
+					<td class="biao_bt3">Semester</td>
+					<td>${ subject.batchList.semName }</td>
+				</tr>
 				   			</table>
 		</div>
 	</div>

@@ -291,7 +291,15 @@ public class SubjectController extends BasicController {
 		 	ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
+				
 			 	Subject entity = subjectService.get(id); 
+			 	 List<Department> deptList = deptService.getAllDepts();
+				 List<Batch> batchList = batchService.getAllBatches();
+				 
+				 model.addAttribute("depts", deptList);
+				 model.addAttribute("sem", batchList);
+		        
+			 	
 			 	model.addAttribute("subject", entity);
 			} else {
 				logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
