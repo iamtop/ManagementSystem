@@ -12,10 +12,10 @@
 						    						<th><spring:message code="subject_subName" /></th>
 						<td><input type="text" name="search_EQ_subName"
 							value="${ param.search_EQ_subName}"
-							id="search_EQ_subName" /></td>   						<th><spring:message code="subject_deptId" /></th>
-						<td><input type="text" name="search_EQ_deptId"
-							value="${ param.search_EQ_deptId}"
-							id="search_EQ_deptId" /></td>      						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
+							id="search_EQ_subName" /></td>   						<th><spring:message code="subject_id" /></th>
+						<td><input type="text" name="search_EQ_id"
+							value="${ param.search_EQ_id}"
+							id="search_EQ_id" /></td>  						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="subject_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="subject_list_clearBtn">清空</a></th>
 					</tr>
@@ -70,8 +70,18 @@
 	                    		{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
 	    	          					{field : 'subId',title : '<spring:message code="subject_subId" />',width : 150,align:'center'},
 			          					{field : 'subName',title : '<spring:message code="subject_subName" />',width : 150,align:'center'},
-			          					{field : 'deptId',title : '<spring:message code="subject_deptId" />',width : 150,align:'center'},
-			          					{field : 'semId',title : '<spring:message code="subject_semId" />',width : 150,align:'center'},
+			          					{field : 'deptList.dept_id', title : 'Department', width : 150, align:'center',
+			                    			formatter : function(value, row, index){
+			                    				if(row.deptList)
+			                    					return row.deptList.deptName;
+			                    			}},
+			          					
+			                    			{field : 'batchList.sem_id', title : 'Semester', width : 150, align:'center',
+				                    			formatter : function(value, row, index){
+				                    				if(row.personal)
+				                    					return row.batchList.semName;
+				                    			}},
+			          					
 			          	                    	{field : 'action',title : '操作',width : 80,align : 'center',formatter : subject_list_actionFormatter} 
 	                    		] ];
 	/** 初始化DataGrid,加载数据 **/		
