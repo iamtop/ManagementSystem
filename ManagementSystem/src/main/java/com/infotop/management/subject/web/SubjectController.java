@@ -1,25 +1,36 @@
 package com.infotop.management.subject.web;
 
 
+import com.infotop.management.batch.entity.Batch;
+import com.infotop.management.batch.service.BatchService;
+import com.infotop.management.department.entity.Department;
+import com.infotop.management.department.service.DepartmentService;
 import com.infotop.management.subject.service.SubjectService;
 import com.infotop.management.subject.entity.Subject;
-
 import com.infotop.system.account.entity.User;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
 import com.infotop.common.BasicController;
 
 import net.infotop.web.easyui.DataGrid;
 import net.infotop.web.easyui.Message;
-
 import ch.qos.logback.classic.Logger;
 
 import org.springside.modules.web.Servlets;
+
+
+
+
+
+
+
+
 
 
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +54,10 @@ public class SubjectController extends BasicController {
 
     @Autowired
     private SubjectService subjectService;
+	@Autowired
+	private DepartmentService deptService;
+	@Autowired
+	private BatchService batchService;
 	
 	/**
 	 * 跳转列表页面
@@ -110,7 +125,14 @@ public class SubjectController extends BasicController {
 	     ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
-				 Subject entity = new Subject(); 
+				 Subject entity = new Subject();
+				 List<Department> deptList = deptService.getAllDepts();
+				 List<Batch> batchList = batchService.getAllBatches();
+				 model.addAttribute("depts", deptList);
+				 model.addAttribute("sem", batchList);
+
+
+				 
 			     model.addAttribute("subject", entity);
 			     model.addAttribute("action", "create");
 			} else {
@@ -126,11 +148,21 @@ public class SubjectController extends BasicController {
 	 */
 	 @RequestMapping(value = "create", method = RequestMethod.POST)
 	 @ResponseBody
-	 public Message create(@Valid Subject subject, RedirectAttributes redirectAttributes) {
+	 public Message create(@Valid Subject subject, RedirectAttributes redirectAttributes,HttpServletRequest request) {
 		try {
 			ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
+				
+				String depts = request.getParameter("deptName");
+				System.out.println("-------------------------------------------"+depts);
+				String sems = request.getParameter("semName");
+				System.out.println("-------------------------------------------"+sems);
+				Department dpt = deptService.get(Long.parseLong(depts));
+				Batch sem = batchService.get(Long.parseLong(sems));
+				
+				subject.setDeptList(dpt);
+				subject.setBatchList(sem);
 		    	subjectService.save(subject);
 				msg.setSuccess(true);
 				msg.setMessage("信息添加成功");

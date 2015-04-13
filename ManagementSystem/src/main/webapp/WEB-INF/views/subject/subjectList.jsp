@@ -73,13 +73,13 @@
 			          					{field : 'deptList.dept_id', title : 'Department', width : 150, align:'center',
 			                    			formatter : function(value, row, index){
 			                    				if(row.deptList)
-			                    					return row.deptList.dept_name;
+			                    					return row.deptList.deptName;
 			                    			}},
 			          					
 			                    			{field : 'batchList.sem_id', title : 'Semester', width : 150, align:'center',
 				                    			formatter : function(value, row, index){
 				                    				if(row.personal)
-				                    					return row.roleList.role_name;
+				                    					return row.batchList.semName;
 				                    			}},
 			          					
 			          	                    	{field : 'action',title : '操作',width : 80,align : 'center',formatter : subject_list_actionFormatter} 
