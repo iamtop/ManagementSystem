@@ -4,9 +4,16 @@
 	ShiroUser currentuser = (ShiroUser) SecurityUtils.getSubject()
 			.getPrincipal();
 %>
+<style>
+.aa {
+	text-decoration: bold;
+	}
+</style>
+
 <div class="top">
-<%-- 	<div class="topleft">
-		<img src="${ctx}/static/images/head.jpg" width="800" height="60" />
+	<div class="topleft">
+		<%-- <img src="${ctx}/static/images/head.jpg" width="800" height="60" /> --%>
+		<label id="aa">Attendance Management System</label>
 	</div>
 	<div class="topright">
 		<span style="color:#FFF;">欢迎您，<a
@@ -21,6 +28,6 @@
 		<span><a style=" font-weight: bold;" href="${ctx}/logout"><spring:message
 					code="profile_logout" /></a></span> &nbsp;&nbsp;
 		<!-- <span style="width:0%;" id="clock1"></span>  -->
-	</div> --%>
+	</div>
 </div>
 
