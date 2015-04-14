@@ -23,6 +23,21 @@
 							code="taskmanager_slotEndTime" /></td>
 					<td>${ taskmanager.slotEndTime }</td>
 				</tr>
+				  				<tr>
+					<td class="biao_bt3"><spring:message
+							code="department_title" /></td>
+					<td>${ taskmanager.deptList.deptName }</td>
+				</tr>
+				  				<tr>
+					<td class="biao_bt3"><spring:message
+							code="batch_title" /></td>
+					<td>${ taskmanager.allSemester.semName }</td>
+				</tr>
+				  				<tr>
+					<td class="biao_bt3"><spring:message
+							code="subject_title" /></td>
+					<td>${ taskmanager.subList.subName }</td>
+				</tr>
 				   			</table>
 		</div>
 	</div>

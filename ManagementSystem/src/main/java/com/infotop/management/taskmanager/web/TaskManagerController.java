@@ -203,12 +203,12 @@ public class TaskManagerController extends BasicController {
 				
 		    	taskmanagerService.save(taskmanager);
 				msg.setSuccess(true);
-				msg.setMessage("信息添加成功");
+				msg.setMessage("New task generated successfully ");
 				msg.setData(taskmanager);
 			} else {
-				logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
+				logger.log(this.getClass(),Logger.ERROR_INT,"invalid credential !","",null);
 				msg.setSuccess(false);
-				msg.setMessage("登陆帐号无效!");
+				msg.setMessage("invalid credential !");
 				msg.setData("");
 			}
 		} catch (Exception ex) {
@@ -231,11 +231,19 @@ public class TaskManagerController extends BasicController {
 	        ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
-				TaskManager entity = taskmanagerService.get(id); 
+				
+				List<Department> deptList = deptService.getAllDepts();
+				 List<Batch> batchList=batchService.getAllBatches();
+				 List<Subject> subList=subService.getAllSubjects();
+				 
+				TaskManager entity = taskmanagerService.get(id);
+				model.addAttribute("depts", deptList);
+				 model.addAttribute("sems",batchList);
+				 model.addAttribute("subs" , subList);
 		        model.addAttribute("taskmanager", entity);
 		        model.addAttribute("action", "update");
 			} else {
-				logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
+				logger.log(this.getClass(),Logger.ERROR_INT,"invalid credential!","",null);
 				return "redirect:/login";
 			}
 	        return "taskmanager/taskmanagerForm";
@@ -250,19 +258,31 @@ public class TaskManagerController extends BasicController {
 	 @RequestMapping(value = "update", method = RequestMethod.POST)
 	 @ResponseBody
 	    public Message update(@Valid @ModelAttribute("preloadTaskManager") TaskManager taskmanager,
-	            RedirectAttributes redirectAttributes) {
+	            RedirectAttributes redirectAttributes , HttpServletRequest request) {
 		 try {
 			 	ShiroUser su = super.getLoginUser();
 				User user = accountService.findUserByLoginName(su.getLoginName());
 				if (user != null) {
+					
+					Department dpt = deptService.get(Long.parseLong(request.getParameter("deptName")));
+					Batch batch=batchService.get(Long.parseLong(request.getParameter("semName")));
+					Subject subj=subService.get(Long.parseLong(request.getParameter("subName")));
+					
+					taskmanager.setTaskDate(request.getParameter("taskDate"));
+					taskmanager.setSlotStartTime(request.getParameter("slotStartTime"));
+					taskmanager.setSlotEndTime(request.getParameter("slotEndTime"));
+					taskmanager.setDeptList(dpt);
+					taskmanager.setAllSemester(batch);
+					taskmanager.setSubList(subj);
+					
 			    	taskmanagerService.save(taskmanager);
 					msg.setSuccess(true);
-					msg.setMessage("信息更新成功");
+					msg.setMessage("The Task has been updated successfully .");
 					msg.setData(taskmanager);
 				} else {
-					logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
+//					logger.log(this.getClass(),Logger.ERROR_INT,"invalid credential!","",null);
 					msg.setSuccess(false);
-					msg.setMessage("登陆帐号无效!");
+					msg.setMessage("The Task has been updated successfully .!");
 					msg.setData("");
 				}
 			} catch (Exception ex) {
@@ -291,12 +311,12 @@ public class TaskManagerController extends BasicController {
 				if (user != null) {
 					taskmanagerService.delete(ids);
 					msg.setSuccess(true);
-					msg.setMessage("信息删除成功");
+					msg.setMessage("Task deleted successfully");
 					msg.setData("");
 				} else {
-					logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
+					logger.log(this.getClass(),Logger.ERROR_INT,"invalid credential !","",null);
 					msg.setSuccess(false);
-					msg.setMessage("登陆帐号无效!");
+					msg.setMessage("invalid credential!");
 					msg.setData("");
 				}
 	    	 	
@@ -315,10 +335,18 @@ public class TaskManagerController extends BasicController {
 		 	ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
+				
+				List<Department> deptList = deptService.getAllDepts();
+				 List<Batch> batchList=batchService.getAllBatches();
+				 List<Subject> subList=subService.getAllSubjects();
 			 	TaskManager entity = taskmanagerService.get(id); 
+			 	
+			 	model.addAttribute("depts", deptList);
+				 model.addAttribute("sems",batchList);
+				 model.addAttribute("subs" , subList);
 			 	model.addAttribute("taskmanager", entity);
 			} else {
-				logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
+				logger.log(this.getClass(),Logger.ERROR_INT,"invalid credential!","",null);
 				return "redirect:/login";
 			}
 		 	return "taskmanager/taskmanagerView";

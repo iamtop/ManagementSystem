@@ -51,15 +51,15 @@
 	function taskmanager_list_actionFormatter(value,row,index){
 		var str = '';	
 		str += formatString(
-				'<img onclick="updateForm(\'{0}\',\'taskmanager_form_inputForm\',taskmanager_list_datagrid,{title:\'编辑信息\'});" src="{1}" title="编辑"/>',
+				'<img onclick="updateForm(\'{0}\',\'taskmanager_form_inputForm\',taskmanager_list_datagrid,{title:\'编辑信息\'});" src="{1}" title="edit"/>',
 				taskmanager_list_update_url + row.id,
 				'${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icons/application_form_edit.png');
 		str += '&nbsp;';
-		str += formatString('<img onclick="deleteOne(\'{0}\',\'{1}\',taskmanager_list_datagrid);" src="{2}" title="删除"/>',
+		str += formatString('<img onclick="deleteOne(\'{0}\',\'{1}\',taskmanager_list_datagrid);" src="{2}" title="delete"/>',
 		                    row.id,taskmanager_list_delete_url,'${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icons/application_form_delete.png');
 		str += '&nbsp;';
 		str += formatString(
-				'<img onclick="view(\'{0}\',\'{1}\');" src="${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icons/view.png" title="查看"/>',
+				'<img onclick="view(\'{0}\',\'{1}\');" src="${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icons/view.png" title="display"/>',
 				taskmanager_list_view_url + row.id);
 		str += '&nbsp;';
 		return str;
@@ -67,11 +67,28 @@
 	
 	//DataGrid字段设置
 	var taskmanager_list_datagrid_columns = [ [
-	                    		{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
-	    	          					{field : 'taskDate',title : '<spring:message code="taskmanager_taskDate" />',width : 150,align:'center'},
-			          					{field : 'slotStartTime',title : '<spring:message code="taskmanager_slotStartTime" />',width : 150,align:'center'},
-			          					{field : 'slotEndTime',title : '<spring:message code="taskmanager_slotEndTime" />',width : 150,align:'center'},
-			          	                    	{field : 'action',title : '操作',width : 80,align : 'center',formatter : taskmanager_list_actionFormatter} 
+	                    		{field : 'id',title : '编号',width : 50,checkbox : true,align:'center'},
+	    	          					{field : 'taskDate',title : '<spring:message code="taskmanager_taskDate" />',width : 50,align:'center'},
+			          					{field : 'slotStartTime',title : '<spring:message code="taskmanager_slotStartTime" />',width : 50,align:'center'},
+			          					{field : 'slotEndTime',title : '<spring:message code="taskmanager_slotEndTime" />',width : 50,align:'center'},
+			          					
+			          					{field : 'deptList.deptId',title : '<spring:message code="department_title" />',width : 100,align:'center',
+			          						formatter : function(value, row, index){
+			                    				if(row.deptList)
+			                    					return row.deptList.deptName;}},
+			                    					
+			          					{field : 'allSemester.semId',title : '<spring:message code="batch_title" />',width : 50,align:'center',
+			          						formatter : function(value, row, index){
+			                    				if(row.allSemester)
+			                    					return row.allSemester.semName;}},
+			                    					
+			          					{field : 'subList.subId',title : '<spring:message code="subject_title" />',width : 100,align:'center',
+			          						formatter : function(value, row, index){
+			                    				if(row.subList)
+			                    					return row.subList.subName;}},
+			                    					
+			          					
+			          	                    	{field : 'action',title : 'Operation',width : 80,align : 'center',formatter : taskmanager_list_actionFormatter} 
 	                    		] ];
 	/** 初始化DataGrid,加载数据 **/		
 	function taskmanager_list_loadDataGrid(){		 
