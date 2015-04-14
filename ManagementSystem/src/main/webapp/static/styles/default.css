@@ -22,7 +22,7 @@ div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockqu
 .top,.date,.con,.bottom{ width:100%; margin:0 auto; overflow:hidden; }
 
 /*index*/
-.top{ width:auto; background:#006AB2; height:60px; line-height:60px;}
+.top{ width:auto; background:#F09090; height:60px; line-height:60px;}
 .topleft{ float:left;width: 850px;}
 .topleft img{cursor:auto;}
 .topleft h4{ font-size:22px; margin-left:20px; color:#FFF; font-family:"微软雅黑"; font-weight:bold; letter-spacing:2px;}

@@ -8,7 +8,7 @@ img {
 
 
 <!-- easyUI reference css files-->
-<link rel="stylesheet" type="text/css" href="${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/metro-red/easyui.css">
 
 <link rel="stylesheet" type="text/css" href="${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icon.css">
 

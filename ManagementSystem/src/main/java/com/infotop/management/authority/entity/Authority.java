@@ -1,5 +1,6 @@
 package com.infotop.management.authority.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
@@ -37,7 +38,7 @@ public class Authority extends IdEntity{
 		this.roleList = roleList;
 	}
 	
-	@javax.persistence.OneToOne
+	@javax.persistence.OneToOne (cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JoinColumn(name="p_id", referencedColumnName="id")
 	public PersonalDetails getPersonal() {
 		return personal;

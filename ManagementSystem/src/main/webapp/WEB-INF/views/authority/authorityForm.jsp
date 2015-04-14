@@ -71,12 +71,21 @@ $ .parser.onComplete = function() {
 	
 	<tr>
 	<td class="biao_bt3">Personal Id</td>
-	<td><input type="text" name="pId" id="pId" value="${ personal.pId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td>
+	<c:forEach items="${pDetails}" var="p">
+	<c:if test="${authority.personal.id == p.id}">
+	 ${personal.pId} = ${p.pId}
+	<input type="text" name="pId" id="pId"  value= "${personal.pId}" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
+		</c:if>
+	</c:forEach>
+	</td>
 	</tr>
 	
 	<tr>
 	<td class="biao_bt3">First Name</td>
-	<td><input type="text" name="fname" id="fname" value="${ personal.fname }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td>
+	<input type="text" name="fname" id="fname" value="${ personal.fname }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
+	</td>
 	</tr>
 	<tr>
 	<td class="biao_bt3">Last Name</td>

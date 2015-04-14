@@ -236,7 +236,8 @@ public class AuthorityController extends BasicController {
 				List<Department> deptList = deptService.getAllDepts();
 				List<PersonalDetails> personal = detailsService.findSpecificId();
 				
-				Authority entity = authorityService.get(id); 
+				Authority entity = authorityService.get(id);
+				model.addAttribute("pDetails", personal);
 				model.addAttribute("depts", deptList);
 				model.addAttribute("roles", roleList);
 		        model.addAttribute("authority", entity);
