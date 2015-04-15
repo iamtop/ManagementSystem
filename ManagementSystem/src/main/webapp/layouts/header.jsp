@@ -12,8 +12,8 @@
 
 <div class="top">
 	<div class="topleft">
-		<%-- <img src="${ctx}/static/images/head.jpg" width="800" height="60" /> --%>
-		<label id="aa">Attendance Management System</label>
+		<img src="${ctx}/static/images/header_image.png" width="800" height="60" />
+		
 	</div>
 	<div class="topright">
 		<span style="color:#FFF;">欢迎您，<a
