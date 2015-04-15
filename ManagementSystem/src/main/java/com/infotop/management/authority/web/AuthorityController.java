@@ -234,10 +234,8 @@ public class AuthorityController extends BasicController {
 				
 				List<RoleAsignment> roleList = roleAsignmentService.getRoles();
 				List<Department> deptList = deptService.getAllDepts();
-				List<PersonalDetails> personal = detailsService.findSpecificId();
 				
 				Authority entity = authorityService.get(id);
-				model.addAttribute("pDetails", personal);
 				model.addAttribute("depts", deptList);
 				model.addAttribute("roles", roleList);
 		        model.addAttribute("authority", entity);
@@ -258,11 +256,48 @@ public class AuthorityController extends BasicController {
 	 @RequestMapping(value = "update", method = RequestMethod.POST)
 	 @ResponseBody
 	    public Message update(@Valid @ModelAttribute("preloadAuthority") Authority authority,
-	            RedirectAttributes redirectAttributes) {
+	            RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		 try {
 			 	ShiroUser su = super.getLoginUser();
 				User user = accountService.findUserByLoginName(su.getLoginName());
 				if (user != null) {
+					
+					Long iid = null;
+					
+					PersonalDetails personal = new PersonalDetails();
+					
+					String pId = request.getParameter("pId");
+					String dept = request.getParameter("deptName");
+					String role = request.getParameter("roleName");
+					
+					personal.setpId(pId);
+					personal.setFname(request.getParameter("fname"));
+					personal.setLname(request.getParameter("lname"));
+					personal.setAddress(request.getParameter("address"));
+					personal.setEmail(request.getParameter("email"));
+					personal.setPhone(request.getParameter("phone"));
+					personal.setGender(request.getParameter("gender"));
+					personal.setFatherName(request.getParameter("fathername"));
+					personal.setMotherName(request.getParameter("mothername"));
+					personal.setDob(request.getParameter("dob"));
+					personal.setDoj(request.getParameter("doj"));
+					detailsService.save(personal);
+					
+					List<PersonalDetails> pd= detailsService.findSpecificId();
+					for (PersonalDetails i: pd){
+						if(pId.equals(i.getpId())){
+							iid = i.getId();	
+						}
+					}
+					personal = detailsService.get(iid);
+					Department dpt = deptService.get(Long.parseLong(dept));
+					RoleAsignment rol = roleAsignmentService.get(Long.parseLong(role));
+					
+					authority.setPersonal(personal);
+					authority.setDeptList(dpt);
+					authority.setRoleList(rol);
+
+					
 			    	authorityService.save(authority);
 					msg.setSuccess(true);
 					msg.setMessage("信息更新成功");

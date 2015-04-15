@@ -72,37 +72,43 @@ $ .parser.onComplete = function() {
 	<tr>
 	<td class="biao_bt3">Personal Id</td>
 	<td>
-	<c:forEach items="${pDetails}" var="p">
-	<c:if test="${authority.personal.id == p.id}">
-	 ${personal.pId} = ${p.pId}
-	<input type="text" name="pId" id="pId"  value= "${personal.pId}" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
-		</c:if>
-	</c:forEach>
+	<input type="text" name="pId" id="pId"  value= "${authority.personal.pId}" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
 	</td>
 	</tr>
 	
 	<tr>
 	<td class="biao_bt3">First Name</td>
 	<td>
-	<input type="text" name="fname" id="fname" value="${ personal.fname }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
+	<input type="text" name="fname" id="fname" value="${ authority.personal.fname }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
 	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Last Name</td>
-	<td><input type="text" name="lname" id="lname" value="${ personal.lname }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td>
+	<input type="text" name="lname" id="lname" value="${ authority.personal.lname }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
+	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Address</td>
-	<td><input type="text" name="address" id="address" value="${ personal.address }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td>
+	<input type="text" name="address" id="address" value="${ authority.personal.address }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
+	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Email</td>
-	<td><input type="text" name="email" id="email" value="${ personal.email }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td>
+	<input type="text" name="email" id="email" value="${ authority.personal.email }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />
+	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Phone</td>
-	<td><input type="text" name="phone" id="phone" value="${ personal.phone }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td><input type="text" name="phone" id="phone" value="${ authority.personal.phone }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Gender</td>
 	<td valign="middle">
@@ -110,21 +116,25 @@ $ .parser.onComplete = function() {
 	<input type="radio" name="gender" id="gender" value="Female" ${authority.personal.gender == 'Female'?'checked':''}/>Female
 	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Father Name</td>
-	<td><input type="text" name="fathername" id="fathername" value="${ personal.fatherName }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td><input type="text" name="fathername" id="fathername" value="${ authority.personal.fatherName }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Mother Name</td>
-	<td><input type="text" name="mothername" id="mothername" value="${ personal.motherName }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td><input type="text" name="mothername" id="mothername" value="${ authority.personal.motherName }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Date of Birth</td>
-	<td><input type="date" name="dob" id="dob" value="${ personal.dob }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td><input type="date" name="dob" id="dob" value="${ authority.personal.dob }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
 	</tr>
+	
 	<tr>
 	<td class="biao_bt3">Date of Join</td>
-	<td><input type="date" name="doj" id="doj" value="${ personal.doj }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
+	<td><input type="date" name="doj" id="doj" value="${ authority.personal.doj }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="batch_semId" />不能为空.',required:true"   />	</td>
 	</tr>
 	</table>
 </form:form>
