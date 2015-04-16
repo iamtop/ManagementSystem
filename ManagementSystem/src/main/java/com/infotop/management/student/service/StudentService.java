@@ -3,9 +3,9 @@ package com.infotop.management.student.service;
 import java.util.List;
 import java.util.Map;
 
+import com.infotop.management.authority.entity.Authority;
 import com.infotop.management.student.entity.Student;
 import com.infotop.management.student.repository.StudentDao;
-
 import com.google.common.collect.Maps;
 import com.infotop.common.log.BusinessLogger;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
@@ -171,4 +171,8 @@ public class StudentService {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
+	
+	public List<Student> getAllStudent() {
+		return (List<Student>) studentDao.findAll();
+		}
 }

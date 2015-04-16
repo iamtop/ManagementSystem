@@ -1,25 +1,38 @@
 package com.infotop.management.student.web;
 
 
+import com.infotop.management.batch.entity.Batch;
+import com.infotop.management.batch.service.BatchService;
+import com.infotop.management.department.entity.Department;
+import com.infotop.management.department.service.DepartmentService;
+import com.infotop.management.personaldetails.entity.PersonalDetails;
+import com.infotop.management.personaldetails.service.PersonalDetailsService;
 import com.infotop.management.student.service.StudentService;
 import com.infotop.management.student.entity.Student;
-
 import com.infotop.system.account.entity.User;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
 import com.infotop.common.BasicController;
 
 import net.infotop.web.easyui.DataGrid;
 import net.infotop.web.easyui.Message;
-
 import ch.qos.logback.classic.Logger;
 
 import org.springside.modules.web.Servlets;
+
+
+
+
+
+
+
+
 
 
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +56,12 @@ public class StudentController extends BasicController {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
+	private DepartmentService deptService;
+    @Autowired
+   	private BatchService batchService;
+    @Autowired
+    private PersonalDetailsService detailsService;
 	
 	/**
 	 * 跳转列表页面
@@ -111,8 +130,13 @@ public class StudentController extends BasicController {
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
 				 Student entity = new Student(); 
-			     model.addAttribute("student", entity);
-			     model.addAttribute("action", "create");
+				 List<Department> deptList = deptService.getAllDepts();
+				 List<Batch> batchList = batchService.getAllBatches();
+				
+				  model.addAttribute("depts", deptList);
+				  model.addAttribute("sems", batchList);
+			      model.addAttribute("student", entity);
+			      model.addAttribute("action", "create");
 			} else {
 				logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
 				return "redirect:/login";
@@ -126,12 +150,38 @@ public class StudentController extends BasicController {
 	 */
 	 @RequestMapping(value = "create", method = RequestMethod.POST)
 	 @ResponseBody
-	 public Message create(@Valid Student student, RedirectAttributes redirectAttributes) {
+	 public Message create(@Valid Student student, RedirectAttributes redirectAttributes,HttpServletRequest request) {
 		try {
+			
 			ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
-		    	studentService.save(student);
+				PersonalDetails personal = new PersonalDetails();
+				String depts = request.getParameter("deptName");
+				String sems = request.getParameter("semName");
+				
+				Department dpt = deptService.get(Long.parseLong(depts));
+				Batch sem = batchService.get(Long.parseLong(sems));
+				
+				student.setDeptList(dpt);
+				student.setBatchList(sem);
+		    	
+				personal.setpId(request.getParameter("pId"));
+				personal.setFname(request.getParameter("fname"));
+				personal.setLname(request.getParameter("lname"));
+				personal.setAddress(request.getParameter("address"));
+				personal.setEmail(request.getParameter("email"));
+				personal.setPhone(request.getParameter("phone"));
+				personal.setGender(request.getParameter("gender"));
+				personal.setFatherName(request.getParameter("fathername"));
+				personal.setMotherName(request.getParameter("mothername"));
+				personal.setDob(request.getParameter("dob"));
+				personal.setDoj(request.getParameter("doj"));
+				detailsService.save(personal);
+				
+
+				student.setPersonal(personal);
+				studentService.save(student);
 				msg.setSuccess(true);
 				msg.setMessage("信息添加成功");
 				msg.setData(student);
@@ -162,6 +212,12 @@ public class StudentController extends BasicController {
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
 				Student entity = studentService.get(id); 
+				 List<Department> deptList = deptService.getAllDepts();
+				 List<Batch> batchList = batchService.getAllBatches();
+				 //List<PersonalDetails> personalList = detailsService.findSpecificId();
+				
+				model.addAttribute("depts", deptList);
+				model.addAttribute("sems", batchList);
 		        model.addAttribute("student", entity);
 		        model.addAttribute("action", "update");
 			} else {
@@ -180,11 +236,39 @@ public class StudentController extends BasicController {
 	 @RequestMapping(value = "update", method = RequestMethod.POST)
 	 @ResponseBody
 	    public Message update(@Valid @ModelAttribute("preloadStudent") Student student,
-	            RedirectAttributes redirectAttributes) {
+	            RedirectAttributes redirectAttributes,HttpServletRequest request) {
 		 try {
 			 	ShiroUser su = super.getLoginUser();
 				User user = accountService.findUserByLoginName(su.getLoginName());
 				if (user != null) {
+					
+					PersonalDetails personal = new PersonalDetails();
+					String depts = request.getParameter("deptName");
+					String sems = request.getParameter("semName");
+					
+					Department dpt = deptService.get(Long.parseLong(depts));
+					Batch sem = batchService.get(Long.parseLong(sems));
+					
+					student.setDeptList(dpt);
+					student.setBatchList(sem);
+			    	
+					personal.setpId(request.getParameter("pId"));
+					System.out.println("ppppppppppppppppppppp"+request.getParameter("pId"));
+					personal.setFname(request.getParameter("fname"));
+					personal.setLname(request.getParameter("lname"));
+					personal.setAddress(request.getParameter("address"));
+					personal.setEmail(request.getParameter("email"));
+					personal.setPhone(request.getParameter("phone"));
+					personal.setGender(request.getParameter("gender"));
+					personal.setFatherName(request.getParameter("fathername"));
+					personal.setMotherName(request.getParameter("mothername"));
+					personal.setDob(request.getParameter("dob"));
+					personal.setDoj(request.getParameter("doj"));
+					detailsService.save(personal);
+					
+
+					student.setPersonal(personal);
+					studentService.save(student);
 			    	studentService.save(student);
 					msg.setSuccess(true);
 					msg.setMessage("信息更新成功");

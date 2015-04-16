@@ -66,6 +66,80 @@
 	var student_list_datagrid_columns = [ [
 	                    		{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
 	    	          					{field : 'studId',title : '<spring:message code="student_studId" />',width : 150,align:'center'},
+	    	          					
+	    	          					{field : 'personal.pId', title : 'Personal Id', width : 150, align:'center',
+	    	                    			formatter : function(value, row, index){
+	    	                    				if(row.personal)
+	    	                    					return row.personal.pId;
+	    	                    				
+	    	                    			}},
+	    	                    			{field : 'deptList.deptId', title : 'Department', width : 150, align:'center',
+	    		                    			formatter : function(value, row, index){
+	    		                    				if(row.deptList)
+	    		                    					return row.deptList.deptName;
+	    		                    			}},
+	    		                    			
+	    		                    			{field : 'batchList.semId', title : 'Semester', width : 150, align:'center',
+					                    			formatter : function(value, row, index){
+					                    				if(row.batchList)
+					                    					return row.batchList.semName;
+					                    			}},
+				          					
+	    			                    		{field : 'personal.fname', title : 'FirstName', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.fname;
+	    				                    		}},
+	    			                    		{field : 'personal.lname', title : 'LastName', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.lname;
+	    				                    		}},
+	    			                    		{field : 'personal.address', title : 'Address', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.address;
+	    				                    		}},
+	    			                    		{field : 'personal.email', title : 'Email', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.email;
+	    				                    		}},
+	    			                    		{field : 'personal.phone', title : 'Phone', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.phone;
+	    				                    		}},
+	    			                    		{field : 'personal.gender', title : 'Gender', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.gender;
+	    				                    		}},
+	    			                    		{field : 'personal.fatherName', title : 'Father Name', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.fatherName;
+	    				                    		}},
+	    			                    		{field : 'personal.motherName', title : 'Mother Name', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.motherName;
+	    				                    		}},
+	    			                    		{field : 'personal.dob', title : 'Date of Birth', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.dob;
+	    				                    		}},
+	    			                    		{field : 'personal.doj', title : 'Date of Join', width : 150, align:'center',
+	    				                    		formatter : function(value, row, index){
+	    				                    			if(row.personal)
+	    				                    				return row.personal.doj;
+	    				                    		}},
+	    	          					
+	    	          					
+	    	          					
+	    	          					
+	    	          					
 			          	                    	{field : 'action',title : '操作',width : 80,align : 'center',formatter : student_list_actionFormatter} 
 	                    		] ];
 	/** 初始化DataGrid,加载数据 **/		
