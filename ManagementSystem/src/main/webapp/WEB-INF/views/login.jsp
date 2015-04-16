@@ -89,7 +89,7 @@
 	<div class="login">
 		<div id="login0">
 			<div class="loginmiddle">
-				<div class="logintitile">天宝热泵远程监控系统</div>
+				<div class="logintitile">Login Here</div>
 				<br />
 				<div id="browsercheck"
 					style="color: red; display: none; text-align: center;">
