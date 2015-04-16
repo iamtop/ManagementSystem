@@ -89,7 +89,7 @@
 	<div class="login">
 		<div id="login0">
 			<div class="loginmiddle">
-				<div class="logintitile">Login Here</div>
+				<div class="logintitile"> Login into AMS</div>
 				<br />
 				<div id="browsercheck"
 					style="color: red; display: none; text-align: center;">
@@ -112,7 +112,7 @@
 							class="in validate[required]"
 							data-prompt-position="bottomRight:-220,10" />
 					</div>
-					<input class="loginin" type="submit" value="登　　　录" />
+					<input class="loginin" type="submit" value="Login" />
 					<div
 						style="position: relative; width: 65px; height: 30px; top: -98px; right: -245px; border: #000 1px solid;">
 						<img src="${ctx }/static/kaptcha.jpg" width="65" height="30"

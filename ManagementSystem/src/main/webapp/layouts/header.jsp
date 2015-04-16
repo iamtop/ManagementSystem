@@ -17,7 +17,7 @@
 	</div>
 	<div class="topright">
 		<span style="color:#FFF;">欢迎您，<a
-			style="color:#f00; font-weight:bold;" href="#"><%=currentuser.name%></a>&nbsp;&nbsp;
+			style="color:#000080; font-weight:bold;" href="#"><%=currentuser.name%></a>&nbsp;&nbsp;
 		</span> <span> <a onclick="changePWD('${ctx}/profile');"
 			href="javascript:void(0)"> <img align="absmiddle"
 				src="${ctx}/static/images/shezhi.png" height="23" width="24" alt="" />&nbsp;&nbsp;<spring:message
