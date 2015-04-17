@@ -161,16 +161,6 @@ public class AuthorityController extends BasicController {
 				PersonalDetails personal = new PersonalDetails();
 				
 				String pId = request.getParameter("pId");
-//				String fName = request.getParameter("fname");
-//				String lName = request.getParameter("lname");
-//				String addr = request.getParameter("address");
-//				String email = request.getParameter("email");
-//				String phone = request.getParameter("phone");
-//				String gender = request.getParameter("gender");
-//				String father = request.getParameter("fathername");
-//				String mother = request.getParameter("mothername");
-//				String dob = request.getParameter("dob");
-//				String doj = request.getParameter("doj");
 				String dept = request.getParameter("deptName");
 				String role = request.getParameter("roleName");
 				
@@ -201,6 +191,7 @@ public class AuthorityController extends BasicController {
 				authority.setPersonal(personal);
 				authority.setDeptList(dpt);
 				authority.setRoleList(rol);
+				authorityService.delete(iid);
 		    	authorityService.save(authority);
 				msg.setSuccess(true);
 				msg.setMessage("信息添加成功");
@@ -296,7 +287,6 @@ public class AuthorityController extends BasicController {
 					authority.setPersonal(personal);
 					authority.setDeptList(dpt);
 					authority.setRoleList(rol);
-
 					
 			    	authorityService.save(authority);
 					msg.setSuccess(true);

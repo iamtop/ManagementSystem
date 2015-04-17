@@ -9,7 +9,15 @@
 				style="width:100%;overflow:hidden;">
 				<table class="search_table" style="width: 100%;">
 					<tr>
-						   						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
+						<th>Department</th>
+						<td><input type="text" name="search_EQ_authority.personal.pId"
+							value="${ param.search_EQ_authority.personal.pId}"
+							id="search_EQ_authority.personal.pId" /></td>
+						<th>Phone</th>
+						<td><input type="text" name="search_EQ_authority.personal.phone"
+							value="${ param.search_EQ_authority.personal.phone}"
+							id="search_EQ_authority.personal.phone" /></td>  						
+						   	<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="authority_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="authority_list_clearBtn">清空</a></th>
 					</tr>
@@ -68,7 +76,7 @@
 	                    					return row.personal.pId;
 	                    				
 	                    			}},
-	                    			{field : 'deptList.dept_id', title : 'Department', width : 150, align:'center',
+	                    			{field : 'deptList.dept_id', title : 'Department', width : 220, align:'center',
 		                    			formatter : function(value, row, index){
 		                    				if(row.deptList)
 		                    					return row.deptList.deptName;
@@ -89,45 +97,20 @@
 				                    			if(row.personal)
 				                    				return row.personal.lname;
 				                    		}},
-			                    		{field : 'personal.address', title : 'Address', width : 150, align:'center',
-				                    		formatter : function(value, row, index){
-				                    			if(row.personal)
-				                    				return row.personal.address;
-				                    		}},
 			                    		{field : 'personal.email', title : 'Email', width : 150, align:'center',
 				                    		formatter : function(value, row, index){
 				                    			if(row.personal)
 				                    				return row.personal.email;
 				                    		}},
-			                    		{field : 'personal.phone', title : 'Phone', width : 150, align:'center',
+			                    		{field : 'personal.phone', title : 'Phone', width : 100, align:'center',
 				                    		formatter : function(value, row, index){
 				                    			if(row.personal)
 				                    				return row.personal.phone;
 				                    		}},
-			                    		{field : 'personal.gender', title : 'Gender', width : 150, align:'center',
+			                    		{field : 'personal.gender', title : 'Gender', width : 100, align:'center',
 				                    		formatter : function(value, row, index){
 				                    			if(row.personal)
 				                    				return row.personal.gender;
-				                    		}},
-			                    		{field : 'personal.father_name', title : 'Father Name', width : 150, align:'center',
-				                    		formatter : function(value, row, index){
-				                    			if(row.personal)
-				                    				return row.personal.fatherName;
-				                    		}},
-			                    		{field : 'personal.mother_name', title : 'Mother Name', width : 150, align:'center',
-				                    		formatter : function(value, row, index){
-				                    			if(row.personal)
-				                    				return row.personal.motherName;
-				                    		}},
-			                    		{field : 'personal.dob', title : 'Date of Birth', width : 150, align:'center',
-				                    		formatter : function(value, row, index){
-				                    			if(row.personal)
-				                    				return row.personal.dob;
-				                    		}},
-			                    		{field : 'personal.doj', title : 'Date of Join', width : 150, align:'center',
-				                    		formatter : function(value, row, index){
-				                    			if(row.personal)
-				                    				return row.personal.doj;
 				                    		}},
 	    	          	        {field : 'action',title : '操作',width : 80,align : 'center',formatter : authority_list_actionFormatter} 
 	                    		] ];
