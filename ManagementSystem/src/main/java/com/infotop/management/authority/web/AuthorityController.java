@@ -191,7 +191,7 @@ public class AuthorityController extends BasicController {
 				authority.setPersonal(personal);
 				authority.setDeptList(dpt);
 				authority.setRoleList(rol);
-				authorityService.delete(iid);
+				//ssauthorityService.delete(iid);
 		    	authorityService.save(authority);
 				msg.setSuccess(true);
 				msg.setMessage("信息添加成功");
