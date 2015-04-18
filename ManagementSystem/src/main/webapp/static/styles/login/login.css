@@ -12,7 +12,7 @@ a img{ border:0;}
 div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,select,img,table,a,body{padding:0; margin:0;}
 .clear {clear:both; height:0;}
 
-.logintitile{ font-size:24px; font-family:"微软雅黑"; color:#025090; width:360px; text-align:center;}
+.logintitile{ font-size:24px; font-family:"微软雅黑"; color:#ffa500; width:360px; text-align:center;}
 .userimg{ background:url(user.jpg) no-repeat; position:absolute; z-index:1; width:43px; height:45px; overflow:hidden; border:none;}
 .passwordimg{ background:url(password.jpg) no-repeat; position:absolute; z-index:1; width:43px; height:45px; overflow:hidden; border:none;}
 .loginin{cursor: pointer; background:url(reg.png) repeat-x; border-radius: 5px 5px 5px 5px; width:277px; height:44px; border:none; font-size:22px; font-family:"微软雅黑"; color:#FFF;box-shadow:0px 3px 9px #3c71a7; border:#9fd0fb 1px solid; margin-top:17px; margin-left:40px;}
