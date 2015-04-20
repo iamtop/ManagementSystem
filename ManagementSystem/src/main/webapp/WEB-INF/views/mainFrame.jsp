@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>天宝热泵远程监控系统</title>
+<title>Attendance Management System</title>
 <%@ include file="/common/easyui_inc.jsp"%>
 <script type="text/javascript"
 	src="${ctx}/static/js/extAppJs/app_index.js"></script>
