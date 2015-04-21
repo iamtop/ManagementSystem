@@ -46,24 +46,12 @@ $ .parser.onComplete = function() {
 	<input type="hidden" name="id" id="id" value="${ attendance.id}" />
 	<table class="content" style="width: 100%;">
 	 		<tr>
-			<td class="biao_bt3"><spring:message code="attendance_pId" /></td>
-			<td><input type="text" name="pId" id="pId" value="${ attendance.pId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_pId" />不能为空.',required:true"   />	</td>
+			<td class="biao_bt3"><spring:message code="attendance_timeSlotStart" /></td>
+			<td><input type="text" name="timeSlotStart" id="timeSlotStart" value="${ attendance.timeSlotStart }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_timeSlotStart" />不能为空.',required:true"   />	</td>
 		</tr>
 	  		<tr>
-			<td class="biao_bt3"><spring:message code="attendance_studId" /></td>
-			<td><input type="text" name="studId" id="studId" value="${ attendance.studId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_studId" />不能为空.',required:true"   />	</td>
-		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="attendance_deptId" /></td>
-			<td><input type="text" name="deptId" id="deptId" value="${ attendance.deptId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_deptId" />不能为空.',required:true"   />	</td>
-		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="attendance_subId" /></td>
-			<td><input type="text" name="subId" id="subId" value="${ attendance.subId }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_subId" />不能为空.',required:true"   />	</td>
-		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="attendance_timeSlot" /></td>
-			<td><input type="text" name="timeSlot" id="timeSlot" value="${ attendance.timeSlot }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_timeSlot" />不能为空.',required:true"   />	</td>
+			<td class="biao_bt3"><spring:message code="attendance_timeSlotEnd" /></td>
+			<td><input type="text" name="timeSlotEnd" id="timeSlotEnd" value="${ attendance.timeSlotEnd }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_timeSlotEnd" />不能为空.',required:true"   />	</td>
 		</tr>
 	  		<tr>
 			<td class="biao_bt3"><spring:message code="attendance_attendanceDate" /></td>
@@ -72,10 +60,6 @@ $ .parser.onComplete = function() {
 	  		<tr>
 			<td class="biao_bt3"><spring:message code="attendance_attendance" /></td>
 			<td><input type="text" name="attendance" id="attendance" value="${ attendance.attendance }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_attendance" />不能为空.',required:true"   />	</td>
-		</tr>
-	  		<tr>
-			<td class="biao_bt3"><spring:message code="attendance_flag" /></td>
-			<td><input type="text" name="flag" id="flag" value="${ attendance.flag }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="attendance_flag" />不能为空.',required:true"   />	</td>
 		</tr>
 	   	</table>
 </form:form>

@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.infotop.common.IdEntity;
+import com.infotop.management.authority.entity.Authority;
+import com.infotop.management.batch.entity.Batch;
+import com.infotop.management.department.entity.Department;
+import com.infotop.management.student.entity.Student;
+import com.infotop.management.subject.entity.Subject;
 /**
  * @author rubz
  *
@@ -14,75 +19,69 @@ import com.infotop.common.IdEntity;
 @Table(name="ms_attendance")
 public class Attendance extends IdEntity{
 	
-	
-	private String pId;
-	private String studId;
-	private String deptId;
-	private String subId;
-	private String timeSlot;
+	private String timeSlotStart;
+	private String timeSlotEnd;
 	private String attendanceDate;
 	private String attendance;
-	private boolean flag;
 	
-	
-	
-	public String getStudId() {
-		return studId;
+	private Department departmentList;
+	private Student studentList;
+	private Subject subjectList;
+	private Batch batchList;
+	private Authority authId;
+	public String getTimeSlotStart() {
+		return timeSlotStart;
 	}
-	public void setStudId(String studId) {
-		this.studId = studId;
+	public void setTimeSlotStart(String timeSlotStart) {
+		this.timeSlotStart = timeSlotStart;
 	}
-	public String getDeptId() {
-		return deptId;
+	public String getTimeSlotEnd() {
+		return timeSlotEnd;
 	}
-	public void setDeptId(String deptId) {
-		this.deptId = deptId;
+	public void setTimeSlotEnd(String timeSlotEnd) {
+		this.timeSlotEnd = timeSlotEnd;
 	}
-	public String getSubId() {
-		return subId;
-	}
-	public void setSubId(String subId) {
-		this.subId = subId;
-	}
-	
-	public String getAttendance() {
-		return attendance;
-	}
-	public void setAttendance(String attendance) {
-		this.attendance = attendance;
-	}
-	
 	public String getAttendanceDate() {
 		return attendanceDate;
 	}
 	public void setAttendanceDate(String attendanceDate) {
 		this.attendanceDate = attendanceDate;
 	}
-
-
-	public String getpId() {
-		return pId;
+	public String getAttendance() {
+		return attendance;
 	}
-	public void setpId(String pId) {
-		this.pId = pId;
+	public void setAttendance(String attendance) {
+		this.attendance = attendance;
 	}
-	public String getTimeSlot() {
-		return timeSlot;
+	public Department getDepartmentList() {
+		return departmentList;
 	}
-	public void setTimeSlot(String timeSlot) {
-		this.timeSlot = timeSlot;
+	public void setDepartmentList(Department departmentList) {
+		this.departmentList = departmentList;
 	}
-	public boolean isFlag() {
-		return flag;
+	public Student getStudentList() {
+		return studentList;
 	}
-	public void setFlag(boolean flag) {
-		this.flag = flag;
+	public void setStudentList(Student studentList) {
+		this.studentList = studentList;
+	}
+	public Subject getSubjectList() {
+		return subjectList;
+	}
+	public void setSubjectList(Subject subjectList) {
+		this.subjectList = subjectList;
+	}
+	public Batch getBatchList() {
+		return batchList;
+	}
+	public void setBatchList(Batch batchList) {
+		this.batchList = batchList;
+	}
+	public Authority getAuthId() {
+		return authId;
+	}
+	public void setAuthId(Authority authId) {
+		this.authId = authId;
 	}
 	
-	
-	
-	
-	
-	
-
 }

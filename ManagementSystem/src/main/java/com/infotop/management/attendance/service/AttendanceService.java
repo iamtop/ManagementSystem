@@ -26,7 +26,7 @@ import org.springside.modules.persistence.SearchFilter;
 
 /**
  * AttendanceManager
- * $Id: AttendanceManager.java,v 0.0.1 2015-03-31 08:06:32  $
+ * $Id: AttendanceManager.java,v 0.0.1 2015-04-21 08:17:51  $
  */
 @Component
 @Transactional(readOnly = true)

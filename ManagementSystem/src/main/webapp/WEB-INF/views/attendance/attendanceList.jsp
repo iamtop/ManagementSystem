@@ -9,13 +9,13 @@
 				style="width:100%;overflow:hidden;">
 				<table class="search_table" style="width: 100%;">
 					<tr>
-						    						<th><spring:message code="attendance_studId" /></th>
-						<td><input type="text" name="search_EQ_studId"
-							value="${ param.search_EQ_studId}"
-							id="search_EQ_studId" /></td>   						<th><spring:message code="attendance_deptId" /></th>
-						<td><input type="text" name="search_EQ_deptId"
-							value="${ param.search_EQ_deptId}"
-							id="search_EQ_deptId" /></td>              						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
+						    						<th><spring:message code="attendance_timeSlotEnd" /></th>
+						<td><input type="text" name="search_EQ_timeSlotEnd"
+							value="${ param.search_EQ_timeSlotEnd}"
+							id="search_EQ_timeSlotEnd" /></td>   						<th><spring:message code="attendance_attendanceDate" /></th>
+						<td><input type="text" name="search_EQ_attendanceDate"
+							value="${ param.search_EQ_attendanceDate}"
+							id="search_EQ_attendanceDate" /></td>      						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="attendance_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="attendance_list_clearBtn">清空</a></th>
 					</tr>
@@ -68,14 +68,10 @@
 	//DataGrid字段设置
 	var attendance_list_datagrid_columns = [ [
 	                    		{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
-	    	          					{field : 'pId',title : '<spring:message code="attendance_pId" />',width : 150,align:'center'},
-			          					{field : 'studId',title : '<spring:message code="attendance_studId" />',width : 150,align:'center'},
-			          					{field : 'deptId',title : '<spring:message code="attendance_deptId" />',width : 150,align:'center'},
-			          					{field : 'subId',title : '<spring:message code="attendance_subId" />',width : 150,align:'center'},
-			          					{field : 'timeSlot',title : '<spring:message code="attendance_timeSlot" />',width : 150,align:'center'},
+	    	          					{field : 'timeSlotStart',title : '<spring:message code="attendance_timeSlotStart" />',width : 150,align:'center'},
+			          					{field : 'timeSlotEnd',title : '<spring:message code="attendance_timeSlotEnd" />',width : 150,align:'center'},
 			          					{field : 'attendanceDate',title : '<spring:message code="attendance_attendanceDate" />',width : 150,align:'center'},
 			          					{field : 'attendance',title : '<spring:message code="attendance_attendance" />',width : 150,align:'center'},
-			          					{field : 'flag',title : '<spring:message code="attendance_flag" />',width : 150,align:'center'},
 			          	                    	{field : 'action',title : '操作',width : 80,align : 'center',formatter : attendance_list_actionFormatter} 
 	                    		] ];
 	/** 初始化DataGrid,加载数据 **/		

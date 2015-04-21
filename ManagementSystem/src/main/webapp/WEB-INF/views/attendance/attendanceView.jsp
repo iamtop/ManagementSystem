@@ -10,28 +10,13 @@
 			<table class="content" style="width: 99%;" >
 				 				<tr>
 					<td class="biao_bt3"><spring:message
-							code="attendance_pId" /></td>
-					<td>${ attendance.pId }</td>
+							code="attendance_timeSlotStart" /></td>
+					<td>${ attendance.timeSlotStart }</td>
 				</tr>
 				  				<tr>
 					<td class="biao_bt3"><spring:message
-							code="attendance_studId" /></td>
-					<td>${ attendance.studId }</td>
-				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="attendance_deptId" /></td>
-					<td>${ attendance.deptId }</td>
-				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="attendance_subId" /></td>
-					<td>${ attendance.subId }</td>
-				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="attendance_timeSlot" /></td>
-					<td>${ attendance.timeSlot }</td>
+							code="attendance_timeSlotEnd" /></td>
+					<td>${ attendance.timeSlotEnd }</td>
 				</tr>
 				  				<tr>
 					<td class="biao_bt3"><spring:message
@@ -42,11 +27,6 @@
 					<td class="biao_bt3"><spring:message
 							code="attendance_attendance" /></td>
 					<td>${ attendance.attendance }</td>
-				</tr>
-				  				<tr>
-					<td class="biao_bt3"><spring:message
-							code="attendance_flag" /></td>
-					<td>${ attendance.flag }</td>
 				</tr>
 				   			</table>
 		</div>
