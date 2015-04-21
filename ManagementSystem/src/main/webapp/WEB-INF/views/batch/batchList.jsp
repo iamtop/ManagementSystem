@@ -28,6 +28,7 @@
 		<div id="batch_list_toolbar" style="display: none;">
 				<a href="javascript:updateForm(batch_list_create_url,'batch_form_inputForm',batch_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> 			
 		  	  <a href="javascript:deleteBatch(batch_list_delete_url,batch_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">删除</a>
+		  	  <a href="javascript:exportBatch();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:true">删除</a>
 			</div> 
 	</div>
 </div>
@@ -103,6 +104,11 @@
 		//绑定按钮事件
 		bindSearchBtn('batch_list_searchBtn','batch_list_clearBtn','batch_list_searchForm',batch_list_datagrid);
 	};
+	
+	function exportBatch() {
+		$('#batch_list_searchForm').attr("action", "${ctx}/batch/export");
+		$('#batch_list_searchForm').submit();
+	}
 </script>
 
 

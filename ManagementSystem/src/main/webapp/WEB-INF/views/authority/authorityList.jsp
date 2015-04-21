@@ -30,6 +30,7 @@
 		<div id="authority_list_toolbar" style="display: none;">
 				<a href="javascript:updateForm(authority_list_create_url,'authority_form_inputForm',authority_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> 			
 		  	  <a href="javascript:deleteBatch(authority_list_delete_url,authority_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">删除</a>
+		  	  <a href="javascript:exportAuthority();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:true">删除</a>
 			</div> 
 	</div>
 </div>
@@ -145,6 +146,11 @@
 		//绑定按钮事件
 		bindSearchBtn('authority_list_searchBtn','authority_list_clearBtn','authority_list_searchForm',authority_list_datagrid);
 	};
+	
+	function exportAuthority() {
+		$('#authority_list_searchForm').attr("action", "${ctx}/authority/export");
+		$('#authority_list_searchForm').submit();
+	}
 </script>
 
 

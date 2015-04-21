@@ -1,40 +1,25 @@
 package com.infotop.management.authority.web;
 
 
-import com.infotop.management.authority.service.AuthorityService;
-import com.infotop.management.authority.entity.Authority;
-import com.infotop.management.department.entity.Department;
-import com.infotop.management.department.service.DepartmentService;
-import com.infotop.management.personaldetails.entity.PersonalDetails;
-import com.infotop.management.personaldetails.service.PersonalDetailsService;
-import com.infotop.management.roleasignment.entity.RoleAsignment;
-import com.infotop.management.roleasignment.service.RoleAsignmentService;
-import com.infotop.system.account.entity.User;
-import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
-import com.infotop.common.BasicController;
-
-import net.infotop.web.easyui.DataGrid;
-import net.infotop.web.easyui.Message;
-import ch.qos.logback.classic.Logger;
-
-import org.springside.modules.web.Servlets;
-
-
-
-
-
-
-
-
-
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import net.infotop.web.easyui.DataGrid;
+import net.infotop.web.easyui.Message;
+
+import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,6 +29,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springside.modules.web.Servlets;
+
+import ch.qos.logback.classic.Logger;
+
+import com.infotop.common.BasicController;
+import com.infotop.management.authority.entity.Authority;
+import com.infotop.management.authority.service.AuthorityService;
+import com.infotop.management.department.entity.Department;
+import com.infotop.management.department.service.DepartmentService;
+import com.infotop.management.personaldetails.entity.PersonalDetails;
+import com.infotop.management.personaldetails.service.PersonalDetailsService;
+import com.infotop.management.roleasignment.entity.RoleAsignment;
+import com.infotop.management.roleasignment.service.RoleAsignmentService;
+import com.infotop.system.account.entity.User;
+import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
+
 /**
  * AuthorityAction
  * $Id: AuthorityAction.java,v 0.0.1 2015-04-08 09:24:25  $
@@ -366,4 +367,96 @@ public class AuthorityController extends BasicController {
 	        return null;
 	    }
 
+	   @RequestMapping(value="export")
+	   public void export(Model model, HttpServletRequest request,
+			   			 @RequestParam(value="sortType", defaultValue = "auto") String sortType,
+			   			 @RequestParam(value="page", defaultValue = "1") int pageNumber,
+			   			 @RequestParam(value="order", defaultValue = "desc") String order,
+			   			 @RequestParam(value="pageSize", defaultValue = "" + PAGE_SIZE) int pageSize,
+			   			 HttpServletResponse response) throws IOException {
+		   
+		   HttpSession session = request.getSession();
+		   session.setAttribute("state", null);
+		   
+		   response.setContentType("application/vnd.ms-excel");
+		   OutputStream fOut = null;
+		   
+		   try {
+			   response.setHeader("content-disposition", "attachment;filename*=UTF-8''" + "Authority.xls");
+			   
+			   HSSFWorkbook workbook = new HSSFWorkbook();
+			   HSSFSheet sheet = workbook.createSheet();
+			   
+			   List<String> headingList = new ArrayList<String>();
+			   headingList.clear();
+			   headingList.add("Personal Id");
+			   headingList.add("Department");
+			   headingList.add("Role");
+			   headingList.add("First Name");
+			   headingList.add("Last Name");
+			   headingList.add("E-mail");
+			   headingList.add("Phone");
+			   headingList.add("Father Name");
+			   headingList.add("Mother Name");
+			   headingList.add("Date of Birth");
+			   headingList.add("Date of Join");
+			   
+			   HSSFRow row1 = sheet.createRow(0);
+			   for(int i=0; i < headingList.size(); i++){
+				   HSSFCell cell = row1.createCell(i);
+				   cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cell.setCellValue(headingList.get(i));
+			   }
+			   
+			   HSSFCell cells;
+			   Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+			   Page<Authority> page = authorityService.getAllAuthority(searchParams, pageNumber, 100, sortType, order);
+			   List<Authority> authList = page.getContent();
+			   
+			   for(int i = 0; i < authList.size(); i++){
+				   HSSFRow row2 = sheet.createRow(i+1);
+				   Authority param = authList.get(i);
+				   cells = row2.createCell(0);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getpId());
+				   cells = row2.createCell(1);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getDeptList().getDeptName());
+				   cells = row2.createCell(2);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getRoleList().getRoleName());
+				   cells = row2.createCell(3);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getFname());
+				   cells = row2.createCell(4);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getLname());
+				   cells = row2.createCell(5);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getEmail());
+				   cells = row2.createCell(6);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getPhone());
+				   cells = row2.createCell(7);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getFatherName());
+				   cells = row2.createCell(8);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getMotherName());
+				   cells = row2.createCell(9);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getDob());
+				   cells = row2.createCell(10);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getPersonal().getDoj());
+			   }
+			   fOut = response.getOutputStream();
+			   workbook.write(fOut);
+			   workbook.close();
+			   
+		   }catch (Exception e1){
+			   e1.printStackTrace();
+		   }
+		   
+	   }
 }

@@ -3,23 +3,41 @@ package com.infotop.management.roleasignment.web;
 
 import com.infotop.management.roleasignment.service.RoleAsignmentService;
 import com.infotop.management.roleasignment.entity.RoleAsignment;
-
 import com.infotop.system.account.entity.User;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
 import com.infotop.common.BasicController;
 
 import net.infotop.web.easyui.DataGrid;
 import net.infotop.web.easyui.Message;
-
 import ch.qos.logback.classic.Logger;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springside.modules.web.Servlets;
 
 
+
+
+
+
+
+
+
+
+
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -263,4 +281,61 @@ public class RoleAsignmentController extends BasicController {
 	        return null;
 	    }
 
+//	   @RequestMapping(value="export")
+//	   public void export(Model model, HttpServletRequest request,
+//			   			 @RequestParam(value="sortType", defaultValue = "auto") String sortType,
+//			   			 @RequestParam(value="page", defaultValue = "1") int pageNumber,
+//			   			 @RequestParam(value="order", defaultValue = "desc") String order,
+//			   			 @RequestParam(value="pageSize", defaultValue = "" + PAGE_SIZE) int pageSize,
+//			   			 HttpServletResponse response) throws IOException {
+//		   
+//		   HttpSession session = request.getSession();
+//		   session.setAttribute("state", null);
+//		   
+//		   response.setContentType("application/vnd.ms-excel");
+//		   OutputStream fOut = null;
+//		   
+//		   try {
+//			   response.setHeader("content-disposition", "attachment;filename*=UTF-8''" + "Department.xls");
+//			   
+//			   HSSFWorkbook workbook = new HSSFWorkbook();
+//			   HSSFSheet sheet = workbook.createSheet();
+//			   
+//			   List<String> headingList = new ArrayList<String>();
+//			   headingList.clear();
+//			   headingList.add("Department Code");
+//			   headingList.add("Department Name");
+//			   
+//			   HSSFRow row1 = sheet.createRow(0);
+//			   for(int i=0; i < headingList.size(); i++){
+//				   HSSFCell cell = row1.createCell(i);
+//				   cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+//				   cell.setCellValue(headingList.get(i));
+//			   }
+//			   
+//			   HSSFCell cells;
+//			   Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+//			   Page<> page = departmentService.getAllDepartment(searchParams, pageNumber, 100, sortType, order);
+//			   List<Department> deptList = page.getContent();
+//			   
+//			   for(int i = 0; i < deptList.size(); i++){
+//				   HSSFRow row2 = sheet.createRow(i+1);
+//				   Department param = deptList.get(i);
+//				   cells = row2.createCell(0);
+//				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+//				   cells.setCellValue(param.getDeptCode());
+//				   cells = row2.createCell(1);
+//				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+//				   cells.setCellValue(param.getDeptName());
+//			   }
+//			   fOut = response.getOutputStream();
+//			   workbook.write(fOut);
+//			   workbook.close();
+//			   
+//		   }catch (Exception e1){
+//			   e1.printStackTrace();
+//		   }
+//		   
+//	   }
+	   
 }

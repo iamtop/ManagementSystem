@@ -28,6 +28,7 @@
 		<div id="department_list_toolbar" style="display: none;">
 				<a href="javascript:updateForm(department_list_create_url,'department_form_inputForm',department_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> 			
 		  	  <a href="javascript:deleteBatch(department_list_delete_url,department_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">删除</a>
+		  	  <a href="javascript:exportDepartment();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:true">删除</a>
 			</div> 
 	</div>
 </div>
@@ -46,6 +47,7 @@
 	var department_list_delete_url =  '${ctx}/department/delete';
 	var department_list_view_url =  '${ctx}/department/view/';
 	var department_list_datagrid_load_url = '${ctx}/department/findList';
+
 	
 	//定义相关的操作按钮
 	function department_list_actionFormatter(value,row,index){
@@ -103,6 +105,11 @@
 		//绑定按钮事件
 		bindSearchBtn('department_list_searchBtn','department_list_clearBtn','department_list_searchForm',department_list_datagrid);
 	};
+	
+	function exportDepartment() {
+		$('#department_list_searchForm').attr("action", "${ctx}/department/export");
+		$('#department_list_searchForm').submit();
+	}
 </script>
 
 
