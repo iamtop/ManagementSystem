@@ -88,15 +88,11 @@
 			                    				if(row.roleList)
 			                    					return row.roleList.roleName;
 			                    			}},
-			                    		{field : 'personal.fname', title : 'First Name', width : 150, align:'center',
+			                    		{field : 'personal.fname', title : 'Name', width : 150, align:'center',
 				                    		formatter : function(value, row, index){
 				                    			if(row.personal)
-				                    				return row.personal.fname;
-				                    		}},
-			                    		{field : 'personal.lname', title : 'Last Name', width : 150, align:'center',
-				                    		formatter : function(value, row, index){
-				                    			if(row.personal)
-				                    				return row.personal.lname;
+				                    				return row.personal.fname + " " + row.personal.lname ;
+				                    				
 				                    		}},
 			                    		{field : 'personal.email', title : 'Email', width : 150, align:'center',
 				                    		formatter : function(value, row, index){
