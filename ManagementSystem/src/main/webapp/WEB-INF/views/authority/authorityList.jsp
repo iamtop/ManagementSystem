@@ -9,14 +9,14 @@
 				style="width:100%;overflow:hidden;">
 				<table class="search_table" style="width: 100%;">
 					<tr>
-						<th>Department</th>
-						<td><input type="text" name="search_EQ_authority.personal.pId"
-							value="${ param.search_EQ_authority.personal.pId}"
-							id="search_EQ_authority.personal.pId" /></td>
+						<th>Personal Id</th>
+						<td><input type="text" name="search_EQ_personal.pId"
+							value="${ param.search_EQ_personal.pId}"
+							id="search_EQ_personal.pId" /></td>
 						<th>Phone</th>
-						<td><input type="text" name="search_EQ_authority.personal.phone"
-							value="${ param.search_EQ_authority.personal.phone}"
-							id="search_EQ_authority.personal.phone" /></td>  						
+						<td><input type="text" name="search_EQ_personal.phone"
+							value="${ param.search_EQ_personal.phone}"
+							id="search_EQ_personal.phone" /></td>  						
 						   	<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="authority_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="authority_list_clearBtn">清空</a></th>
@@ -30,7 +30,7 @@
 		<div id="authority_list_toolbar" style="display: none;">
 				<a href="javascript:updateForm(authority_list_create_url,'authority_form_inputForm',authority_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> 			
 		  	  <a href="javascript:deleteBatch(authority_list_delete_url,authority_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">删除</a>
-		  	  <a href="javascript:exportAuthority();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:true">删除</a>
+		  	  <a href="javascript:exportAuthority();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">删除</a>
 			</div> 
 	</div>
 </div>
