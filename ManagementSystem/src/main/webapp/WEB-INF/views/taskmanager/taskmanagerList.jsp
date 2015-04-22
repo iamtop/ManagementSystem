@@ -87,6 +87,11 @@
 			                    				if(row.subList)
 			                    					return row.subList.subName;}},
 			                    					
+			                    		{field : 'authorityList.personal.id',title :'Teacher' ,width : 100,align:'center',
+						          			 formatter : function(value, row, index){
+						                    	if(row.authorityList.personal)
+						                    		return row.authorityList.personal.fname+"  "+row.authorityList.personal.lname;}},
+			                    					
 			          					
 			          	                    	{field : 'action',title : 'Operation',width : 80,align : 'center',formatter : taskmanager_list_actionFormatter} 
 	                    		] ];

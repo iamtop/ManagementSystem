@@ -36,6 +36,8 @@ import org.springside.modules.web.Servlets;
 
 
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -146,27 +148,31 @@ public class TaskManagerController extends BasicController {
 	     ShiroUser su = super.getLoginUser();
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
-				String staffs=null;
+				
 				 TaskManager entity = new TaskManager(); 
 				 List<Department> deptList = deptService.getAllDepts();
 				 List<Batch> batchList=batchService.getAllBatches();
 				 List<Subject> subList=subService.getAllSubjects();
 				 List<Authority> pIdList=authService.findSpecificId();
 				 List<PersonalDetails> idList=personalService.findSpecificId();
-				 
+				 List<Object>list=new ArrayList<Object>();
 				 for(Authority a:pIdList){
-					 for(PersonalDetails p:idList)
-						 if(p.getId().equals(a.getPersonal().getpId())){
-							  staffs=p.getFname()+p.getLname();
+					 System.out.println("Authority Pid : "+a.getPersonal().getId());
+					 
+					  for(PersonalDetails p:idList)
+						 if(a.getPersonal().getId().equals(p.getId())){
+							  
+							  list.add(a.getPersonal());
+							 
+								
 						 }
 				 }
-			    System.out.println("staffs:=="+staffs);
-				 
+			    
 				 
 				 model.addAttribute("depts", deptList);
 				 model.addAttribute("sems",batchList);
 				 model.addAttribute("subs" , subList);
-				 model.addAttribute("allStaff", staffs);
+				 model.addAttribute("personalIdList", list);
 				 
 			     model.addAttribute("taskmanager", entity);
 			     model.addAttribute("action", "create");
@@ -189,18 +195,25 @@ public class TaskManagerController extends BasicController {
 			User user = accountService.findUserByLoginName(su.getLoginName());
 			if (user != null) {
 				
-				
-				Department dpt = deptService.get(Long.parseLong(request.getParameter("deptName")));
-				Batch batch=batchService.get(Long.parseLong(request.getParameter("semName")));
-				Subject subj=subService.get(Long.parseLong(request.getParameter("subName")));
-				
 				taskmanager.setTaskDate(request.getParameter("taskDate"));
 				taskmanager.setSlotStartTime(request.getParameter("slotStartTime"));
 				taskmanager.setSlotEndTime(request.getParameter("slotEndTime"));
-				taskmanager.setDeptList(dpt);
-				taskmanager.setAllSemester(batch);
-				taskmanager.setSubList(subj);
+				taskmanager.setDeptList(deptService.get(Long.parseLong(request.getParameter("deptName"))));
+				taskmanager.setAllSemester(batchService.get(Long.parseLong(request.getParameter("semName"))));
+				taskmanager.setSubList(subService.get(Long.parseLong(request.getParameter("subName"))));
 				
+				String auth=request.getParameter("authname");
+				System.out.println("auth:"+auth);
+				Long aId=0L;
+				List<Authority> pIdList=authService.findSpecificId();
+				for(Authority a:pIdList){
+					if(auth.equals((a.getPersonal().getId().toString()))){
+						aId=a.getId();
+						System.out.println("aId=="+aId);
+					}
+					
+				}
+				taskmanager.setAuthorityList(authService.get(aId));
 		    	taskmanagerService.save(taskmanager);
 				msg.setSuccess(true);
 				msg.setMessage("New task generated successfully ");
@@ -236,10 +249,25 @@ public class TaskManagerController extends BasicController {
 				 List<Batch> batchList=batchService.getAllBatches();
 				 List<Subject> subList=subService.getAllSubjects();
 				 
+				 List<Authority> pIdList=authService.findSpecificId();
+				 List<PersonalDetails> idList=personalService.findSpecificId();
+				 List<Object>list=new ArrayList<Object>();
+				 for(Authority a:pIdList){
+					 System.out.println("Authority Pid : "+a.getPersonal().getId());
+					 
+					  for(PersonalDetails p:idList)
+						 if(a.getPersonal().getId().equals(p.getId())){
+							  
+							  list.add(a.getPersonal());
+							 
+								
+						 }
+				 }
 				TaskManager entity = taskmanagerService.get(id);
 				model.addAttribute("depts", deptList);
 				 model.addAttribute("sems",batchList);
 				 model.addAttribute("subs" , subList);
+				 model.addAttribute("personalIdList", list);
 		        model.addAttribute("taskmanager", entity);
 		        model.addAttribute("action", "update");
 			} else {
@@ -264,17 +292,25 @@ public class TaskManagerController extends BasicController {
 				User user = accountService.findUserByLoginName(su.getLoginName());
 				if (user != null) {
 					
-					Department dpt = deptService.get(Long.parseLong(request.getParameter("deptName")));
-					Batch batch=batchService.get(Long.parseLong(request.getParameter("semName")));
-					Subject subj=subService.get(Long.parseLong(request.getParameter("subName")));
-					
 					taskmanager.setTaskDate(request.getParameter("taskDate"));
 					taskmanager.setSlotStartTime(request.getParameter("slotStartTime"));
 					taskmanager.setSlotEndTime(request.getParameter("slotEndTime"));
-					taskmanager.setDeptList(dpt);
-					taskmanager.setAllSemester(batch);
-					taskmanager.setSubList(subj);
+					taskmanager.setDeptList(deptService.get(Long.parseLong(request.getParameter("deptName"))));
+					taskmanager.setAllSemester(batchService.get(Long.parseLong(request.getParameter("semName"))));
+					taskmanager.setSubList(subService.get(Long.parseLong(request.getParameter("subName"))));
 					
+					String auth=request.getParameter("authname");
+					System.out.println("auth:"+auth);
+					Long aId=0L;
+					List<Authority> pIdList=authService.findSpecificId();
+					for(Authority a:pIdList){
+						if(auth.equals((a.getPersonal().getId().toString()))){
+							aId=a.getId();
+							System.out.println("aId=="+aId);
+						}
+						
+					}
+					taskmanager.setAuthorityList(authService.get(aId));
 			    	taskmanagerService.save(taskmanager);
 					msg.setSuccess(true);
 					msg.setMessage("The Task has been updated successfully .");
