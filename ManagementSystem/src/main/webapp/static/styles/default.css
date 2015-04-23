@@ -227,11 +227,11 @@ img,span {
 .search_table th {
 	font-size: 12px;
 	border:#BECAD4 1px solid;
-	background: #deeef6;
-	text-align: center;
-	width: 10%;
-	color: #004c7c;
-	height:30px;
+	background: #ffffff;
+	text-align: right;
+	width: 15%;
+	color: #ff8040;
+	height:20px;
 }
 #preview{
 	width:150px;
