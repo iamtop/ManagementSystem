@@ -319,6 +319,10 @@ public class DepartmentController extends BasicController {
 				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
 				   cells.setCellValue(param.getDeptName());
 			   }
+			   for( int i =0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++){
+				   sheet.autoSizeColumn(i);
+			   }
+			   
 			   fOut = response.getOutputStream();
 			   workbook.write(fOut);
 			   workbook.close();

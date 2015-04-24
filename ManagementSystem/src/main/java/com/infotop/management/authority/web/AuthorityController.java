@@ -3,7 +3,6 @@ package com.infotop.management.authority.web;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,14 @@ import javax.validation.Valid;
 import net.infotop.web.easyui.DataGrid;
 import net.infotop.web.easyui.Message;
 
-import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -387,6 +393,17 @@ public class AuthorityController extends BasicController {
 			   HSSFWorkbook workbook = new HSSFWorkbook();
 			   HSSFSheet sheet = workbook.createSheet();
 			   
+//				   public static void makeRowBold(Workbook wb, Row row){
+//					    CellStyle style = wb.createCellStyle();//Create style
+//					    Font font = wb.createFont();//Create font
+//					    font.setBoldweight(Font.BOLDWEIGHT_BOLD);//Make font bold
+//					    style.setFont(font);//set it to bold
+//
+//					    for(int i = 0; i < row.getLastCellNum(); i++){//For each cell in the row 
+//					        row.getCell(i).setCellStyle(style);//Set the sty;e
+//					    }
+//			   }
+			   
 			   List<String> headingList = new ArrayList<String>();
 			   headingList.clear();
 			   headingList.add("Personal Id");
@@ -407,7 +424,6 @@ public class AuthorityController extends BasicController {
 				   cell.setCellType(HSSFCell.CELL_TYPE_STRING);
 				   cell.setCellValue(headingList.get(i));
 			   }
-			   
 			   HSSFCell cells;
 			   Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 			   Page<Authority> page = authorityService.getAllAuthority(searchParams, pageNumber, 100, sortType, order);
@@ -449,7 +465,12 @@ public class AuthorityController extends BasicController {
 				   cells = row2.createCell(10);
 				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
 				   cells.setCellValue(param.getPersonal().getDoj());
+				   
 			   }
+			   for( int i =0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++){
+				   sheet.autoSizeColumn(i);
+			   }
+			   
 			   fOut = response.getOutputStream();
 			   workbook.write(fOut);
 			   workbook.close();
