@@ -38,6 +38,10 @@
 							code="subject_title" /></td>
 					<td>${ taskmanager.subList.subName }</td>
 				</tr>
+				<tr>
+				<td class="biao_bt3">Teacher</td>
+				<td>${taskmanager.authorityList.personal.fname} ${taskmanager.authorityList.personal.lname}</td>
+				</tr>
 				   			</table>
 		</div>
 	</div>

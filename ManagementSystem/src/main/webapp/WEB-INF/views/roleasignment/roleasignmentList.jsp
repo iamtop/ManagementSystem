@@ -12,10 +12,10 @@
 						    						<th><spring:message code="roleasignment_roleName" /></th>
 						<td><input type="text" name="search_EQ_roleName"
 							value="${ param.search_EQ_roleName}"
-							id="search_EQ_roleName" /></td>   						<th><spring:message code="roleasignment_id" /></th>
+							id="search_EQ_roleName" /></td>   						<%-- <th><spring:message code="roleasignment_id" /></th>
 						<td><input type="text" name="search_EQ_id"
 							value="${ param.search_EQ_id}"
-							id="search_EQ_id" /></td>  						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
+							id="search_EQ_id" /></td>   --%>						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="roleasignment_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="roleasignment_list_clearBtn">清空</a></th>
 					</tr>

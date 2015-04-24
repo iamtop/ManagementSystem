@@ -3,9 +3,9 @@ package com.infotop.management.taskmanager.service;
 import java.util.List;
 import java.util.Map;
 
+import com.infotop.management.authority.entity.Authority;
 import com.infotop.management.taskmanager.entity.TaskManager;
 import com.infotop.management.taskmanager.repository.TaskManagerDao;
-
 import com.google.common.collect.Maps;
 import com.infotop.common.log.BusinessLogger;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
@@ -171,4 +171,8 @@ public class TaskManagerService {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
 	}
+	public List<TaskManager> findSpecificId() {
+		return (List<TaskManager>) taskManagerDao.findAll();
+		}
+	
 }

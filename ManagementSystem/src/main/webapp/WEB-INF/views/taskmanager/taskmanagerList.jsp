@@ -12,10 +12,10 @@
 						    						<th><spring:message code="taskmanager_slotStartTime" /></th>
 						<td><input type="text" name="search_EQ_slotStartTime"
 							value="${ param.search_EQ_slotStartTime}"
-							id="search_EQ_slotStartTime" /></td>   						<th><spring:message code="taskmanager_slotEndTime" /></th>
-						<td><input type="text" name="search_EQ_slotEndTime"
-							value="${ param.search_EQ_slotEndTime}"
-							id="search_EQ_slotEndTime" /></td>    						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
+							id="search_EQ_slotStartTime" /></td>   						<th><spring:message code="taskmanager_taskDate" /></th>
+						<td><input type="text" name="search_EQ_taskDate"
+							value="${ param.search_EQ_taskDate}"
+							id="search_EQ_taskDate" /></td>    						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="taskmanager_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="taskmanager_list_clearBtn">清空</a></th>
 					</tr>
@@ -86,6 +86,11 @@
 			          						formatter : function(value, row, index){
 			                    				if(row.subList)
 			                    					return row.subList.subName;}},
+			                    					
+			                    		{field : 'authorityList.personal.id',title :'Teacher' ,width : 100,align:'center',
+						          			 formatter : function(value, row, index){
+						                    	if(row.authorityList.personal)
+						                    		return row.authorityList.personal.fname+"  "+row.authorityList.personal.lname;}},
 			                    					
 			          					
 			          	                    	{field : 'action',title : 'Operation',width : 80,align : 'center',formatter : taskmanager_list_actionFormatter} 

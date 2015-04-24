@@ -17,17 +17,6 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springside.modules.web.Servlets;
 
-
-
-
-
-
-
-
-
-
-
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -41,6 +30,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -281,61 +271,62 @@ public class RoleAsignmentController extends BasicController {
 	        return null;
 	    }
 
-//	   @RequestMapping(value="export")
-//	   public void export(Model model, HttpServletRequest request,
-//			   			 @RequestParam(value="sortType", defaultValue = "auto") String sortType,
-//			   			 @RequestParam(value="page", defaultValue = "1") int pageNumber,
-//			   			 @RequestParam(value="order", defaultValue = "desc") String order,
-//			   			 @RequestParam(value="pageSize", defaultValue = "" + PAGE_SIZE) int pageSize,
-//			   			 HttpServletResponse response) throws IOException {
-//		   
-//		   HttpSession session = request.getSession();
-//		   session.setAttribute("state", null);
-//		   
-//		   response.setContentType("application/vnd.ms-excel");
-//		   OutputStream fOut = null;
-//		   
-//		   try {
-//			   response.setHeader("content-disposition", "attachment;filename*=UTF-8''" + "Department.xls");
-//			   
-//			   HSSFWorkbook workbook = new HSSFWorkbook();
-//			   HSSFSheet sheet = workbook.createSheet();
-//			   
-//			   List<String> headingList = new ArrayList<String>();
-//			   headingList.clear();
-//			   headingList.add("Department Code");
-//			   headingList.add("Department Name");
-//			   
-//			   HSSFRow row1 = sheet.createRow(0);
-//			   for(int i=0; i < headingList.size(); i++){
-//				   HSSFCell cell = row1.createCell(i);
-//				   cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-//				   cell.setCellValue(headingList.get(i));
-//			   }
-//			   
-//			   HSSFCell cells;
-//			   Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
-//			   Page<> page = departmentService.getAllDepartment(searchParams, pageNumber, 100, sortType, order);
-//			   List<Department> deptList = page.getContent();
-//			   
-//			   for(int i = 0; i < deptList.size(); i++){
-//				   HSSFRow row2 = sheet.createRow(i+1);
-//				   Department param = deptList.get(i);
-//				   cells = row2.createCell(0);
-//				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
-//				   cells.setCellValue(param.getDeptCode());
-//				   cells = row2.createCell(1);
-//				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
-//				   cells.setCellValue(param.getDeptName());
-//			   }
-//			   fOut = response.getOutputStream();
-//			   workbook.write(fOut);
-//			   workbook.close();
-//			   
-//		   }catch (Exception e1){
-//			   e1.printStackTrace();
-//		   }
-//		   
-//	   }
+	   /*@RequestMapping(value="export")
+	   public void export(Model model, HttpServletRequest request,
+			   			 @RequestParam(value="sortType", defaultValue = "auto") String sortType,
+			   			 @RequestParam(value="page", defaultValue = "1") int pageNumber,
+			   			 @RequestParam(value="order", defaultValue = "desc") String order,
+		   			     @RequestParam(value="pageSize", defaultValue = "" + PAGE_SIZE) int pageSize,
+			   			 HttpServletResponse response) throws IOException {
+		   
+		   HttpSession session = request.getSession();
+		   session.setAttribute("state", null);
+		   
+		   response.setContentType("application/vnd.ms-excel");
+		   OutputStream fOut = null;
+		   
+		   try {
+			   response.setHeader("content-disposition", "attachment;filename*=UTF-8''" + "Designation.xls");
+			   
+			   HSSFWorkbook workbook = new HSSFWorkbook();
+			   HSSFSheet sheet = workbook.createSheet();
+			   
+			   List<String> headingList = new ArrayList<String>();
+			   headingList.clear();
+			   headingList.add("Role Code");
+			   headingList.add("Name of Designation");
+			   
+			   HSSFRow row1 = sheet.createRow(0);
+			   for(int i=0; i < headingList.size(); i++){
+				   HSSFCell cell = row1.createCell(i);
+				   cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cell.setCellValue(headingList.get(i));
+			   }
+			   
+			   HSSFCell cells;
+			   Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+			   Page<RoleAsignment> page = roleasignmentService.getAllRoleAsignment(searchParams, pageNumber, 100, sortType, order);
+			   List<RoleAsignment> roleList = page.getContent();
+			   
+			   for(int i = 0; i < roleList.size(); i++){
+				   HSSFRow row2 = sheet.createRow(i+1);
+				   RoleAsignment param = roleList.get(i);
+				   cells = row2.createCell(0);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getRoleCode());
+				   cells = row2.createCell(1);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+			       cells.setCellValue(param.getRoleName());
+			   }
+			   fOut = response.getOutputStream();
+			   workbook.write(fOut);
+			   workbook.close();
+			   
+		   }catch (Exception e1){
+			   e1.printStackTrace();
+		   }
+		   
+  
+	   }*/
 	   
 }
