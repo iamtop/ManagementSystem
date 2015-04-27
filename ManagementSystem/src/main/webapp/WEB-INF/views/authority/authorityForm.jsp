@@ -100,13 +100,13 @@ $ .parser.onComplete = function() {
 	<tr>
 	<td class="biao_bt3">Email</td>
 	<td>
-	<input type="text" name="email" id="email" value="${ authority.personal.email }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_email" />不能为空.',required:true"   />
+	<input type="text" name="email" id="email" value="${ authority.personal.email }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_email" />不能为空.',required:true, validType:'email'"   />
 	</td>
 	</tr>
 	
 	<tr>
 	<td class="biao_bt3">Phone</td>
-	<td><input type="text" name="phone" id="phone" value="${ authority.personal.phone }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_phone" />不能为空.',required:true"   />	</td>
+	<td><input type="text" name="phone" id="phone" value="${ authority.personal.phone }" class="easyui-numberbox" data-options="missingMessage:'<spring:message code="personaldetails_phone" />不能为空.',required:true, min:11, max:11"   />	</td>
 	</tr>
 	
 	<tr>
@@ -129,12 +129,12 @@ $ .parser.onComplete = function() {
 	
 	<tr>
 	<td class="biao_bt3">Date of Birth</td>
-	<td><input type="date" name="dob" id="dob" value="${ authority.personal.dob }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_dob" />不能为空.',required:true"   />	</td>
+	<td><input type="date" name="dob" id="dob" value="${ authority.personal.dob }" class="easyui-datebox" data-options="missingMessage:'<spring:message code="personaldetails_dob" />不能为空.',required:true"   />	</td>
 	</tr>
 	
 	<tr>
 	<td class="biao_bt3">Date of Join</td>
-	<td><input type="date" name="doj" id="doj" value="${ authority.personal.doj }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_doj" />不能为空.',required:true"   />	</td>
+	<td><input type="date" name="doj" id="doj" value="${ authority.personal.doj }" class="easyui-datebox" data-options="missingMessage:'<spring:message code="personaldetails_doj" />不能为空.',required:true"   />	</td>
 	</tr>
 	</table>
 </form:form>
