@@ -26,9 +26,9 @@
 			<table id="roleasignment_list_dg" style="display: none;"></table>
 		</div>
 		<div id="roleasignment_list_toolbar" style="display: none;">
-				<a href="javascript:updateForm(roleasignment_list_create_url,'roleasignment_form_inputForm',roleasignment_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> 			
-		  	  	<a href="javascript:deleteBatch(roleasignment_list_delete_url,roleasignment_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">删除</a>
-				<a href="javascript:exportRoles();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:true">删除</a>
+				<a href="javascript:updateForm(roleasignment_list_create_url,'roleasignment_form_inputForm',roleasignment_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">Add Role</a> 			
+		  	  	<a href="javascript:deleteBatch(roleasignment_list_delete_url,roleasignment_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">Remove</a>
+				<a href="javascript:exportRoles();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">Export Data</a>
 			</div> 
 	</div>
 </div>
