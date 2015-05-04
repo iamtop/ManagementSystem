@@ -21,6 +21,10 @@ import net.infotop.web.easyui.DataGrid;
 import net.infotop.web.easyui.Message;
 import ch.qos.logback.classic.Logger;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springside.modules.web.Servlets;
 
 
@@ -37,15 +41,22 @@ import org.springside.modules.web.Servlets;
 
 
 
+
+
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -396,5 +407,88 @@ public class TaskManagerController extends BasicController {
 	        }
 	        return null;
 	    }
+	   
+	   @RequestMapping(value="export")
+	   public void export(Model model, HttpServletRequest request,
+			   			 @RequestParam(value="sortType", defaultValue = "auto") String sortType,
+			   			 @RequestParam(value="page", defaultValue = "1") int pageNumber,
+			   			 @RequestParam(value="order", defaultValue = "desc") String order,
+			   			 @RequestParam(value="pageSize", defaultValue = "" + PAGE_SIZE) int pageSize,
+			   			 HttpServletResponse response) throws IOException {
+		   
+		   HttpSession session = request.getSession();
+		   session.setAttribute("state", null);
+		   
+		   response.setContentType("application/vnd.ms-excel");
+		   OutputStream fOut = null;
+		   
+		   try {
+			   response.setHeader("content-disposition", "attachment;filename*=UTF-8''" + "TaskManager.xls");
+			   
+			   HSSFWorkbook workbook = new HSSFWorkbook();
+			   HSSFSheet sheet = workbook.createSheet();
+			   
+			   List<String> headingList = new ArrayList<String>();
+			   headingList.clear();
+			   headingList.add("Date Of Task");
+			   headingList.add("Slot Start Time");
+			   headingList.add("Slot End Time");
+			   headingList.add("Department");
+			   headingList.add("Semester");
+			   headingList.add("Subject");
+			   headingList.add("Teacher");
+			   
+			   
+			   HSSFRow row1 = sheet.createRow(0);
+			   for(int i=0; i < headingList.size(); i++){
+				   HSSFCell cell = row1.createCell(i);
+				   cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cell.setCellValue(headingList.get(i));
+			   }
+			   HSSFCell cells;
+			   Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+			   Page<TaskManager> page = taskmanagerService.getAllTaskManager(searchParams, pageNumber, 100, sortType, order);
+			   List<TaskManager> taskList = page.getContent();
+			   
+			   for(int i = 0; i < taskList.size(); i++){
+				   HSSFRow row2 = sheet.createRow(i+1);
+				   TaskManager param = taskList.get(i);
+				   cells = row2.createCell(0);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getTaskDate());
+				   cells = row2.createCell(1);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getSlotStartTime());
+				   cells = row2.createCell(2);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getSlotEndTime());
+				   cells = row2.createCell(3);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getDeptList().getDeptName());
+				   cells = row2.createCell(4);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getAllSemester().getSemName());
+				   cells = row2.createCell(5);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getSubList().getSubName());
+				   cells = row2.createCell(6);
+				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
+				   cells.setCellValue(param.getAuthorityList().getPersonal().getFname()+" "+param.getAuthorityList().getPersonal().getLname());
+				   
+				   
+			   }
+			   for( int i =0; i < sheet.getRow(0).getPhysicalNumberOfCells(); i++){
+				   sheet.autoSizeColumn(i);
+			   }
+			   
+			   fOut = response.getOutputStream();
+			   workbook.write(fOut);
+			   workbook.close();
+			   
+		   }catch (Exception e1){
+			   e1.printStackTrace();
+		   }
+		   
+	   }
 
 }

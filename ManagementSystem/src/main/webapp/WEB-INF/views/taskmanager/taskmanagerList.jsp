@@ -28,6 +28,7 @@
 		<div id="taskmanager_list_toolbar" style="display: none;">
 				<a href="javascript:updateForm(taskmanager_list_create_url,'taskmanager_form_inputForm',taskmanager_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">Asign task</a> 			
 		  	  <a href="javascript:deleteBatch(taskmanager_list_delete_url,taskmanager_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">remove multiple tasks</a>
+		  	  <a href="javascript:exportTaskManager();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">Export Data</a>
 			</div> 
 	</div>
 </div>
@@ -126,6 +127,11 @@
 		//绑定按钮事件
 		bindSearchBtn('taskmanager_list_searchBtn','taskmanager_list_clearBtn','taskmanager_list_searchForm',taskmanager_list_datagrid);
 	};
+	
+	function exportTaskManager(){
+		$('#taskmanager_list_searchForm').attr("action", "${ctx}/taskmanager/export");
+		$('#taskmanager_list_searchForm').submit();
+	}
 </script>
 
 
