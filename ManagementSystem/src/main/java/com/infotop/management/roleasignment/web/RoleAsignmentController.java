@@ -271,7 +271,7 @@ public class RoleAsignmentController extends BasicController {
 	        return null;
 	    }
 
-	   /*@RequestMapping(value="export")
+	   @RequestMapping(value="export")
 	   public void export(Model model, HttpServletRequest request,
 			   			 @RequestParam(value="sortType", defaultValue = "auto") String sortType,
 			   			 @RequestParam(value="page", defaultValue = "1") int pageNumber,
@@ -283,7 +283,7 @@ public class RoleAsignmentController extends BasicController {
 		   session.setAttribute("state", null);
 		   
 		   response.setContentType("application/vnd.ms-excel");
-		   OutputStream fOut = null;
+		   OutputStream outputStream = null;
 		   
 		   try {
 			   response.setHeader("content-disposition", "attachment;filename*=UTF-8''" + "Designation.xls");
@@ -318,8 +318,8 @@ public class RoleAsignmentController extends BasicController {
 				   cells.setCellType(HSSFCell.CELL_TYPE_STRING);
 			       cells.setCellValue(param.getRoleName());
 			   }
-			   fOut = response.getOutputStream();
-			   workbook.write(fOut);
+			   outputStream = response.getOutputStream();
+			   workbook.write(outputStream);
 			   workbook.close();
 			   
 		   }catch (Exception e1){
@@ -327,6 +327,6 @@ public class RoleAsignmentController extends BasicController {
 		   }
 		   
   
-	   }*/
+	   }
 	   
 }

@@ -9,10 +9,10 @@
 				style="width:100%;overflow:hidden;">
 				<table class="search_table" style="width: 100%;">
 					<tr>
-						    						<th><spring:message code="student_id" /></th>
-						<td><input type="text" name="search_EQ_id"
-							value="${ param.search_EQ_id}"
-							id="search_EQ_id" /></td>  						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
+						    						<th><spring:message code="student_studId" /></th>
+						<td><input type="text" name="search_EQ_studId"
+							value="${ param.search_EQ_studId}"
+							id="search_EQ_studId" /></td>  						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="student_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="student_list_clearBtn">清空</a></th>
 					</tr>
@@ -25,6 +25,7 @@
 		<div id="student_list_toolbar" style="display: none;">
 				<a href="javascript:updateForm(student_list_create_url,'student_form_inputForm',student_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> 			
 		  	  <a href="javascript:deleteBatch(student_list_delete_url,student_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">删除</a>
+		  	  <a href="javascript:exportStudentDetails();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">Export Data</a>
 			</div> 
 	</div>
 </div>
@@ -173,6 +174,11 @@
 		//绑定按钮事件
 		bindSearchBtn('student_list_searchBtn','student_list_clearBtn','student_list_searchForm',student_list_datagrid);
 	};
+	
+	function exportStudentDetails() {
+		$('#student_list_searchForm').attr("action", "${ctx}/student/export");
+		$('#student_list_searchForm').submit();
+	}
 </script>
 
 
