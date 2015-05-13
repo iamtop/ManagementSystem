@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.infotop.management.attendance.entity.Attendance;
 import com.infotop.management.attendance.repository.AttendanceDao;
-
+import com.infotop.management.batch.entity.Batch;
 import com.google.common.collect.Maps;
 import com.infotop.common.log.BusinessLogger;
 import com.infotop.system.account.service.ShiroDbRealm.ShiroUser;
@@ -19,6 +19,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springside.modules.persistence.DynamicSpecifications;
@@ -32,7 +33,8 @@ import org.springside.modules.persistence.SearchFilter;
 @Transactional(readOnly = true)
 public class AttendanceService {
 	
-	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
 	@Autowired
 	private AttendanceDao attendanceDao;
 	
@@ -146,12 +148,40 @@ public class AttendanceService {
 	
     
     public DataGrid dataGrid(Map<String, Object> searchParams, int pageNumber,
-			int rows, String sortType, String order) {
-		Page<Attendance> page = getAllAttendance(searchParams,
-				pageNumber, rows, sortType, order);
+			int rows, String sortType, String order,String timeSlotStart, String timeSlotEnd) {
+		/*Page<Attendance> page = getAllAttendance(searchParams,
+				pageNumber, rows, sortType, order);*/
 		DataGrid dataGrid = new DataGrid();
-		dataGrid.setTotal(page.getTotalElements());
-		dataGrid.setRows(page.getContent());
+		
+		String sql ="select tm.id,tm.slot_start_time,tm.slot_end_time,tm.task_date,"
+                     + "(select dept.dept_name from ms_dept dept where dept.id=tm.dept_id) as Department,"
+                     + "(select sem.sem_name from ms_batch sem where sem.id=tm.sem_id) as Semester,"
+                     + "(select sub.sub_name from ms_subject sub where sub.id=tm.sub_id) as SubjectName,"
+                     + "(select personal.fname from ms_personal personal where  personal.id=stu.p_id) as StudentName "
+                     + "from ms_task_manager tm left join ms_student stu on tm.dept_id=stu.dept_id and tm.sem_id=stu.sem_id";
+		String whereSql="";
+		if(!timeSlotStart.isEmpty() || !timeSlotEnd.isEmpty()){
+			 whereSql+=" where ";
+		}
+		if(!timeSlotStart.isEmpty() && (timeSlotEnd.isEmpty())){
+			whereSql+= "  ";
+			
+		}
+
+		if(timeSlotStart.isEmpty() && (!timeSlotEnd.isEmpty())){
+			whereSql+= "";
+		}
+		
+		if(!timeSlotStart.isEmpty() && (!timeSlotEnd.isEmpty())){
+			whereSql+= "slot_start_time=\""+timeSlotStart+"\" AND slot_end_time= \""+timeSlotEnd+"\" ";
+		}
+		//if()
+		
+		//dataGrid.setTotal(page.getTotalElements());
+		dataGrid.setRows(jdbcTemplate.queryForList(sql+whereSql));
+		System.out.println("============================================"+(sql+whereSql));
+		
+		//dataGrid.setRows(page.getContent());
 		return dataGrid;
 	}
     
@@ -170,5 +200,9 @@ public class AttendanceService {
 	public String getCurrentUserName() {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.loginName;
+	}
+	
+	public List<Attendance> getAllAttendance() {
+		return (List<Attendance>) attendanceDao.findAll();
 	}
 }

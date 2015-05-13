@@ -121,6 +121,7 @@ function deleteOne(id, deleteUrl, listDatagrid) {
  */
 function deleteBatch(deleteUrl, listDatagrid) {
 	var rows = listDatagrid.datagrid('getChecked');
+	alert(rows.length);
 	var ids = [];
 	if (rows.length > 0) {
 		parent.$.messager.confirm('确认', '您是否要删除当前选中的项目？', function(r) {
@@ -159,6 +160,73 @@ function deleteBatch(deleteUrl, listDatagrid) {
 		});
 	}
 }
+
+
+function submitData(submitUrl, listDatagrid) {
+	//var rows = listDatagrid.datagrid('getSelected');
+	var rows = listDatagrid.datagrid('getSelections');
+	alert("dddd==="+rows.length);
+	var slotstarttime = [];
+	var slotendtime = [];
+	var Department = [];
+	var StudentName = [];
+	var Semester = [];
+	var SubjectName = [];
+	var attendanceDate = [];
+	
+	if (rows.length > 0) {
+		parent.$.messager.confirm('确认', '您是否要删除当前选中的项目？', function(r) {
+			if (r) {
+				parent.$.messager.progress({
+					title : '提示',
+					text : '数据处理中，请稍后....'
+				});
+				for (var i = 0; i < rows.length; i++) {
+					slotstarttime.push(rows[i].slot_start_time);
+					slotendtime.push(rows[i].slot_end_time);
+					Department.push(rows[i].Department);
+					StudentName.push(rows[i].StudentName);
+					Semester.push(rows[i].Semester);
+					SubjectName.push(rows[i].SubjectName);
+					attendanceDate.push(rows[i].task_date);
+				}
+				var depsrtmentParam = decodeURIComponent($.param({
+					Department : Department,
+					slotstarttime : slotstarttime,
+					slotendtime : slotendtime ,
+					StudentName : StudentName ,
+					Semester : Semester,
+				    SubjectName : SubjectName ,
+				    attendanceDate : attendanceDate
+					
+				}, true));
+				
+				$.post(submitUrl, depsrtmentParam, function(data) {
+					if (data.success) {
+						listDatagrid.datagrid('reload');
+						listDatagrid.datagrid('uncheckAll').datagrid(
+								'unselectAll').datagrid('clearSelections');
+						$.messager.show({ // messager信息提示
+							title : '提示',
+							msg : data.message
+						});
+					} else {
+						$.messager.alert('错误', data.message, 'error');
+					}
+					parent.$.messager.progress('close');
+				}, 'JSON');
+
+			}
+		});
+	} else {
+		$.messager.show({
+			title : '提示',
+			msg : '请勾选要删除的记录！'
+		});
+	}
+}
+
+
 
 /**
  * TreeGrid 删除单条记录

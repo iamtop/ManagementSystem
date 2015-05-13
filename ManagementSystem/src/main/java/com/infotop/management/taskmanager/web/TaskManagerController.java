@@ -384,13 +384,13 @@ public class TaskManagerController extends BasicController {
 			if (user != null) {
 				
 				List<Department> deptList = deptService.getAllDepts();
-				 List<Batch> batchList=batchService.getAllBatches();
-				 List<Subject> subList=subService.getAllSubjects();
+				List<Batch> batchList=batchService.getAllBatches();
+				List<Subject> subList=subService.getAllSubjects();
 			 	TaskManager entity = taskmanagerService.get(id); 
 			 	
 			 	model.addAttribute("depts", deptList);
-				 model.addAttribute("sems",batchList);
-				 model.addAttribute("subs" , subList);
+				model.addAttribute("sems",batchList);
+				model.addAttribute("subs" , subList);
 			 	model.addAttribute("taskmanager", entity);
 			} else {
 				logger.log(this.getClass(),Logger.ERROR_INT,"invalid credential!","",null);

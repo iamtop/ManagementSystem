@@ -98,7 +98,7 @@ $ .parser.onComplete = function() {
 	</tr>
 	<tr>
 	<td class="biao_bt3">Phone</td>
-	<td><input type="text" name="phone" id="phone" value="${ student.personal.phone }" class="easyui-numberbox" data-options="missingMessage:'<spring:message code="personaldetails_phone" />不能为空.',required:true"   />	</td>
+	<td><input type="text" name="phone" id="phone" value="${ student.personal.phone }" class="easyui-numberbox" data-options="missingMessage:'<spring:message code="personaldetails_phone" />不能为空.',required:true ,min:10000000000, max:99999999999"  />	</td>
 	</tr>
 	<tr>
 	<td class="biao_bt3">Gender</td>
