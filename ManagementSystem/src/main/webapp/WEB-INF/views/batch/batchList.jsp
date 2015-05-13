@@ -12,10 +12,7 @@
 						    						<th><spring:message code="batch_semName" /></th>
 						<td><input type="text" name="search_EQ_semName"
 							value="${ param.search_EQ_semName}"
-							id="search_EQ_semName" /></td>   						<th><spring:message code="batch_id" /></th>
-						<td><input type="text" name="search_EQ_id"
-							value="${ param.search_EQ_id}"
-							id="search_EQ_id" /></td>  						<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
+							id="search_EQ_semName" /></td>   										<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
 							id="batch_list_searchBtn">查询</a>&nbsp;<a
 							href="javascript:void(0);" id="batch_list_clearBtn">清空</a></th>
 					</tr>
