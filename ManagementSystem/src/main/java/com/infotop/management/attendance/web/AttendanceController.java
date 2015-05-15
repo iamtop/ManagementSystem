@@ -196,8 +196,8 @@ public class AttendanceController extends BasicController {
 		}
 		return msg;
 	}
+	
 	 @RequestMapping(value = "submit", method = RequestMethod.POST)
-	 
 	 @ResponseBody
 	    public Message submit(@RequestParam(value = "Department") List<String> Department,
 	    		              @RequestParam(value = "slotstarttime") List<String> slotstarttime,
@@ -218,11 +218,6 @@ public class AttendanceController extends BasicController {
 				User user = accountService.findUserByLoginName(su.getLoginName());
 				if (user != null) {
 					System.out.println("Department====="+Department);
-					System.out.println("slotstarttime===="+slotstarttime);
-					System.out.println("slotendtime===="+slotendtime);
-					System.out.println("slotendtime===="+StudentName);
-					System.out.println("slotendtime===="+Semester);
-					System.out.println("attendanceDate===="+attendanceDate);
 					for(int i=0;i<Department.size();i++){
 						attendence = new Attendance();
 						
@@ -239,7 +234,7 @@ public class AttendanceController extends BasicController {
 					}
 					
 					msg.setSuccess(true);
-					msg.setMessage("Task deleted successfully");
+					msg.setMessage("Data saved successfully");
 					msg.setData("");
 				} else {
 					logger.log(this.getClass(),Logger.ERROR_INT,"invalid credential !","",null);

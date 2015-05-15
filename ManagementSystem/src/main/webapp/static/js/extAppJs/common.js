@@ -121,7 +121,6 @@ function deleteOne(id, deleteUrl, listDatagrid) {
  */
 function deleteBatch(deleteUrl, listDatagrid) {
 	var rows = listDatagrid.datagrid('getChecked');
-	alert(rows.length);
 	var ids = [];
 	if (rows.length > 0) {
 		parent.$.messager.confirm('确认', '您是否要删除当前选中的项目？', function(r) {
@@ -163,9 +162,7 @@ function deleteBatch(deleteUrl, listDatagrid) {
 
 
 function submitData(submitUrl, listDatagrid) {
-	//var rows = listDatagrid.datagrid('getSelected');
 	var rows = listDatagrid.datagrid('getSelections');
-	alert("dddd==="+rows.length);
 	var slotstarttime = [];
 	var slotendtime = [];
 	var Department = [];
@@ -175,7 +172,7 @@ function submitData(submitUrl, listDatagrid) {
 	var attendanceDate = [];
 	
 	if (rows.length > 0) {
-		parent.$.messager.confirm('确认', '您是否要删除当前选中的项目？', function(r) {
+		parent.$.messager.confirm('确认', 'Do you want to save the selected items？', function(r) {
 			if (r) {
 				parent.$.messager.progress({
 					title : '提示',
@@ -221,7 +218,7 @@ function submitData(submitUrl, listDatagrid) {
 	} else {
 		$.messager.show({
 			title : '提示',
-			msg : '请勾选要删除的记录！'
+			msg : 'Please select at least one record!'
 		});
 	}
 }
