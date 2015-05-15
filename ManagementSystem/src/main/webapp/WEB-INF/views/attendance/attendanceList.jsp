@@ -54,7 +54,7 @@
 			<table id="attendance_list_dg" style="display: none;"></table>
 		</div>
 		<div id="attendance_list_toolbar" style="display: none;">
-				<a href="javascript:updateForm(attendance_list_create_url,'attendance_form_inputForm',attendance_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> 			
+				<!-- <a href="javascript:updateForm(attendance_list_create_url,'attendance_form_inputForm',attendance_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> --> 			
 				<a href="javascript:submitData(attendance_list_submit_url,attendance_list_datagrid);" class="easyui-linkbutton">Submit</a>
 			</div> 
 	</div>
@@ -80,7 +80,7 @@
 	
 	//定义相关的操作按钮
 	function attendance_list_actionFormatter(value,row,index){
-		var str = '';	
+	/* 	var str = '';	
 		str += formatString(
 				'<img onclick="updateForm(\'{0}\',\'attendance_form_inputForm\',attendance_list_datagrid,{title:\'编辑信息\'});" src="{1}" title="编辑"/>',
 				attendance_list_update_url + row.id,
@@ -93,7 +93,7 @@
 				'<img onclick="view(\'{0}\',\'{1}\');" src="${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icons/view.png" title="查看"/>',
 				attendance_list_view_url + row.id);
 		str += '&nbsp;';
-		return str;
+		return str; */
 	}
 	
 	//DataGrid字段设置
@@ -114,7 +114,7 @@
 							          	
 							          	
 							          	
-			          	                  {field : 'action',title : '操作',width : 80,align : 'center',formatter : attendance_list_actionFormatter} 
+			          	                 /*  {field : 'action',title : '操作',width : 80,align : 'center',formatter : attendance_list_actionFormatter}  */
 	                    		] ];
 	/** 初始化DataGrid,加载数据 **/		
 	function attendance_list_loadDataGrid(){			
