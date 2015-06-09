@@ -28,7 +28,7 @@
 		<div id="roleasignment_list_toolbar" style="display: none;">
 				<a href="javascript:updateForm(roleasignment_list_create_url,'roleasignment_form_inputForm',roleasignment_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">Add Role</a> 			
 		  	  	<a href="javascript:deleteBatch(roleasignment_list_delete_url,roleasignment_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">Remove</a>
-				<a href="javascript:exportRoles();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">Export Data</a>
+				<a href="javascript:exportRoles();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">出口数据</a>
 			</div> 
 	</div>
 </div>

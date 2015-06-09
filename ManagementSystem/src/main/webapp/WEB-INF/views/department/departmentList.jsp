@@ -25,7 +25,7 @@
 		<div id="department_list_toolbar" style="display: none;">
 				<a href="javascript:updateForm(department_list_create_url,'department_form_inputForm',department_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">添加</a> 			
 		  	  <a href="javascript:deleteBatch(department_list_delete_url,department_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">删除</a>
-		  	  <a href="javascript:exportDepartment();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">Export Data</a>
+		  	  <a href="javascript:exportDepartment();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">出口数据</a>
 			</div> 
 	</div>
 </div>

@@ -39,7 +39,8 @@
 					<td>${ taskmanager.subList.subName }</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Teacher</td>
+				<td class="biao_bt3"><spring:message
+							code="teacher_name" /></td>
 				<td>${taskmanager.authorityList.personal.fname} ${taskmanager.authorityList.personal.lname}</td>
 				</tr>
 				   			</table>

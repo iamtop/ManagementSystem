@@ -26,9 +26,9 @@
 			<table id="taskmanager_list_dg" style="display: none;"></table>
 		</div>
 		<div id="taskmanager_list_toolbar" style="display: none;">
-			  <a href="javascript:updateForm(taskmanager_list_create_url,'taskmanager_form_inputForm',taskmanager_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">Asign task</a> 			
-		  	  <a href="javascript:deleteBatch(taskmanager_list_delete_url,taskmanager_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">remove multiple tasks</a>
-		  	  <a href="javascript:exportTaskManager();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">Export Data</a>
+			  <a href="javascript:updateForm(taskmanager_list_create_url,'taskmanager_form_inputForm',taskmanager_list_datagrid,{title:'新增信息'});" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:false">分配任务</a> 			
+		  	  <a href="javascript:deleteBatch(taskmanager_list_delete_url,taskmanager_list_datagrid);" class="easyui-linkbutton"  data-options="iconCls:'icon-remove',plain:false">删除多个任务</a>
+		  	  <a href="javascript:exportTaskManager();" class="easyui-linkbutton"  data-options="iconCls:'icon-page_excel',plain:false">出口数据</a>
 			</div> 
 	</div>
 </div>
@@ -88,7 +88,7 @@
 			                    				if(row.subList)
 			                    					return row.subList.subName;}},
 			                    					
-			                    		{field : 'authorityList.personal.id',title :'Teacher' ,width : 100,align:'center',
+			                    		{field : 'authorityList.personal.id',title :'<spring:message code="teacher_name" />' ,width : 100,align:'center',
 						          			 formatter : function(value, row, index){
 						                    	if(row.authorityList.personal)
 						                    		return row.authorityList.personal.fname+"  "+row.authorityList.personal.lname;}},
