@@ -71,13 +71,15 @@
 	                    		{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
 	    	          					{field : 'subId',title : '<spring:message code="subject_subId" />',width : 150,align:'center'},
 			          					{field : 'subName',title : '<spring:message code="subject_subName" />',width : 150,align:'center'},
-			          					{field : 'deptList.deptCode', title : 'Department', width : 150, align:'center',
+			          					{field : 'deptList.deptCode', title : '<spring:message
+			    							code="department_title" />', width : 150, align:'center',
 			                    			formatter : function(value, row, index){
 			                    				if(row.deptList)
 			                    					return row.deptList.deptName;
 			                    			}},
 			          					
-			                    			{field : 'batchList.semId', title : 'Semester', width : 150, align:'center',
+			                    			{field : 'batchList.semId', title : '<spring:message
+			        							code="batch_title" />', width : 150, align:'center',
 				                    			formatter : function(value, row, index){
 				                    				if(row.batchList)
 				                    					return row.batchList.semName;

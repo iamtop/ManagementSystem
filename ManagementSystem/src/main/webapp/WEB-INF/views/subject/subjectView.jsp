@@ -20,12 +20,14 @@
 				</tr>
 				
 				<tr>
-					<td class="biao_bt3">Department</td>
+					<td class="biao_bt3"><spring:message
+							code="department_title" /></td>
 					<td>${ subject.deptList.deptName }</td>
 				</tr>
 				
 				<tr>
-					<td class="biao_bt3">Semester</td>
+					<td class="biao_bt3"><spring:message
+							code="batch_title" /></td>
 					<td>${ subject.batchList.semName }</td>
 				</tr>
 				   			</table>

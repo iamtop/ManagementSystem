@@ -71,40 +71,40 @@
 	//DataGrid字段设置
 	var authority_list_datagrid_columns = [ [
 	                    		{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
-	                    		{field : 'personal.p_id', title : 'Personal Id', width : 150, align:'center',
+	                    		{field : 'personal.p_id', title : '<spring:message code="personaldetails_pId" />', width : 150, align:'center',
 	                    			formatter : function(value, row, index){
 	                    				if(row.personal)
 	                    					return row.personal.pId;
 	                    				
 	                    			}},
-	                    			{field : 'deptList.dept_id', title : 'Department', width : 220, align:'center',
+	                    			{field : 'deptList.dept_id', title : '<spring:message code="department_title" />', width : 220, align:'center',
 		                    			formatter : function(value, row, index){
 		                    				if(row.deptList)
 		                    					return row.deptList.deptName;
 		                    			}},
 		                    			
-		                    			{field : 'roleList.role_code', title : 'Role', width : 150, align:'center',
+		                    			{field : 'roleList.role_code', title : '<spring:message code="roleasignment_roleName" />', width : 150, align:'center',
 			                    			formatter : function(value, row, index){
 			                    				if(row.roleList)
 			                    					return row.roleList.roleName;
 			                    			}},
-			                    		{field : 'personal.fname', title : 'Name', width : 150, align:'center',
+			                    		{field : 'personal.fname', title : '<spring:message code="personal_fullname" />', width : 150, align:'center',
 				                    		formatter : function(value, row, index){
 				                    			if(row.personal)
 				                    				return row.personal.fname + " " + row.personal.lname ;
 				                    				
 				                    		}},
-			                    		{field : 'personal.email', title : 'Email', width : 150, align:'center',
+			                    		{field : 'personal.email', title : '<spring:message code="personaldetails_email" />', width : 150, align:'center',
 				                    		formatter : function(value, row, index){
 				                    			if(row.personal)
 				                    				return row.personal.email;
 				                    		}},
-			                    		{field : 'personal.phone', title : 'Phone', width : 100, align:'center',
+			                    		{field : 'personal.phone', title : '<spring:message code="personaldetails_phone" />', width : 100, align:'center',
 				                    		formatter : function(value, row, index){
 				                    			if(row.personal)
 				                    				return row.personal.phone;
 				                    		}},
-			                    		{field : 'personal.gender', title : 'Gender', width : 100, align:'center',
+			                    		{field : 'personal.gender', title : '<spring:message code="personaldetails_gender" />', width : 100, align:'center',
 				                    		formatter : function(value, row, index){
 				                    			if(row.personal)
 				                    				return row.personal.gender;

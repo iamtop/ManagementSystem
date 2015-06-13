@@ -56,7 +56,8 @@ $ .parser.onComplete = function() {
 		
 		
 	<tr>
-	<td class="biao_bt3">Department</td>
+	<td class="biao_bt3"><spring:message
+							code="department_title" /></td>
 	<td>
 	<select name="deptName">
 	<c:forEach items="${depts}" var="dept">
@@ -70,7 +71,8 @@ $ .parser.onComplete = function() {
 	
 	
 	<tr>
-	<td class="biao_bt3">Semester</td>
+	<td class="biao_bt3"><spring:message
+							code="batch_title" /></td>
 	<td>
 	<select name="semName">
 	<c:forEach items="${sem}" var="sem">

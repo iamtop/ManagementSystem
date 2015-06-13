@@ -46,7 +46,7 @@ $ .parser.onComplete = function() {
 	<input type="hidden" name="id" id="id" value="${ authority.id}" />
 	<table class="content" style="width: 100%;">
 	<tr>
-	<td class="biao_bt3">Role</td>
+	<td class="biao_bt3"><spring:message code="roleasignment_roleName" /></td>
 	<td>
 	<select name="roleName">
 	<c:forEach items="${roles}" var="role">
@@ -58,7 +58,7 @@ $ .parser.onComplete = function() {
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Department</td>
+	<td class="biao_bt3"><spring:message code="department_title" /></td>
 	<td>
 	<select name="deptName">
 	<c:forEach items="${depts}" var="dept">
@@ -70,47 +70,47 @@ $ .parser.onComplete = function() {
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Personal Id</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_pId" /></td>
 	<td>
 	<input type="text" name="pId" id="pId"  value= "${authority.personal.pId}" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_pId" />不能为空.',required:true"   />
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">First Name</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_fname" /></td>
 	<td>
 	<input type="text" name="fname" id="fname" value="${ authority.personal.fname }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_fname" />不能为空.',required:true"   />
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Last Name</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_lname" /></td>
 	<td>
 	<input type="text" name="lname" id="lname" value="${ authority.personal.lname }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_lname" />不能为空.',required:true"   />
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Address</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_address" /></td>
 	<td>
 	<input type="text" name="address" id="address" value="${ authority.personal.address }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_address" />不能为空.',required:true"   />
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Email</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_email" /></td>
 	<td>
 	<input type="text" name="email" id="email" value="${ authority.personal.email }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_email" />不能为空.',required:true, validType:'email'"   />
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Phone</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_phone" /></td>
 	<td><input type="text" name="phone" id="phone" value="${ authority.personal.phone }" class="easyui-numberbox" data-options="missingMessage:'<spring:message code="personaldetails_phone" />不能为空.',required:true, min:10000000000, max:99999999999"   />	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Gender</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_gender" /></td>
 	<td valign="middle">
 	<input type="radio" name="gender" id="gender" value="Male" ${authority.personal.gender == 'Male'?'checked':''}/>Male
 	<input type="radio" name="gender" id="gender" value="Female" ${authority.personal.gender == 'Female'?'checked':''}/>Female
@@ -118,22 +118,22 @@ $ .parser.onComplete = function() {
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Father Name</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_fatherName" /></td>
 	<td><input type="text" name="fathername" id="fathername" value="${ authority.personal.fatherName }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_fatherName" />不能为空.',required:true"   />	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Mother Name</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_motherName" /></td>
 	<td><input type="text" name="mothername" id="mothername" value="${ authority.personal.motherName }" class="easyui-validatebox" data-options="missingMessage:'<spring:message code="personaldetails_motherName" />不能为空.',required:true"   />	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Date of Birth</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_dob" /></td>
 	<td><input type="date" name="dob" id="dob" value="${ authority.personal.dob }" class="easyui-datebox" data-options="missingMessage:'<spring:message code="personaldetails_dob" />不能为空.',required:true"   />	</td>
 	</tr>
 	
 	<tr>
-	<td class="biao_bt3">Date of Join</td>
+	<td class="biao_bt3"><spring:message code="personaldetails_doj" /></td>
 	<td><input type="date" name="doj" id="doj" value="${ authority.personal.doj }" class="easyui-datebox" data-options="missingMessage:'<spring:message code="personaldetails_doj" />不能为空.',required:true"   />	</td>
 	</tr>
 	</table>

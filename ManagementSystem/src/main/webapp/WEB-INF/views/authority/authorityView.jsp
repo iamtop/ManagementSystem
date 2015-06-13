@@ -9,51 +9,51 @@
 		<div class="contenttable1">
 			<table class="content" style="width: 99%;" cellpadding="0" cellspacing="0" >
 				<tr>
-				<td class="biao_bt3">Personal Id</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_pId" /></td>
 				<td>${authority.personal.pId}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Department</td>
+				<td class="biao_bt3"><spring:message code="department_title" /></td>
 				<td>${authority.deptList.deptName}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Role</td>
+				<td class="biao_bt3"><spring:message code="roleasignment_roleName" /></td>
 				<td>${authority.roleList.roleName}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">First name</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_fname" /></td>
 				<td>${authority.personal.fname}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Last Name</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_lname" /></td>
 				<td>${authority.personal.lname}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Address</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_email" /></td>
 				<td>${authority.personal.email}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Phone</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_phone" /></td>
 				<td>${authority.personal.phone}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Gender</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_gender" /></td>
 				<td>${authority.personal.gender}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Father Name</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_fatherName" /></td>
 				<td>${authority.personal.fatherName}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Mother Name</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_motherName" /></td>
 				<td>${authority.personal.motherName}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Date of Birth</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_dob" /></td>
 				<td>${authority.personal.dob}</td>
 				</tr>
 				<tr>
-				<td class="biao_bt3">Date of Join</td>
+				<td class="biao_bt3"><spring:message code="personaldetails_doj" /></td>
 				<td>${authority.personal.doj}</td>
 				</tr>
 			</table>
