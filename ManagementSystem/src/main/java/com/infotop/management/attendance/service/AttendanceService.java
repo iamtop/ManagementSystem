@@ -148,40 +148,39 @@ public class AttendanceService {
 	
     
     public DataGrid dataGrid(Map<String, Object> searchParams, int pageNumber,
-			int rows, String sortType, String order,String timeSlotStart, String timeSlotEnd) {
+			int rows, String sortType, String order,String deptId, String batchId, String timeSlotStart) {
 		/*Page<Attendance> page = getAllAttendance(searchParams,
 				pageNumber, rows, sortType, order);*/
 		DataGrid dataGrid = new DataGrid();
 		
-		String sql ="select tm.id,tm.slot_start_time,tm.slot_end_time,tm.task_date,"
+		String sql ="select tm.id,tm.slot_start_time,tm.task_date,"
                      + "(select dept.dept_name from ms_dept dept where dept.id=tm.dept_id) as Department,"
                      + "(select sem.sem_name from ms_batch sem where sem.id=tm.sem_id) as Semester,"
                      + "(select sub.sub_name from ms_subject sub where sub.id=tm.sub_id) as SubjectName,"
                      + "(select personal.fname from ms_personal personal where  personal.id=stu.p_id) as StudentName "
                      + "from ms_task_manager tm left join ms_student stu on tm.dept_id=stu.dept_id and tm.sem_id=stu.sem_id";
-		String whereSql="";
-		if(!timeSlotStart.isEmpty() || !timeSlotEnd.isEmpty()){
-			 whereSql+=" where ";
-		}
-		if(!timeSlotStart.isEmpty() && (timeSlotEnd.isEmpty())){
-			whereSql+= "  ";
-			
-		}
+		
+//		String whereSql="";
+//		
+//		if(!deptId.isEmpty() || !batchId.isEmpty() || !timeSlotStart.isEmpty()){
+//			 whereSql+=" where ";
+//		}
+//		if(!timeSlotStart.isEmpty() && (timeSlotEnd.isEmpty())){
+//			whereSql+= "  ";
+//			
+//		}
+//
+//		if(timeSlotStart.isEmpty() && (!timeSlotEnd.isEmpty())){
+//			whereSql+= "";
+//		}
+//		
+//		if(!timeSlotStart.isEmpty() && (!timeSlotEnd.isEmpty())){
+//			whereSql+= "slot_start_time=\""+timeSlotStart+"\" AND slot_end_time= \""+timeSlotEnd+"\" ";
+//		}
 
-		if(timeSlotStart.isEmpty() && (!timeSlotEnd.isEmpty())){
-			whereSql+= "";
-		}
+		dataGrid.setRows(jdbcTemplate.queryForList(sql));
+//		dataGrid.setRows(jdbcTemplate.queryForList(sql+whereSql));
 		
-		if(!timeSlotStart.isEmpty() && (!timeSlotEnd.isEmpty())){
-			whereSql+= "slot_start_time=\""+timeSlotStart+"\" AND slot_end_time= \""+timeSlotEnd+"\" ";
-		}
-		//if()
-		
-		//dataGrid.setTotal(page.getTotalElements());
-		dataGrid.setRows(jdbcTemplate.queryForList(sql+whereSql));
-		System.out.println("============================================"+(sql+whereSql));
-		
-		//dataGrid.setRows(page.getContent());
 		return dataGrid;
 	}
     

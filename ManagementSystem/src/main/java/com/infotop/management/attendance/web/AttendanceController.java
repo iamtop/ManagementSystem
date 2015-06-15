@@ -92,9 +92,12 @@ public class AttendanceController extends BasicController {
     	ShiroUser su = super.getLoginUser();
 		User user = accountService.findUserByLoginName(su.getLoginName());
 		if (user != null) {
+			List<Department> deptList = deptService.getAllDepts();
+			List<Batch> batList = batchService.getAllBatches();
 			List<TaskManager> taskList = taskMangerService.findSpecificId();
+			model.addAttribute("deptLs", deptList);
+			model.addAttribute("batchList", batList);
 			 model.addAttribute("tasks", taskList);
-			 System.out.println("hhhhhhhhhhhhhhhhhhhhhhhh"+taskList);
 				
 		} else {
 			logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
@@ -121,8 +124,9 @@ public class AttendanceController extends BasicController {
 			@RequestParam(value = "order", defaultValue = "desc") String order,
 			@RequestParam(value = "page", defaultValue = "1") int pageNumber,
 			@RequestParam(value = "rows", defaultValue = ROWS) int rows,
+			@RequestParam(value = "deptId", defaultValue = "") String deptId,
+			@RequestParam(value = "batchId", defaultValue = "") String batchId,
 			@RequestParam(value = "timeSlotStart", defaultValue = "") String timeSlotStart,
-			@RequestParam(value = "timeSlotEnd", defaultValue = "") String timeSlotEnd,
 			Model model, ServletRequest request) {
 		DataGrid dataGrid = new DataGrid();
 		try {
@@ -135,9 +139,7 @@ public class AttendanceController extends BasicController {
 				model.addAttribute("searchParams", Servlets
 						.encodeParameterStringWithPrefix(searchParams, "search_"));
 				dataGrid = attendanceService.dataGrid(searchParams, pageNumber,
-						rows, sortType, order,timeSlotStart,timeSlotEnd);
-				
-				System.out.println("dataGrid=========="+dataGrid);
+						rows, sortType, order,deptId,batchId,timeSlotStart);
 			
 			} else {
 				logger.log(this.getClass(),Logger.ERROR_INT,"登陆帐号无效!","",null);
@@ -201,15 +203,11 @@ public class AttendanceController extends BasicController {
 	 @ResponseBody
 	    public Message submit(@RequestParam(value = "Department") List<String> Department,
 	    		              @RequestParam(value = "slotstarttime") List<String> slotstarttime,
-	    		              @RequestParam(value = "slotendtime") List<String> slotendtime,
+//	    		              @RequestParam(value = "slotendtime") List<String> slotendtime,
 	    		              @RequestParam(value = "StudentName") List<String> StudentName,
 		    		          @RequestParam(value = "Semester") List<String> Semester,
 	    		              @RequestParam(value = "SubjectName") List<String> SubjectName,
 	    		              @RequestParam(value = "attendanceDate") List<String> attendanceDate,
-		    		             
-		    		             
-	    		              
-	    		             
 	            ServletRequest request) throws Exception {
 		
 	     try {
@@ -217,7 +215,6 @@ public class AttendanceController extends BasicController {
 	    	 	ShiroUser su = super.getLoginUser();
 				User user = accountService.findUserByLoginName(su.getLoginName());
 				if (user != null) {
-					System.out.println("Department====="+Department);
 					for(int i=0;i<Department.size();i++){
 						attendence = new Attendance();
 						
@@ -225,7 +222,7 @@ public class AttendanceController extends BasicController {
 						attendence.setBatchId(Semester.get(i));
 						attendence.setSubId(SubjectName.get(i));
 						attendence.setTimeSlotStart(slotstarttime.get(i));
-						attendence.setTimeSlotEnd(slotendtime.get(i));
+//						attendence.setTimeSlotEnd(slotendtime.get(i));
 						attendence.setStudId(StudentName.get(i));
 						attendence.setAttendanceDate(attendanceDate.get(i));
 						

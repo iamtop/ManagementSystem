@@ -10,6 +10,26 @@
 				<table class="search_table" style="width: 100%;">
 					<tr>
 					
+	<th><spring:message code="attendance_department" /></th>
+						<td>
+						<select name="search_EQ_taskList.department" value="${ param.search_EQ_taskList.deptId}"
+							id="deptId">
+							<option value="">Select</option>
+	                          <c:forEach items="${deptLs}" var="dp">
+	                          <option value="${dp.deptName}">${dp.deptName}</option>
+	                          </c:forEach>
+	                          </select></td>
+	                          
+	                          	<th><spring:message code="attendance_semester" /></th>
+						<td>
+						<select name="search_EQ_taskList.semester" value="${ param.search_EQ_taskList.batchId}"
+							id="batchId">
+							<option value="">Select</option>
+	                          <c:forEach items="${batchList}" var="bl">
+	                          <option value="${bl.semName}">${bl.semName}</option>
+	                          </c:forEach>
+	                          </select></td>
+
 					
 	<th><spring:message code="attendance_timeSlotStart" /></th>
 						<td>
@@ -20,17 +40,6 @@
 	                          <option value="${task.slotStartTime}">${task.slotStartTime}</option>
 	                          </c:forEach>
 	                          </select></td>
-	                          
-   <th><spring:message code="attendance_timeSlotEnd" /></th>
-						<td>
-						<select name="search_EQ_timeSlotEnd" 
-							value="${ param.search_EQ_timeSlotEnd}"
-							id="timeSlotEnd">
-							<option value="">--select--</option>
-	                          <c:forEach items="${tasks}" var="task">
-	                          <option value="${task.slotEndTime}">${task.slotEndTime}</option>
-	                          </c:forEach>
-	                          </select></td> 
 	
 	<th><spring:message code="attendance_attendanceDate" /></th>
 						<td><input type="text" name="search_EQ_attendanceDate"
@@ -100,7 +109,7 @@
 	var attendance_list_datagrid_columns = [ [
 	                    		
 	    	          					{field : 'slot_start_time',title : '<spring:message code="attendance_timeSlotStart" />',width : 150,align:'center'},
-			          					{field : 'slot_end_time',title : '<spring:message code="attendance_timeSlotEnd" />',width : 150,align:'center'},
+			          					/* {field : 'slot_end_time',title : '<spring:message code="attendance_timeSlotEnd" />',width : 150,align:'center'}, */
 			          					{field : 'Department',title : '<spring:message code="attendance_department" />',width : 150,align:'center'},
 			          					{field : 'StudentName',title : '<spring:message code="attendance_student" />',width : 150,align:'center'},
 			          					{field : 'Semester',title : '<spring:message code="attendance_semester" />',width : 150,align:'center'},
@@ -119,9 +128,9 @@
 	/** 初始化DataGrid,加载数据 **/		
 	function attendance_list_loadDataGrid(){			
 		var timeSlotStart = $('#timeSlotStart').val();
-		var timeSlotEnd = $('#timeSlotEnd').val();
+/* 		var timeSlotEnd = $('#timeSlotEnd').val(); */
 		attendance_list_datagrid = $('#'+attendance_list_datagrid_id).datagrid({
-			url : attendance_list_datagrid_load_url+"?timeSlotStart="+timeSlotStart+"&timeSlotEnd="+timeSlotEnd,
+			url : attendance_list_datagrid_load_url+"?timeSlotStart="+timeSlotStart/* +"&timeSlotEnd="+timeSlotEnd */,
 			fit : true,
 			border : false,
 			fitColumns : true,
