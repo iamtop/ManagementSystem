@@ -40,6 +40,7 @@ import org.springside.modules.web.Servlets;
 
 
 
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -128,6 +129,7 @@ public class AttendanceController extends BasicController {
 			@RequestParam(value = "batchId", defaultValue = "") String batchId,
 			@RequestParam(value = "timeSlotStart", defaultValue = "") String timeSlotStart,
 			Model model, ServletRequest request) {
+
 		DataGrid dataGrid = new DataGrid();
 		try {
 			ShiroUser su = super.getLoginUser();

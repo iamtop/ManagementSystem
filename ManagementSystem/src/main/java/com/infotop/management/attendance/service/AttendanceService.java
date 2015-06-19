@@ -1,5 +1,8 @@
 package com.infotop.management.attendance.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -153,33 +156,28 @@ public class AttendanceService {
 				pageNumber, rows, sortType, order);*/
 		DataGrid dataGrid = new DataGrid();
 		
-		String sql ="select tm.id,tm.slot_start_time,tm.task_date,"
-                     + "(select dept.dept_name from ms_dept dept where dept.id=tm.dept_id) as Department,"
-                     + "(select sem.sem_name from ms_batch sem where sem.id=tm.sem_id) as Semester,"
-                     + "(select sub.sub_name from ms_subject sub where sub.id=tm.sub_id) as SubjectName,"
-                     + "(select personal.fname from ms_personal personal where  personal.id=stu.p_id) as StudentName "
-                     + "from ms_task_manager tm left join ms_student stu on tm.dept_id=stu.dept_id and tm.sem_id=stu.sem_id";
-		
-//		String whereSql="";
-//		
-//		if(!deptId.isEmpty() || !batchId.isEmpty() || !timeSlotStart.isEmpty()){
-//			 whereSql+=" where ";
-//		}
-//		if(!timeSlotStart.isEmpty() && (timeSlotEnd.isEmpty())){
-//			whereSql+= "  ";
-//			
-//		}
-//
-//		if(timeSlotStart.isEmpty() && (!timeSlotEnd.isEmpty())){
-//			whereSql+= "";
-//		}
-//		
-//		if(!timeSlotStart.isEmpty() && (!timeSlotEnd.isEmpty())){
-//			whereSql+= "slot_start_time=\""+timeSlotStart+"\" AND slot_end_time= \""+timeSlotEnd+"\" ";
-//		}
+		Calendar dt= Calendar.getInstance();
+		SimpleDateFormat smdf = new SimpleDateFormat("yyyy-MM-dd");
+		String curDate = smdf.format(dt.getTime());
 
-		dataGrid.setRows(jdbcTemplate.queryForList(sql));
-//		dataGrid.setRows(jdbcTemplate.queryForList(sql+whereSql));
+		String sql = "select * from attendancelist";
+		String whereSql="";
+		String sql1 = "select * from attendancelist a where a.id =-999";
+		
+		if(deptId.isEmpty() || batchId.isEmpty() || timeSlotStart.isEmpty()){
+			dataGrid.setRows(jdbcTemplate.queryForList(sql1));
+		}
+		if(!deptId.isEmpty() && !batchId.isEmpty() && !timeSlotStart.isEmpty()){
+			 whereSql+=" where ";
+		}
+		
+		if(!deptId.isEmpty() && !batchId.isEmpty() && (!timeSlotStart.isEmpty())){
+			whereSql+= "Department=\""+deptId+"\" AND Semester= \""+batchId+"\" AND slot_start_time=\""+timeSlotStart+"\" AND task_date=\""+curDate+"\"";
+			dataGrid.setRows(jdbcTemplate.queryForList(sql+whereSql));
+		}
+
+//		dataGrid.setRows(jdbcTemplate.queryForList(sql));
+		
 		
 		return dataGrid;
 	}

@@ -10,9 +10,9 @@
 				<table class="search_table" style="width: 100%;">
 					<tr>
 					
-	<th><spring:message code="attendance_department" /></th>
+						<th><spring:message code="attendance_department" /></th>
 						<td>
-						<select name="search_EQ_taskList.department" value="${ param.search_EQ_taskList.deptId}"
+						<select name="search_EQ_taskList.deptList" value="${ param.search_EQ_taskList.deptList}"
 							id="deptId">
 							<option value="">Select</option>
 	                          <c:forEach items="${deptLs}" var="dp">
@@ -20,9 +20,9 @@
 	                          </c:forEach>
 	                          </select></td>
 	                          
-	                          	<th><spring:message code="attendance_semester" /></th>
-						<td>
-						<select name="search_EQ_taskList.semester" value="${ param.search_EQ_taskList.batchId}"
+	                        <th><spring:message code="attendance_semester" /></th>
+							<td>
+							<select name="search_EQ_taskList.allSemester" value="${ param.search_EQ_taskList.allSemester}"
 							id="batchId">
 							<option value="">Select</option>
 	                          <c:forEach items="${batchList}" var="bl">
@@ -31,11 +31,11 @@
 	                          </select></td>
 
 					
-	<th><spring:message code="attendance_timeSlotStart" /></th>
+							<th><spring:message code="attendance_timeSlotStart" /></th>
 						<td>
 						<select name="search_EQ_taskList.timeSlotStart" value="${ param.search_EQ_taskList.timeSlotStart}"
 							id="timeSlotStart">
-							<option value="">--select--</option>
+							<option value="">Select</option>
 	                          <c:forEach items="${tasks}" var="task">
 	                          <option value="${task.slotStartTime}">${task.slotStartTime}</option>
 	                          </c:forEach>
@@ -89,32 +89,17 @@
 	
 	//定义相关的操作按钮
 	function attendance_list_actionFormatter(value,row,index){
-	/* 	var str = '';	
-		str += formatString(
-				'<img onclick="updateForm(\'{0}\',\'attendance_form_inputForm\',attendance_list_datagrid,{title:\'编辑信息\'});" src="{1}" title="编辑"/>',
-				attendance_list_update_url + row.id,
-				'${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icons/application_form_edit.png');
-		str += '&nbsp;';
-		str += formatString('<img onclick="deleteOne(\'{0}\',\'{1}\',attendance_list_datagrid);" src="{2}" title="删除"/>',
-		                    row.id,attendance_list_delete_url,'${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icons/application_form_delete.png');
-		str += '&nbsp;';
-		str += formatString(
-				'<img onclick="view(\'{0}\',\'{1}\');" src="${ctx}/static/js/plugins/jquery-easyui-1.3.4/themes/icons/view.png" title="查看"/>',
-				attendance_list_view_url + row.id);
-		str += '&nbsp;';
-		return str; */
+		
 	}
 	
 	//DataGrid字段设置
 	var attendance_list_datagrid_columns = [ [
 	                    		
-	    	          					{field : 'slot_start_time',title : '<spring:message code="attendance_timeSlotStart" />',width : 150,align:'center'},
-			          					/* {field : 'slot_end_time',title : '<spring:message code="attendance_timeSlotEnd" />',width : 150,align:'center'}, */
+	    	          					{field : 'slot_start_time',title : '<spring:message code="attendance_timeSlotStart" />',width : 150,align:'center'},			          					
 			          					{field : 'Department',title : '<spring:message code="attendance_department" />',width : 150,align:'center'},
 			          					{field : 'StudentName',title : '<spring:message code="attendance_student" />',width : 150,align:'center'},
 			          					{field : 'Semester',title : '<spring:message code="attendance_semester" />',width : 150,align:'center'},
 			          					{field : 'SubjectName',title : '<spring:message code="attendance_subject" />',width : 150,align:'center'},
-			          				
 						                {field : 'task_date',title : '<spring:message code="attendance_attendanceDate" />',width : 150,align:'center'},
 						      			{field : 'id',title : '编号',width : 150,checkbox : true,align:'center'},
 							          	
@@ -128,9 +113,10 @@
 	/** 初始化DataGrid,加载数据 **/		
 	function attendance_list_loadDataGrid(){			
 		var timeSlotStart = $('#timeSlotStart').val();
-/* 		var timeSlotEnd = $('#timeSlotEnd').val(); */
+		var deptt = $('#deptId').val();
+		var batchh = $('#batchId').val();
 		attendance_list_datagrid = $('#'+attendance_list_datagrid_id).datagrid({
-			url : attendance_list_datagrid_load_url+"?timeSlotStart="+timeSlotStart/* +"&timeSlotEnd="+timeSlotEnd */,
+			url : attendance_list_datagrid_load_url+"?deptId="+deptt+"&timeSlotStart="+timeSlotStart + "&batchId="+batchh,
 			fit : true,
 			border : false,
 			fitColumns : true,
