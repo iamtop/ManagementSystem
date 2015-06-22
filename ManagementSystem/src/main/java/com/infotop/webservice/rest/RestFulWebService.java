@@ -1,8 +1,12 @@
 package com.infotop.webservice.rest;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.infotop.management.roleasignment.entity.RoleAsignment;
@@ -34,6 +38,9 @@ public class RestFulWebService {
 	@Autowired
 	private SubjectDao subjectDao;
 	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
 	public List<RoleAsignment> getAllRoleName(){
 		return (List<RoleAsignment>) roleDao.findAll();		
 	}
@@ -52,5 +59,20 @@ public class RestFulWebService {
 	
 	public List<Department> getAllDepartment(){
 		return (List<Department>) deptDao.findAll();
+	}
+
+	public List<Map<String, Object>> getTaskTeachers() {
+		
+		String sql = "select t.id, m.fname, m.lname from ms_task_manager t, ms_authority a, "
+				+ "ms_personal m where t.p_id = a.id and a.p_id = m.id";
+		return jdbcTemplate.queryForList(sql);
+	}
+
+	public List<Map<String, Object>> getTaskDetails(int id) {
+		int idd = id;
+		String sql = "select distinct t.id, m.fname, m.lname, t.slot_start_time, t.slot_end_time, d.dept_name, "
+				+ "b.sem_name, s.sub_name from ms_task_manager as t, ms_authority a, ms_personal m, ms_subject s, ms_batch b,"
+				+ " ms_dept d where t.p_id = a.id and a.p_id = m.id and t.dept_id = d.id and t.sem_id = b.id and t.sub_id = s.id and t.id = "+id+"";
+		return jdbcTemplate.queryForList(sql);
 	}
 }

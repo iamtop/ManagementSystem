@@ -2,6 +2,7 @@ package com.infotop.webservice.rest;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.infotop.common.BasicController;
 import com.infotop.management.batch.entity.Batch;
@@ -11,6 +12,7 @@ import com.infotop.management.subject.entity.Subject;
 import com.infotop.management.taskmanager.entity.TaskManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,5 +49,17 @@ public @ResponseBody List<Subject> getAllSubjects(){
 @RequestMapping(value="getAllDepts", method=RequestMethod.GET , produces="application/json")
 public @ResponseBody List<Department> getAllDepartments(){
 	return (List<Department>) restService.getAllDepartment();
+}
+
+//Get teacher name from task manager
+@RequestMapping(value="getTaskTeachers", method=RequestMethod.GET, produces = "application/json")
+public List<Map<String, Object>> getTaskTeachers(){
+	return (List<Map<String, Object>>) restService.getTaskTeachers();
+}
+
+// Get the details of task for a particular teacher
+@RequestMapping(value="getTasktDetails/{id}", method=RequestMethod.GET, produces = "application/json")
+public List<Map<String, Object>> getTaskDetails(@PathVariable ("id") int id){
+	return (List<Map<String, Object>>) restService.getTaskDetails(id);
 }
 }
