@@ -1,5 +1,6 @@
 package com.infotop.webservice.rest;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,10 +46,6 @@ public class RestFulWebService {
 		return (List<RoleAsignment>) roleDao.findAll();		
 	}
 	
-	public List<TaskManager> getAllTask(){
-		return (List<TaskManager>) taskDao.findAll();
-	}
-	
 	public List<Batch> getAllSemester(){
 		return (List<Batch>) batchDao.findAll();
 	}
@@ -82,14 +79,24 @@ public class RestFulWebService {
 	}
 
 	public List<Map<String, Object>> getStudentDetails(int id) {
-		String sql = "select distinct s.id, s.stud_id,p.fname, p.lname, p.father_name as fatherName, p.mother_name as motherName, "
-				+ "p.dob, p.doj, p.email, p.gender, p.phone, b.sem_name as semName, d.dept_name as deptName from ms_student as s, "
-				+ "ms_personal as p, ms_batch as b, ms_dept as d where s.p_id = " +id+" and p.id = "+id+" and s.sem_id = b.id and s.dept_id = d.id";
-		return jdbcTemplate.queryForList(sql);
+		String sql;
+			sql = "select distinct s.id, s.stud_id,p.fname, p.lname, p.father_name as fatherName, p.mother_name as motherName, "
+					+ "p.dob, p.doj, p.email, p.gender, p.phone, b.sem_name as semName, d.dept_name as deptName from ms_student as s, "
+					+ "ms_personal as p, ms_batch as b, ms_dept as d where s.p_id = " +id+" and p.id = "+id+" and s.sem_id = b.id and s.dept_id = d.id";
+		return jdbcTemplate.queryForList(sql);	
 	}
 
 	public List<Map<String, Object>> getAllAuthorities() {
-		
-		return null;
+		String sql = "select a.id, p.fname, p.lname, p.address, p.email, p.phone, p.gender, p.father_name as fatherName, "
+				+ "p.mother_name as motherName, p.dob, p.doj, d.dept_name as deptName, r.role_name as roleName from ms_authority as a, ms_personal as p, ms_dept as d, "
+				+ "ms_role_asign as r where a.p_id = p.id and a.role_code = r.id and a.dept_id = d.id";
+		return jdbcTemplate.queryForList(sql);
+	}
+
+	public List<Map<String, Object>> getAuthDetail(int id) {
+		String sql = "select a.id, p.fname, p.lname, p.address, p.email, p.phone, p.gender, p.father_name as fatherName, "
+				+ "p.mother_name as motherName, p.dob, p.doj, d.dept_name as deptName, r.role_name as roleName from ms_authority as a, ms_personal as p, ms_dept as d, "
+				+ "ms_role_asign as r where a.p_id = p.id and a.role_code = r.id and a.dept_id = d.id and a.id= "+id+"";
+		return jdbcTemplate.queryForList(sql);
 	}
 }

@@ -31,11 +31,7 @@ public @ResponseBody List<RoleAsignment> getAllRoleNames(){
 	return (List<RoleAsignment>) restService.getAllRoleName();
 	
 }
-@RequestMapping(value = "getAllTasks" , method=RequestMethod.GET , produces = "application/json")
-public @ResponseBody List<TaskManager> getAllTasks(){
-	return (List<TaskManager>) restService.getAllTask();
-	
-}
+
 @RequestMapping(value="getAllSemesters" , method=RequestMethod.GET , produces="application/json")
 public @ResponseBody List<Batch> getAllSemesters(){
 	return (List<Batch>) restService.getAllSemester();
@@ -79,5 +75,11 @@ public List<Map<String, Object>> getStudentDetails(@PathVariable ("id") int id){
 @RequestMapping(value = "getAllAuthorities", method=RequestMethod.GET, produces= "application/json")
 public List<Map<String, Object>> getAllAuthorities(){
 	return (List<Map<String, Object>>) restService.getAllAuthorities();
+}
+
+//get particular teahcer detail
+@RequestMapping(value = "getAuthDetail/{id}", method=RequestMethod.GET, produces= "application/json")
+public List<Map<String, Object>> getAuthDetail(@PathVariable ("id") int id){
+	return (List<Map<String, Object>>) restService.getAuthDetail(id);
 }
 }
