@@ -62,4 +62,16 @@ public List<Map<String, Object>> getTaskTeachers(){
 public List<Map<String, Object>> getTaskDetails(@PathVariable ("id") int id){
 	return (List<Map<String, Object>>) restService.getTaskDetails(id);
 }
+
+// get the student details
+@RequestMapping(value="getStudents", method=RequestMethod.GET, produces = "application/json")
+public List<Map<String, Object>> getStudents(){
+	return (List<Map<String, Object>>) restService.getStudents();
+}
+
+// get individual student details
+@RequestMapping(value="getStudentDetails/{id}", method = RequestMethod.GET, produces="application/json")
+public List<Map<String, Object>> getStudentDetails(@PathVariable ("id") int id){
+	return (List<Map<String, Object>>) restService.getStudentDetails(id);
+}
 }
