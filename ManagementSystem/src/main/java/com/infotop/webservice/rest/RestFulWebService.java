@@ -66,7 +66,7 @@ public class RestFulWebService {
 	}
 
 	public List<Map<String, Object>> getTaskDetails(int id) {
-		String sql = "select distinct t.id, m.fname, m.lname, t.slot_start_time as slotStartTime, t.slot_end_time as slotEndTime, d.dept_name as deptName, "
+		String sql = "select distinct t.id, m.fname, m.lname, t.task_date as taskDate, t.slot_start_time as slotStartTime, t.slot_end_time as slotEndTime, d.dept_name as deptName, "
 				+ "b.sem_name as SemName, s.sub_name as subName from ms_task_manager as t, ms_authority a, ms_personal m, ms_subject s, ms_batch b,"
 				+ " ms_dept d where t.p_id = a.id and a.p_id = m.id and t.dept_id = d.id and t.sem_id = b.id and t.sub_id = s.id and t.id = "+id+"";
 		return jdbcTemplate.queryForList(sql);
