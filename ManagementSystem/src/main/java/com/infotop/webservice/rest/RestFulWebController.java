@@ -74,4 +74,10 @@ public List<Map<String, Object>> getStudents(){
 public List<Map<String, Object>> getStudentDetails(@PathVariable ("id") int id){
 	return (List<Map<String, Object>>) restService.getStudentDetails(id);
 }
+
+//get all Authorities
+@RequestMapping(value = "getAllAuthorities", method=RequestMethod.GET, produces= "application/json")
+public List<Map<String, Object>> getAllAuthorities(){
+	return (List<Map<String, Object>>) restService.getAllAuthorities();
+}
 }

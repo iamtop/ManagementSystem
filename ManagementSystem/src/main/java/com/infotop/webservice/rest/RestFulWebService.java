@@ -69,8 +69,8 @@ public class RestFulWebService {
 	}
 
 	public List<Map<String, Object>> getTaskDetails(int id) {
-		String sql = "select distinct t.id, m.fname, m.lname, t.slot_start_time, t.slot_end_time, d.dept_name, "
-				+ "b.sem_name, s.sub_name from ms_task_manager as t, ms_authority a, ms_personal m, ms_subject s, ms_batch b,"
+		String sql = "select distinct t.id, m.fname, m.lname, t.slot_start_time as slotStartTime, t.slot_end_time as slotEndTime, d.dept_name as deptName, "
+				+ "b.sem_name as SemName, s.sub_name as subName from ms_task_manager as t, ms_authority a, ms_personal m, ms_subject s, ms_batch b,"
 				+ " ms_dept d where t.p_id = a.id and a.p_id = m.id and t.dept_id = d.id and t.sem_id = b.id and t.sub_id = s.id and t.id = "+id+"";
 		return jdbcTemplate.queryForList(sql);
 	}
@@ -82,9 +82,14 @@ public class RestFulWebService {
 	}
 
 	public List<Map<String, Object>> getStudentDetails(int id) {
-		String sql = "select distinct s.id, s.stud_id,p.fname, p.lname, p.father_name, p.mother_name, "
-				+ "p.dob, p.doj, p.email, p.gender, p.phone, b.sem_name, d.dept_name from ms_student as s, "
+		String sql = "select distinct s.id, s.stud_id,p.fname, p.lname, p.father_name as fatherName, p.mother_name as motherName, "
+				+ "p.dob, p.doj, p.email, p.gender, p.phone, b.sem_name as semName, d.dept_name as deptName from ms_student as s, "
 				+ "ms_personal as p, ms_batch as b, ms_dept as d where s.p_id = " +id+" and p.id = "+id+" and s.sem_id = b.id and s.dept_id = d.id";
 		return jdbcTemplate.queryForList(sql);
+	}
+
+	public List<Map<String, Object>> getAllAuthorities() {
+		
+		return null;
 	}
 }
