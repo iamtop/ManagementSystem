@@ -59,8 +59,9 @@ width:100px;
 							 </td> 
 							
 							<th style="width:20%;">&nbsp;<a href="javascript:void(0);"
-							id="attendance_list_searchBtn"  onclick="attendance_list_loadDataGrid()">查询</a>&nbsp;<a
-							href="javascript:void(0);" id="attendance_list_clearBtn">清空</a></th>
+							id="attendance_list_searchBtn"  onclick="attendance_list_loadDataGrid()">查询</a>
+							<!-- &nbsp;<a href="javascript:void(0);" id="attendance_list_clearBtn">清空</a> -->
+							</th>
 					</tr>
 				</table>
 			</form>
@@ -148,7 +149,8 @@ width:100px;
 		//加载DataGrid数据
 		attendance_list_loadDataGrid();	
 		//绑定按钮事件
-		bindSearchBtn('attendance_list_searchBtn','attendance_list_clearBtn','attendance_list_searchForm',attendance_list_datagrid);
+//		bindSearchBtn('attendance_list_searchBtn','attendance_list_clearBtn','attendance_list_searchForm',attendance_list_datagrid);
+		bindSearchBtn('attendance_list_searchBtn','attendance_list_searchForm',attendance_list_datagrid);
 	};
 	
 	
