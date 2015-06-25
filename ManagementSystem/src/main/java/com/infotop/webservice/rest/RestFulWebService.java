@@ -1,8 +1,5 @@
 package com.infotop.webservice.rest;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +11,6 @@ import com.infotop.management.roleasignment.entity.RoleAsignment;
 import com.infotop.management.roleasignment.repository.RoleAsignmentDao;
 import com.infotop.management.subject.entity.Subject;
 import com.infotop.management.subject.repository.SubjectDao;
-import com.infotop.management.taskmanager.entity.TaskManager;
 import com.infotop.management.taskmanager.repository.TaskManagerDao;
 import com.infotop.management.batch.entity.Batch;
 import com.infotop.management.batch.repository.BatchDao;

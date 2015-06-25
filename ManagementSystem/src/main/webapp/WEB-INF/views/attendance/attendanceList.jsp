@@ -1,5 +1,11 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+
+<style>
+#text1{
+width:100px;
+}
+</style>
 <div data-options="fit:true" class="easyui-panel">
 	<div class="easyui-layout" data-options="fit:true">
 		<div
@@ -42,7 +48,7 @@
 	                          </select></td>
 	
 	<th><spring:message code="attendance_attendanceDate" /></th>
-						<td><input type="text" name="search_EQ_attendanceDate"
+						<td><input type="date" name="search_EQ_attendanceDate"
 						id="text1" readonly>
 							
 							<script type="text/javascript">  

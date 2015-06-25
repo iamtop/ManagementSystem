@@ -9,8 +9,6 @@ import com.infotop.management.batch.entity.Batch;
 import com.infotop.management.department.entity.Department;
 import com.infotop.management.roleasignment.entity.RoleAsignment;
 import com.infotop.management.subject.entity.Subject;
-import com.infotop.management.taskmanager.entity.TaskManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
