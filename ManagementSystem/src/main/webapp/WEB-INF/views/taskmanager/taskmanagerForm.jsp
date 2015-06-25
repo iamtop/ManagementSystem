@@ -49,7 +49,7 @@ $ .parser.onComplete = function() {
 		<tr>
 			<td class="biao_bt3"><spring:message code="taskmanager_taskDate" /></td>
 			<td><input type="date" name="taskDate" id="taskDate"
-				value="${ taskmanager.taskDate }" class="easyui-validatebox"
+				value="${ taskmanager.taskDate }" class="easyui-datebox"
 				data-options="missingMessage:'<spring:message code="taskmanager_taskDate" />不能为空.',required:true" />
 			</td>
 		</tr>
